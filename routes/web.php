@@ -5,22 +5,28 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Here is where you can register web Routes for your application. These
+| Routes are loaded by the RouteServiceProvider within a group which
+| contains the 'web' middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('index.index');
 });
-route::get('courselist',"IndexController@course");
-route::get("login","LoginController@login");
-route::get("register","LoginController@register");
-route::get("coursecont","CourseController@coursecont");
-route::get("study","CourseController@study");
-route::get("video","CourseController@video");
-route::get("article","AdvisoryController@article");
-route::get("articlelist","AdvisoryController@articlelist");
-route::get("teacherlist","TeacherController@teacherlist");
-route::get("teacher","TeacherController@teacher");
+
+//前台
+Route::get('/index/courselist','Index\IndexController@course');
+Route::get('/index/login','Index\LoginController@login');
+Route::get('/index/register','Index\LoginController@register');
+Route::get('/index/coursecont','Index\CourseController@coursecont');
+Route::get('/index/study','Index\CourseController@study');
+Route::get('/index/video','Index\CourseController@video');
+Route::get('/index/article','Index\AdvisoryController@article');
+Route::get('/index/articlelist','Index\AdvisoryController@articlelist');
+Route::get('/index/teacherlist','Index\TeacherController@teacherlist');
+Route::get('/index/teacher','Index\TeacherController@teacher');
+
+
+//后台
+Route::get('/admin/index','Admin\IndexController@index');
