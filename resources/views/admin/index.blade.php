@@ -82,7 +82,7 @@
                 <li>
                     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">讲师</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="lecturerAdd">讲师添加</a>
+                        <li><a class="J_menuItem" href="lecturer">讲师添加</a>
                         </li>
                         <li><a class="J_menuItem" href="lecturerList">讲师列表</a>
                         </li>
