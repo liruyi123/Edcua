@@ -56,3 +56,10 @@ Route::get('/admin/consult','Admin\ConsultController@first');   //资讯列表�
 Route::get('/admin/addcon','Admin\ConsultController@consultAdd');   //资讯添加页
 Route::post('/admin/addcon','Admin\ConsultController@consultDo');   //执行资讯添加
 
+Route::get('/admin/navbar','Admin\NavbarController@navbar');//导航栏添加静态页面
+Route::post('/admin/navbardo','Admin\NavbarController@navbardo');//导航栏添加静态页面
+Route::get('/admin/navbarlist','Admin\NavbarController@navlist');//导航栏添加静态页面
+Route::get('/admin/navdelete/{nav_id}','Admin\NavbarController@navdelete');//导航栏删除执行
+Route::get('/admin/navupdate/{nav_id}','Admin\NavbarController@navupdate');//导航栏修改静态页面
+Route::post('/admin/navupdatedo','Admin\NavbarController@navupdatedo');//导航栏修改执行
+

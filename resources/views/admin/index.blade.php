@@ -58,10 +58,10 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="navbarAdd">导航栏添加</a>
+                            <a class="J_menuItem" href="navbar">导航栏添加</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="navbarList">导航栏展示</a>
+                            <a class="J_menuItem" href="navbarlist">导航栏展示</a>
                         </li>
                     </ul>
                 </li>
