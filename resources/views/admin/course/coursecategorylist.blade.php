@@ -17,6 +17,7 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
+                                    <th>课程分类id</th>
                                     <th>课程分类名称</th>
                                     <th>是否展示</th>
                                     <th>父分类</th>
@@ -29,6 +30,7 @@
                                 @foreach($arr as $k=>$v)
                                     <tr >
                                         <input type="hidden" class="cate_id" cid="{{$v['cate_id']}}">
+                                        <td>{{$v['cate_id']}}</td>
                                         <td>{{$v['cate_name']}}</td>
                                         <td>
                                             @if($v['is_show'] == 1)
@@ -70,13 +72,13 @@
                     type:"post",
                     data:{cid:cid},
                     success:function (res) {
-                        console.log(res)
-                        // if(res.status == '200'){
-                        //     alert(res.data);
-                        //     window.location.href = "columnList";
-                        // }else{
-                        //     alert(res.data);
-                        // }
+                        // console.log(res)
+                        if(res.status == '200'){
+                            alert(res.data);
+                            window.location.href = "courseCategoryList";
+                        }else{
+                            alert(res.data);
+                        }
                     }
                 })
             })
