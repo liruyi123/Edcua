@@ -91,17 +91,17 @@
                 <li>
                     <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">资讯</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="consultNavbarAdd">资讯分类添加</a>
+                        <li><a class="J_menuItem" href="">资讯分类添加</a>
                         </li>
-                        <li><a class="J_menuItem" href="consultNavbarList">资讯分类列表</a>
+                        <li><a class="J_menuItem" href="">资讯分类列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="consultAdd">资讯添加</a>
+                        <li><a class="J_menuItem" href="/admin/addcon">资讯添加</a>
                         </li>
-                        <li><a class="J_menuItem" href="consultList">资讯列表</a>
+                        <li><a class="J_menuItem" href="/admin/consult">资讯列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="activityAdd">活动添加</a>
+                        <li><a class="J_menuItem" href="">活动添加</a>
                         </li>
-                        <li><a class="J_menuItem" href="activityList">活动列表</a>
+                        <li><a class="J_menuItem" href="">活动列表</a>
                         </li>
                     </ul>
                 </li>

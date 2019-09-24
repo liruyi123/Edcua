@@ -36,15 +36,6 @@ Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategory
 Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
 Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的展示页面
 
-
-//后台 --- 资讯模块
-Route::get('/admin/infor','Admin\InforController@first');   //展示资讯
-Route::get('/admin/information','Admin\InforController@add');  //添加资讯页面
-Route::post('/admin/information','Admin\InforController@doAdd');    //执行添加资讯
-Route::get('/admin/upinfor/{id}','Admin\InforController@upInfor');   //修改资讯页面
-Route::post('/admin/upinfor','Admin\InforController@inforUp');   //执行修改资讯
-
-
 Route::get('/admin/courseAdd','Admin\CourseController@courseAdd');// 课程添加页面
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
@@ -58,3 +49,10 @@ Route::get("/admin/lecturer","Admin\LecturerController@lecturer");//讲师添加
 Route::post("/admin/lecturerAdd","Admin\LecturerController@lecturerAdd");//讲师添加执行
 Route::get("/admin/lecturerList","Admin\LecturerController@lecturerList");//讲师列表页面
 Route::get("/admin/lecturerLists","Admin\LecturerController@lecturerLists");//讲师列表页面数据
+
+
+//资讯模块
+Route::get('/admin/consult','Admin\ConsultController@first');   //资讯列表页
+Route::get('/admin/addcon','Admin\ConsultController@consultAdd');   //资讯添加页
+Route::post('/admin/addcon','Admin\ConsultController@consultDo');   //执行资讯添加
+
