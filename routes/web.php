@@ -31,6 +31,10 @@ Route::get('/index/teacher','Index\TeacherController@teacher');
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
 
+
+Route::get('/admin/index','Admin\IndexController@index');
+Route::get('/admin/index','Admin\IndexController@index');
+
 Route::get('/admin/courseAdd','Admin\CourseController@courseAdd');// 课程添加页面
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
