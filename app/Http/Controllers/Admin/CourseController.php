@@ -23,18 +23,12 @@ class CourseController extends Controller
         $data = $request->input();
         $c_name = $data['c_name'];
         if (empty($c_name)){
-            return [
-                'status' => 201,
-                'data' => "名称不能为空"
-            ];
+            return $this->code(201,"名称不能为空" ,"");
         }
         $pid = $data['navbar'];
         $weight = $data['c_size'];
         if (empty($weight)){
-            return [
-                'status' => 201,
-                'data' => "权重不能为空"
-            ];
+            return $this->code(201,"权重不能为空","");
         }
         $type = $data['type'];
 
@@ -49,10 +43,11 @@ class CourseController extends Controller
         ];
         $res = CourseCategoryModel::insert($data);
         if ($res == 1){
-            return [
-                'status' => 200,
-                'data' => "添加成功了耶！"
-            ];
+            return $this->code(200,"添加成功","");
+//            return [
+//                'status' => 200,
+//                'data' => "添加成功了耶！"
+//            ];
         }else{
             return [
                 'status' => 101,
@@ -63,7 +58,7 @@ class CourseController extends Controller
 
     // 课程分类的展示
     public function courseCategoryList(){
-        $arr = CourseCategoryModel::where(['status'=>1])->get()->toArray();
+        $arr = CourseCategoryModel::where(['status'=>1])->select()->paginate(3);
 
 
         return view("admin.course.coursecategorylist" , ['arr'=>$arr]);
@@ -139,6 +134,34 @@ class CourseController extends Controller
 
     // 课程添加页面
     public function courseAdd(){
+        $res = CourseCategoryModel::where(['status'=>1])->get()->toArray();
+        $arr = $this->getIndexCateInfo($res,0);
+//        print_r($arr);die;
 
+        return view("admin.course.courseadd" , ['arr'=>$arr]);
+    }
+
+
+    public function code($code="",$msg="",$data=[])
+    {
+        $data = [
+            "code" => $code,
+            "message" => $msg,
+            "data" => $data
+        ];
+        echo  json_encode($data,JSON_UNESCAPED_UNICODE);die;
+    }
+
+    function getIndexCateInfo($data,$pid=0){
+        $cateInfo=[];
+        foreach($data as $k=>$v){
+            // print_r($v);
+            if($v['pid']==$pid){
+                $son=$this->getIndexCateInfo($data,$v['cate_id']);
+                $v['son']=$son;
+                $cateInfo[]=$v;
+            }
+        }
+        return $cateInfo;
     }
 }
