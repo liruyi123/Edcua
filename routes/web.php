@@ -30,7 +30,7 @@ Route::get('/index/teacher','Index\TeacherController@teacher');
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
-<<<<<<< HEAD
+
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
 Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
@@ -43,7 +43,7 @@ Route::get('/admin/information','Admin\InforController@add');  //添加资讯页
 Route::post('/admin/information','Admin\InforController@doAdd');    //执行添加资讯
 Route::get('/admin/upinfor/{id}','Admin\InforController@upInfor');   //修改资讯页面
 Route::post('/admin/upinfor','Admin\InforController@inforUp');   //执行修改资讯
-=======
+
 
 Route::get('/admin/courseAdd','Admin\CourseController@courseAdd');// 课程添加页面
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
@@ -58,4 +58,3 @@ Route::get("/admin/lecturer","Admin\LecturerController@lecturer");//讲师添加
 Route::post("/admin/lecturerAdd","Admin\LecturerController@lecturerAdd");//讲师添加执行
 Route::get("/admin/lecturerList","Admin\LecturerController@lecturerList");//讲师列表页面
 Route::get("/admin/lecturerLists","Admin\LecturerController@lecturerLists");//讲师列表页面数据
->>>>>>> 54a283e02fc0d611babf61e9ff2b910f6f5340bb
