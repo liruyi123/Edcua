@@ -101,7 +101,6 @@
             obj.ght = ght,
             obj.style = style,
             obj.resume = resume;
-        console.log(obj);
         $.ajax({
             url : "/admin/lecturerAdd",
             type : "POST",

@@ -38,4 +38,6 @@ Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategory
 Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
 Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的展示页面
 Route::get("/admin/lecturer","Admin\LecturerController@lecturer");//讲师添加页面
-Route::post("/admin/lecturerAdd","Admin\LecturerController@lecturerAdd");//讲师添加页面
+Route::post("/admin/lecturerAdd","Admin\LecturerController@lecturerAdd");//讲师添加执行
+Route::get("/admin/lecturerList","Admin\LecturerController@lecturerList");//讲师列表页面
+Route::get("/admin/lecturerLists","Admin\LecturerController@lecturerLists");//讲师列表页面数据
