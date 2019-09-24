@@ -83,14 +83,15 @@
                 $.ajax({
                     type : 'post',
                     url : 'CCGUpd_do',
+                    dataType:"json",
                     data:{c_name:c_name,category:category,c_size:c_size,type:type,cid:cid},
                     success : function (msg) {
                         // console.log(msg);
-                        if(msg.status == '200'){
-                            alert(msg.data);
+                        if(msg.code == '200'){
+                            alert(msg.message);
                             window.location.href = "courseCategoryList";
                         }else{
-                            alert(msg.data);
+                            alert(msg.message);
                         }
                     }
                 })

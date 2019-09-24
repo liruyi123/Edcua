@@ -53,6 +53,8 @@
                         </div>
 
                     </div>
+
+                    {{$arr->links()}}
                 </div>
             </div>
 
@@ -71,13 +73,14 @@
                     url:"/admin/CCGDel",
                     type:"post",
                     data:{cid:cid},
+                    dataType:"json",
                     success:function (res) {
                         // console.log(res)
-                        if(res.status == '200'){
-                            alert(res.data);
+                        if(res.code == '200'){
+                            alert(res.message);
                             window.location.href = "courseCategoryList";
                         }else{
-                            alert(res.data);
+                            alert(res.message);
                         }
                     }
                 })
