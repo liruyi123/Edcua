@@ -108,7 +108,8 @@
             data : {data:obj},
             dataType : "JSON",
             success : function (res) {
-                console.log(res);
+                alert(res.message);
+                history.go(0);
             }
         });
     })
