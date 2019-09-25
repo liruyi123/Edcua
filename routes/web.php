@@ -91,4 +91,5 @@ Route::post('/admin/questiondo','Admin\QuestionController@questiondo');//题库�
 Route::get('/admin/questionlist','Admin\QuestionController@questionlist');//题库的展示列表页面
 Route::get('/admin/qdelete/{q_id}','Admin\QuestionController@qdelete');//题库的执行删除方法
 Route::get('/admin/qupdate/{q_id}','Admin\QuestionController@qupdate');//题库的修改静态页面
+Route::post('/admin/qupdatedo','Admin\QuestionController@qupdatedo');//题库的修改静态页面
 

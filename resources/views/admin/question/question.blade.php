@@ -64,7 +64,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-3">
-                                    <button class="btn btn-primary" onclick="displayDate()" type="submit">提交</button>
+                                    <button class="btn btn-primary" onclick="displayDate()" type="button">提交</button>
                                 </div>
                             </div>
                         </form>
@@ -96,13 +96,15 @@
            url:"/admin/questiondo",
            type:"POST",
            data:{q_name:q_name,q_answer:q_answer,q_weight:q_weight},
-           dataType:"",
+           dataType:"json",
            async:true,
            success:function(res){
-                if(res==200){
-                    alert('恭喜您，添加成功！');
+            //    console.log(res);
+                if(res.code==200){
+                    alert(res.message);
+                    location.href="{{url('/admin/questionlist')}}";
                 }else{
-                    alert('很遗憾，添加失败！')
+                    alert(res.message);
                 }
            }
        })
