@@ -62,6 +62,14 @@ Route::get("/admin/lecturerLists","Admin\LecturerController@lecturerLists");//�
 Route::get('/admin/consult','Admin\ConsultController@first');   //资讯列表页
 Route::get('/admin/addcon','Admin\ConsultController@consultAdd');   //资讯添加页
 Route::post('/admin/addcon','Admin\ConsultController@consultDo');   //执行资讯添加
+Route::get('/admin/updcon/{id}','Admin\ConsultController@consultUpd');   //资讯修改页
+Route::post('/admin/updcon','Admin\ConsultController@consultDoUp');   //资讯修改页
+Route::post('/admin/delcon','Admin\ConsultController@consultDel');   //软删
+
+
+
+
+
 
 Route::get('/admin/navbar','Admin\NavbarController@navbar');//导航栏添加静态页面
 Route::post('/admin/navbardo','Admin\NavbarController@navbardo');//导航栏添加静态页面

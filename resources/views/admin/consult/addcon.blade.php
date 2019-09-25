@@ -9,9 +9,9 @@
             <input type="text" class="form-control" id="title" placeholder="请填写资讯名称">
         </div>
         <div class="form-group" style="width: 300px">
-            <label for="exampleInputPassword1">选择对应栏目</label>
+            <label for="exampleInputPassword1">选择父级导航栏</label>
             <select class="form-control" name="consult_id" id="nid">
-                <option value="">请选择对应栏目等级</option>
+                <option value="">请选择对应资讯导航栏</option>
                 @foreach($data as $k => $v)
                     <option value="{{$v->navbar_id}}">{{$v->ntitle}}</option>
                 @endforeach
@@ -19,7 +19,7 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputPassword1">专栏内容</label>
+            <label for="exampleInputPassword1">资讯内容</label>
             <div id="editor"></div>
         </div>
 

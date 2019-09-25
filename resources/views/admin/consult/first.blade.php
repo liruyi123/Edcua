@@ -16,6 +16,7 @@
         <?php $num=1?>
         @foreach($data as $k => $v)
             <tr align="center">
+                <input type="hidden" class="cid" cid="{{$v->consult_id}}">
                 <td>{{$num++}}</td>
                 <td>{{$v->ntitle}}</td>
                 <td>{{$v->title}}</td>
@@ -26,12 +27,35 @@
                 </td>
                 <td>{{date("Y-m-d H:i",$v['ctime'])}}</td>
                 <td>
-                    <a href=""><button type="button" class="btn btn-link">UPD</button></a> |
-                    <input type="submit" class="btn btn-link" value="DEL" >
+                    <a href="/admin/updcon/{{$v->consult_id}}"><button type="button" class="btn btn-link">UPD</button></a> |
+                    <input type="submit" class="btn btn-link del" value="DEL" >
                 </td>
             </tr>
         @endforeach
     </table>
+    <div>
+        {{$data->appends(10)->links()}}
+    </div>
 
+    <script>
+        $(function(){
+            $('.del').click(function () {
+                var id = $(this).parent('td').siblings('input').attr('cid');
+//                alert(id);
+                $.post(
+                        '/admin/delcon',
+                        {id:id},
+                        function(res){
+                            if(res.error == 10001){
+                                alert(res.msg);
+                                location.href = '/admin/consult'
+                            }else{
+                                alert(res.msg);
+                            }
+                        },'json'
+                );
+            })
+        });
+    </script>
 
 @endsection
