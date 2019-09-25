@@ -40,7 +40,7 @@ class LecturerController extends Controller
      * */
     public function lecturerList()
     {
-        $data = LecturerModel::get();
+        $data = LecturerModel::where(['status'=>1])->get();
         for ($i=0;$i<count($data);$i++){
             $data[$i]['ctime'] = date("Y-m-d",$data[$i]['ctime']);
             $data[$i]['utime'] = date("Y-m-d",$data[$i]['utime']);
@@ -52,7 +52,48 @@ class LecturerController extends Controller
      * */
     public function lecturerDel(Request $request)
     {
-
+        $id = $request->id;
+        if(empty($id)){
+            $this->code("10101","success");
+        }else{
+            $res = LecturerModel::where(['lect_id'=>$id])->update(['status'=>2,'utime'=>time()]);
+            if($res){
+                $this->code("200","OK");
+            }else{
+                $this->code("10101","success");
+            }
+        }
+    }
+    /*
+     * 讲师修改页面
+     * */
+    public function lecturerUpdate(Request $request)
+    {
+        $id = $request->id;
+        $data = LecturerModel::where(['lect_id'=>$id])->first();
+        return view("admin.lecturer.lecturerUpdate",compact('data'));
+    }
+    /*
+     * 讲师修改执行
+     * */
+    public function lecturerUpdateDo(Request $request)
+    {
+        $data = $request->data;
+        $time = time();
+        $id = $data['id'];
+        $data = [
+            'lect_name'=>$data['name'],
+            "lect_weight"=>$data['ght'],
+            "lect_resume"=>$data['resume'],
+            "lect_style"=>$data['style'],
+            "utime"=>$time,
+        ];
+        $res = LecturerModel::where(['lect_id'=>$id])->update($data);
+        if($res){
+            $this->code("200","OK");
+        }else{
+            $this->code("10101","SUCCESS");
+        }
     }
     /*
      * 讲师列表数据

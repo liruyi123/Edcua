@@ -89,6 +89,15 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">友链</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="lecturer">友链添加</a>
+                        </li>
+                        <li><a class="J_menuItem" href="lecturerList">友链列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">资讯</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="">资讯分类添加</a>

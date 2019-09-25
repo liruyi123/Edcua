@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html>
+@extends("admin.first")
+<link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="css/plugins/footable/footable.core.css" rel="stylesheet">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title> - FooTable</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
-
-</head>
+<link href="css/animate.css" rel="stylesheet">
+<link href="css/style.css?v=4.1.0" rel="stylesheet">
 
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -110,9 +96,14 @@
             data : {id,id},
             dataType : "json",
             success : function (res) {
-                console.log(res);
+                alert(res.message);
+                history.go(0);
             }
         });
+    })
+    $(document).on("click",".upd",function () {
+        var id = $(this).attr("lect_id");
+        location.href="/admin/lecturerUpdate?id="+id;
     })
 
 </script>

@@ -30,11 +30,18 @@ Route::get('/index/teacher','Index\TeacherController@teacher');
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
-
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
 Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
 Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的展示页面
+
+//后台 --- 资讯模块
+Route::get('/admin/infor','Admin\InforController@first');   //展示资讯
+Route::get('/admin/information','Admin\InforController@add');  //添加资讯页面
+Route::post('/admin/information','Admin\InforController@doAdd');    //执行添加资讯
+Route::get('/admin/upinfor/{id}','Admin\InforController@upInfor');   //修改资讯页面
+Route::post('/admin/upinfor','Admin\InforController@inforUp');   //执行修改资讯
+
 
 Route::get('/admin/courseAdd','Admin\CourseController@courseAdd');// 课程添加页面
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
@@ -63,3 +70,6 @@ Route::get('/admin/navdelete/{nav_id}','Admin\NavbarController@navdelete');//导
 Route::get('/admin/navupdate/{nav_id}','Admin\NavbarController@navupdate');//导航栏修改静态页面
 Route::post('/admin/navupdatedo','Admin\NavbarController@navupdatedo');//导航栏修改执行
 
+Route::get("/admin/lecturerDel","Admin\LecturerController@lecturerDel");//讲师列表数据删除
+Route::get("/admin/lecturerUpdate","Admin\LecturerController@lecturerUpdate");//讲师数据修改页面
+Route::post("/admin/lecturerUpdateDo","Admin\LecturerController@lecturerUpdateDo");//讲师数据修改执行
