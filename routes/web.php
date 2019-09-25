@@ -81,6 +81,14 @@ Route::get('/admin/navdelete/{nav_id}','Admin\NavbarController@navdelete');//导
 Route::get('/admin/navupdate/{nav_id}','Admin\NavbarController@navupdate');//导航栏修改静态页面
 Route::post('/admin/navupdatedo','Admin\NavbarController@navupdatedo');//导航栏修改执行
 
+<<<<<<< Updated upstream
 Route::get("/admin/lecturerDel","Admin\LecturerController@lecturerDel");//讲师列表数据删除
 Route::get("/admin/lecturerUpdate","Admin\LecturerController@lecturerUpdate");//讲师数据修改页面
 Route::post("/admin/lecturerUpdateDo","Admin\LecturerController@lecturerUpdateDo");//讲师数据修改执行
+=======
+Route::get('/admin/question','Admin\QuestionController@question');//题库添加静态页面
+Route::post('/admin/questiondo','Admin\QuestionController@questiondo');//题库添加执行页面
+Route::get('/admin/questionlist','Admin\QuestionController@questionlist');//题库的展示列表页面
+Route::get('/admin/qdelete/{q_id}','Admin\QuestionController@qdelete');//题库的执行删除方法
+Route::get('/admin/qupdate/{q_id}','Admin\QuestionController@qupdate');//题库的修改静态页面
+>>>>>>> Stashed changes
