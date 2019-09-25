@@ -58,14 +58,17 @@ Route::get("/admin/lecturerList","Admin\LecturerController@lecturerList");//讲�
 Route::get("/admin/lecturerLists","Admin\LecturerController@lecturerLists");//讲师列表页面数据
 
 
-//资讯模块
+//资讯模块----资讯
 Route::get('/admin/consult','Admin\ConsultController@first');   //资讯列表页
 Route::get('/admin/addcon','Admin\ConsultController@consultAdd');   //资讯添加页
 Route::post('/admin/addcon','Admin\ConsultController@consultDo');   //执行资讯添加
 Route::get('/admin/updcon/{id}','Admin\ConsultController@consultUpd');   //资讯修改页
 Route::post('/admin/updcon','Admin\ConsultController@consultDoUp');   //资讯修改页
 Route::post('/admin/delcon','Admin\ConsultController@consultDel');   //软删
-
+//资讯模块----资讯导航栏分类
+Route::get('/admin/navcon','Admin\ConsultController@second');   //资讯分类列表页
+Route::get('/admin/addbar','Admin\ConsultController@barAdd');   //资讯分类添加页
+Route::post('/admin/addbar','Admin\ConsultController@barDo');   //资讯分类执行添加
 
 
 

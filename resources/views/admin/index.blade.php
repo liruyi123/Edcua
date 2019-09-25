@@ -100,9 +100,9 @@
                 <li>
                     <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">资讯</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">资讯分类添加</a>
+                        <li><a class="J_menuItem" href="/admin/addbar">资讯分类添加</a>
                         </li>
-                        <li><a class="J_menuItem" href="">资讯分类列表</a>
+                        <li><a class="J_menuItem" href="/admin/navcon">资讯分类列表</a>
                         </li>
                         <li><a class="J_menuItem" href="/admin/addcon">资讯添加</a>
                         </li>

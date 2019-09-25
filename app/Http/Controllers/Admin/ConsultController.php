@@ -143,4 +143,22 @@ class ConsultController extends Controller
         }
         return json_encode($res);
     }
+
+    //  资讯导航栏 开始 资讯分类列表页
+    public function second()
+    {
+        return view('admin.consult.second');
+    }
+
+    //  资讯分类添加页
+    public function barAdd()
+    {
+        return view('admin.consult.addbar');
+    }
+
+    //  资讯分类执行添加
+    public function barDo(Request $request)
+    {
+
+    }
 }
