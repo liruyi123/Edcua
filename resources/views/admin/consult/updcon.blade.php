@@ -54,26 +54,28 @@
 
     <script>
         $(function(){
-            $(".btn-success").click(function () {
-                var id = $("#consult_id").val();
-                var title = $("#title").val();
-                var nid = $("#nid").val();
-                var text = $(".w-e-text").children("p").text();
-                var show = $('input:radio:checked').val();
+            layui.use('layer', function () {
+                $(".btn-success").click(function () {
+                    var id = $("#consult_id").val();
+                    var title = $("#title").val();
+                    var nid = $("#nid").val();
+                    var text = $(".w-e-text").children("p").text();
+                    var show = $('input:radio:checked').val();
 
-                $.post(
-                        '/admin/updcon',
-                        {title:title,nid:nid,text:text,show:show,id:id},
-                        function(res){
-                            if(res.error==10001){
-                                alert(res.msg);
-                                location.href='/admin/consult'
-                            }else{
-                                alert(res.msg);
-                            }
-                        },'json'
-                );
-            })
+                    $.post(
+                            '/admin/updcon',
+                            {title: title, nid: nid, text: text, show: show, id: id},
+                            function (res) {
+                                if (res.error == 10001) {
+                                    layer.msg(res.msg,{icon:6});
+                                    location.href = '/admin/consult'
+                                } else {
+                                    layer.msg(res.msg,{icon:2});
+                                }
+                            }, 'json'
+                    );
+                });
+            });
         });
     </script>
 @endsection

@@ -12,11 +12,11 @@
             <label for="exampleInputPassword1">选择权重等级</label>
             <select class="form-control" name="weight" id="weight">
                 <option value="">请选择权重等级</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">一级权重</option>
+                <option value="2">二级权重</option>
+                <option value="3">三级权重</option>
+                <option value="4">四级权重</option>
+                <option value="5">五级权重</option>
             </select>
         </div>
 
@@ -27,24 +27,27 @@
 
 
     <script>
-        $(function(){
-            $(".btn-success").click(function () {
-                var title = $("#title").val();
-                var weight = $("#weight").val();
+        $(document).ready(function(){
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $(".btn-success").click(function () {
+                    var title = $("#title").val();
+                    var weight = $("#weight").val();
 
-                $.post(
-                        '/admin/addbar',
-                        {title:title,weight:weight},
-                        function(res){
-                            if(res.error==10001){
-                                alert(res.msg);
-                                location.href=''
-                            }else{
-                                alert(res.msg);
-                            }
-                        },'json'
-                );
-            })
+                    $.post(
+                            '/admin/addbar',
+                            {title: title, weight: weight},
+                            function (res) {
+                                if (res.error == 10001) {
+                                    layer.msg(res.msg,{icon:6});
+                                    location.href = ''
+                                } else {
+                                    layer.msg(res.msg,{icon:2});
+                                }
+                            }, 'json'
+                    );
+                });
+            });
         });
     </script>
 @endsection

@@ -54,7 +54,8 @@ Route::get('/admin/courseAdd','Admin\CourseController@courseAdd');// 课程添�
 Route::get('/admin/courseList','Admin\CourseController@courseList');// 课程展示页面
 Route::post('/admin/courseAdd_do','Admin\CourseController@courseAdd_do');// 课程添加执行
 Route::post('/admin/couserDel','Admin\CourseController@couserDel');// 课程删除
-Route::get('/admin/couserUpd','Admin\CourseController@couserUpd');// 课程修改页面
+Route::get('/admin/courseUpd','Admin\CourseController@courseUpd');// 课程修改页面
+Route::post('/admin/courseUpd_do','Admin\CourseController@courseUpd_do');// 课程修改执行
 Route::post('/admin/couserUpd_do','Admin\CourseController@couserUpd_do');// 课程修改页面的执行
 Route::post('/admin/uploadinfo','Admin\CourseController@uploadinfo');// 课程封面的文件上传
 
@@ -62,6 +63,7 @@ Route::post('/admin/uploadinfo','Admin\CourseController@uploadinfo');// 课程�
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
 Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
+Route::any('/admin/courseCategoryListselect','Admin\CourseController@courseCategoryListselect');//课程分类的展示搜索
 Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的删除
 Route::get('/admin/CCGUpd','Admin\CourseController@CCGUpd');//课程分类的修改
 Route::post('/admin/CCGUpd_do','Admin\CourseController@CCGUpd_do');//课程分类的修改

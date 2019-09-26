@@ -36,24 +36,28 @@
 
     <script>
         $(function(){
-            $(".btn-success").click(function () {
-                var title = $("#title").val();
-                var nid = $("#nid").val();
-                var text = $(".w-e-text").children("p").text();
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $(".btn-success").click(function () {
+                    var title = $("#title").val();
+                    var nid = $("#nid").val();
+                    var text = $(".w-e-text").children("p").text();
 
-                $.post(
-                        '/admin/addcon',
-                        {title:title,nid:nid,text:text},
-                        function(res){
-                            if(res.error==10001){
-                                alert(res.msg);
-                                location.href=''
-                            }else{
-                                alert(res.msg);
-                            }
-                        },'json'
-                );
-            })
+                    $.post(
+                            '/admin/addcon',
+                            {title: title, nid: nid, text: text},
+                            function (res) {
+                                if (res.error == 10001) {
+                                    layer.msg(res.msg,{icon:6});
+                                    location.href = ''
+                                } else {
+                                    layer.msg(res.msg,{icon:2});
+                                }
+                            }, 'json'
+                    );
+                });
+            });
         });
     </script>
+
 @endsection

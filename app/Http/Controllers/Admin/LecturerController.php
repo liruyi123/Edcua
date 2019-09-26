@@ -30,7 +30,7 @@ class LecturerController extends Controller
         ];
         $res = LecturerModel::insert($data);
         if($res){
-            $this->code('10200',"添加成功",$data['lect_name']);
+            $this->code('200',"添加成功",$data['lect_name']);
         }else{
             $this->code("10101","添加失败");
         }
@@ -58,9 +58,9 @@ class LecturerController extends Controller
         }else{
             $res = LecturerModel::where(['lect_id'=>$id])->update(['status'=>2,'utime'=>time()]);
             if($res){
-                $this->code("200","OK");
+                $this->code("200","删除成功");
             }else{
-                $this->code("10101","success");
+                $this->code("10101","删除失败！");
             }
         }
     }
@@ -81,18 +81,18 @@ class LecturerController extends Controller
         $data = $request->data;
         $time = time();
         $id = $data['id'];
-        $data = [
+        $arr = [
             'lect_name'=>$data['name'],
             "lect_weight"=>$data['ght'],
             "lect_resume"=>$data['resume'],
             "lect_style"=>$data['style'],
             "utime"=>$time,
         ];
-        $res = LecturerModel::where(['lect_id'=>$id])->update($data);
+        $res = LecturerModel::where(['lect_id'=>$id])->update($arr);
         if($res){
-            $this->code("200","OK");
+            $this->code("200","修改成功");
         }else{
-            $this->code("10101","SUCCESS");
+            $this->code("10101","修改失败！");
         }
     }
     /*
