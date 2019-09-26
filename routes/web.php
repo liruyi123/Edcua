@@ -89,9 +89,10 @@ Route::post('/admin/addbar','Admin\ConsultController@barDo');   //资讯分类�
 Route::get('/admin/updbar/{id}','Admin\ConsultController@navUpd');   //资讯分类修改页
 Route::post('/admin/updbar','Admin\ConsultController@navDo');   //资讯分类执行修改
 Route::post('/admin/delbar','Admin\ConsultController@barDel');   //资讯分类执行删除
-
-
-
+//课程目录----目录
+Route::get('/admin/catalog','Admin\CatalogController@catalog');   //目录列表页
+Route::get('/admin/addcata','Admin\CatalogController@catalogAdd');   //目录添加页
+Route::post('/admin/addcata','Admin\CatalogController@catalogDo');   //目录执行添加
 
 
 Route::get('/admin/navbar','Admin\NavbarController@navbar');//导航栏添加静态页面

@@ -145,6 +145,22 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">课程目录</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="/admin/catalog">目录展示</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="/admin/addcata">目录添加</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="line dk"></li>
                 <li class="line dk"></li>
 
