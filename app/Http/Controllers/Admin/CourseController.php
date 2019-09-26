@@ -202,7 +202,7 @@ class CourseController extends Controller
         }
     }
 
-    // 课程分类修改页面
+    // 课程修改页面
     public function courseUpd(Request $request){
         $cou_id = $request->input("id");
         print_r($cou_id);die;
@@ -220,6 +220,7 @@ class CourseController extends Controller
             'data' => $data,
             'lectArr' => $lecArr
         ];
+        print_r($data);die;
 
         return view("admin.course.courseupd" , $data);
     }

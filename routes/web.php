@@ -31,6 +31,7 @@ Route::get('/index/teacher','Index\TeacherController@teacher');
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
 
+
 Route::get("/admin/login","Admin\LoginController@login");//登陆页面
 Route::post("admin/loginDo","Admin\LoginController@LoginDo");//登陆执行
 Route::get("/admin/register","Admin\LoginController@register");//注册页面
@@ -117,3 +118,4 @@ Route::get('/admin/noticelist','Admin\NoticeController@noticelist');//公告展�
 Route::get('/admin/ndelete/{not_id}','Admin\NoticeController@notice');//公告删除执行页面
 Route::get('/admin/nupdate/{not_id}','Admin\NoticeController@nupdate');//公告修改静态页面
 Route::post('/admin/nupdatedo','Admin\NoticeController@nupdatedo');//公告添加执行页面
+
