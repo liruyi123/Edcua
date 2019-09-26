@@ -23,8 +23,6 @@ class LoginController extends Controller
         $data = AdminModel::where(['admin_name'=>$name])->first();
         if(!empty($data)){
             if(decrypt($data->admin_pwd) == $pwd){
-                $request->session()->put(["uid"=>$data->admin_id]);
-//                Redis::put("uid",$data->admin_id);
                 $request->session()->put("uid",$data->admin_id);
                 $this->code("200","登陆成功",[$data->admin_name]);
 //                dd(session("uid"));
@@ -78,6 +76,6 @@ class LoginController extends Controller
             "message" => $msg,
             "data" => $data
         ];
-        echo  json_encode($data,JSON_UNESCAPED_UNICODE);die;
+        echo  json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 }
