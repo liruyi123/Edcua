@@ -31,6 +31,16 @@ Route::get('/index/teacher','Index\TeacherController@teacher');
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
 
+Route::get("/admin/login","Admin\LoginController@login");//登陆页面
+Route::post("admin/loginDo","Admin\LoginController@LoginDo");//登陆执行
+Route::get("/admin/register","Admin\LoginController@register");//注册页面
+Route::post("/admin/registerDo","Admin\LoginController@registerDo");//注册执行
+Route::get('/admin/index','Admin\IndexController@index');//后台首页
+Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
+Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
+Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
+Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的展示页面
+
 //后台 --- 资讯模块
 Route::get('/admin/infor','Admin\InforController@first');   //展示资讯
 Route::get('/admin/information','Admin\InforController@add');  //添加资讯页面
