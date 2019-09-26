@@ -25,6 +25,7 @@ class LecturerController extends Controller
             "lect_weight"=>$data['ght'],
             "lect_resume"=>$data['resume'],
             "lect_style"=>$data['style'],
+            "lect_img" => $data['img'],
             "ctime"=> $time,
             "utime"=>$time,
         ];
@@ -34,6 +35,31 @@ class LecturerController extends Controller
         }else{
             $this->code("10101","添加失败");
         }
+    }
+    //讲师照片上传
+    public function upload(Request $request)
+    {
+        $file = $_FILES['file'];
+        //后缀
+        $file_suff = explode(".",$file['name'])[1];
+        $fileName = "./uploads/".date("Ymd",time());
+        $tmp_name = $file['tmp_name'];
+        if(!is_dir($fileName)){
+            mkdir($fileName,777,true);
+        }
+
+        $fileNames = $fileName."/".date("Ymd",time()).uniqid().".".$file_suff;
+        move_uploaded_file($tmp_name,$fileNames);
+        $fileName = explode(".",$fileNames);
+        $fileNames = $fileName[1].".".$fileName[2];
+        $upload = [
+            "code" => 0,
+            "msg" => "",
+            "data" => [
+                "src" => $fileNames
+            ]
+        ];
+        echo json_encode($upload,JSON_UNESCAPED_UNICODE);die;
     }
     /*
      * 讲师列表

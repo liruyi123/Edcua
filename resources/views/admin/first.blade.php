@@ -10,6 +10,12 @@
 
     <meta name="keywords" content="">
     <meta name="description" content="">
+<<<<<<< Updated upstream
+=======
+
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+
+>>>>>>> Stashed changes
     <link rel="shortcut icon" href="favicon.ico"> <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- 全局js -->

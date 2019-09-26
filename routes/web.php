@@ -30,6 +30,7 @@ Route::get('/index/teacher','Index\TeacherController@teacher');
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
+Route::get('/admin/indexV1','Admin\IndexController@indexV1');
 
 
 Route::get("/admin/login","Admin\LoginController@login");//登陆页面
@@ -69,11 +70,12 @@ Route::get('/admin/CCGUpd','Admin\CourseController@CCGUpd');//课程分类的修
 Route::post('/admin/CCGUpd_do','Admin\CourseController@CCGUpd_do');//课程分类的修改
 
 
+
 Route::get("/admin/lecturer","Admin\LecturerController@lecturer");//讲师添加页面
 Route::post("/admin/lecturerAdd","Admin\LecturerController@lecturerAdd");//讲师添加执行
 Route::get("/admin/lecturerList","Admin\LecturerController@lecturerList");//讲师列表页面
 Route::get("/admin/lecturerLists","Admin\LecturerController@lecturerLists");//讲师列表页面数据
-
+Route::post("/admin/upload","Admin\LecturerController@upload");//讲师照片上传
 
 //资讯模块----资讯
 Route::get('/admin/consult','Admin\ConsultController@first');   //资讯列表页

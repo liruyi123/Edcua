@@ -63,6 +63,24 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label" >讲师照片：</label>
+                            <div class="col-sm-10">
+
+                                <button type="button" class="layui-btn" id="test1">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group" id="ige">
+                            <label class="col-sm-2 control-label" >照片：</label>
+                            <div class="col-sm-10">
+                                <img src="" alt="" id="img" width="50%">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-primary" type="button" id="add">确认添加</button>
                                 <button class="btn btn-white" type="submit">取消</button>
@@ -86,8 +104,22 @@
 <script src="js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function () {
-        layui.use("layer",function () {
+        $("#ige").hide();
+        layui.use(["layer","upload"],function () {
             var layer = layui.layer;
+            var upload = layui.upload;
+            var uploadInst = upload.render({
+                elem: '#test1' //绑定元素
+                ,url: '/admin/upload' //上传接口
+                ,done: function(res){
+                    $("#ige").show();
+                    $("#img").attr("src",res.data.src);
+                    //上传完毕回调
+                }
+                ,error: function(){
+                    //请求异常回调
+                }
+            });
         })
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
@@ -99,6 +131,7 @@
         var ght = $("#ght").val();
         var style = $("#style").val();
         var resume = $(".resume").val();
+        var img = $("#img").attr("src");
         if(name == ""){
             layer.msg("姓名不能为空！",{icon:2});
             return false;
@@ -115,11 +148,16 @@
             layer.msg("请填写讲师简历!",{icon:2});
             return false;
         }
+        if(img == ""){
+            layer.msg("请上传讲师照片!",{icon:2});
+            return false;
+        }
         var obj = {};
         obj.name=name,
             obj.ght = ght,
             obj.style = style,
-            obj.resume = resume;
+            obj.resume = resume,
+            obj.img = img;
         $.ajax({
             url : "/admin/lecturerAdd",
             type : "POST",
