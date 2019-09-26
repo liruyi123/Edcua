@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-    <input id="not_id" value="{{$res['not_id']}}" name="not_id" class="form-control not_id" type="number" aria-required="true" aria-invalid="false" class="valid">
+    <input id="not_id" value="{{$res['not_id']}}" name="not_id" class="form-control not_id" type="hidden" aria-required="true" aria-invalid="false" class="valid">
 </body>
 </html>
 <script type="text/javascript" src="/Editor/release/wangEditor.min.js"></script>
