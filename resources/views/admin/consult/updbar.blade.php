@@ -37,24 +37,26 @@
 
     <script>
         $(function(){
-            $(".btn-success").click(function () {
-                var title = $("#title").val();
-                var weight = $("#weight").val();
-                var nid = $("#nid").val();
+            layui.use('layer', function () {
+                $(".btn-success").click(function () {
+                    var title = $("#title").val();
+                    var weight = $("#weight").val();
+                    var nid = $("#nid").val();
 
-                $.post(
-                        '/admin/updbar',
-                        {title:title,weight:weight,nid:nid},
-                        function(res){
-                            if(res.error==10001){
-                                alert(res.msg);
-                                location.href='/admin/navcon'
-                            }else{
-                                alert(res.msg);
-                            }
-                        },'json'
-                );
-            })
+                    $.post(
+                            '/admin/updbar',
+                            {title: title, weight: weight, nid: nid},
+                            function (res) {
+                                if (res.error == 10001) {
+                                    layer.msg(res.msg,{icon:6});
+                                    location.href = '/admin/navcon'
+                                } else {
+                                    layer.msg(res.msg,{icon:2});
+                                }
+                            }, 'json'
+                    );
+                });
+            });
         });
     </script>
 @endsection

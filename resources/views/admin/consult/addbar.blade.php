@@ -12,11 +12,11 @@
             <label for="exampleInputPassword1">选择权重等级</label>
             <select class="form-control" name="weight" id="weight">
                 <option value="">请选择权重等级</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">一级权重</option>
+                <option value="2">二级权重</option>
+                <option value="3">三级权重</option>
+                <option value="4">四级权重</option>
+                <option value="5">五级权重</option>
             </select>
         </div>
 
