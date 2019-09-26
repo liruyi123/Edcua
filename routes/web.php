@@ -31,11 +31,6 @@ Route::get('/index/teacher','Index\TeacherController@teacher');
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
 
-Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
-Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
-Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
-Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的展示页面
-
 //后台 --- 资讯模块
 Route::get('/admin/infor','Admin\InforController@first');   //展示资讯
 Route::get('/admin/information','Admin\InforController@add');  //添加资讯页面
@@ -43,14 +38,16 @@ Route::post('/admin/information','Admin\InforController@doAdd');    //执行添�
 Route::get('/admin/upinfor/{id}','Admin\InforController@upInfor');   //修改资讯页面
 Route::post('/admin/upinfor','Admin\InforController@inforUp');   //执行修改资讯
 
-
+// 课程的模块
 Route::get('/admin/courseAdd','Admin\CourseController@courseAdd');// 课程添加页面
 Route::get('/admin/courseList','Admin\CourseController@courseList');// 课程展示页面
 Route::post('/admin/courseAdd_do','Admin\CourseController@courseAdd_do');// 课程添加执行
 Route::post('/admin/couserDel','Admin\CourseController@couserDel');// 课程删除
+Route::get('/admin/couserUpd','Admin\CourseController@couserUpd');// 课程修改页面
+Route::post('/admin/couserUpd_do','Admin\CourseController@couserUpd_do');// 课程修改页面的执行
 Route::post('/admin/uploadinfo','Admin\CourseController@uploadinfo');// 课程封面的文件上传
 
-
+// 课程分类的模块
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
 Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面

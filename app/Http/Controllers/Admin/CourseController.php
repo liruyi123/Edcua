@@ -185,7 +185,7 @@ class CourseController extends Controller
     // 课程展示页面
     public function courseList(){
 
-        $arr = CourseModel::leftjoin('course_category','course.cate_id','=','course_category.cate_id')->where(['course.status'=>1])->select()->paginate(3)->toArray();
+        $arr = CourseModel::leftjoin('course_category','course.cate_id','=','course_category.cate_id')->where(['course.status'=>1])->paginate(3);
 
 //        print_r($arr);die;
         return view("admin.course.courselist" , ['arr' => $arr]);
@@ -205,6 +205,7 @@ class CourseController extends Controller
     // 课程分类修改页面
     public function courseUpd(Request $request){
         $cou_id = $request->input("id");
+        print_r($cou_id);die;
 
         $arr = CourseModel::where(['cou_id'=>$cou_id])->first()->toArray();
 
