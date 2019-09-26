@@ -26,10 +26,10 @@ class QuestionController extends Controller
             'status'=>1
        ];
        $res=Question::insert($data);
-       if($res==1){
-            return $this->code(200,"恭喜您，添加成功！","");
+       if($res){
+            echo 200;
        }else{
-        return $this->code(500,"很遗憾，添加失败！","");
+            echo 500;
        }
     }
     //题库列表展示页面

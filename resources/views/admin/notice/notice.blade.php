@@ -65,12 +65,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">导航栏权重：</label>
                                 <div class="col-sm-8">
-                                    <input id="nav_weight" name="nav_weight" class="form-control nav_weight" type="number" aria-required="true" aria-invalid="false" class="valid">
+                                    <input id="not_weight" name="not_weight" class="form-control not_weight" type="number" aria-required="true" aria-invalid="false" class="valid">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-3">
-                                    <button class="btn btn-primary"   onclick="displayDate()" type="button">提交</button>
+                                    <button class="btn btn-primary"  id="btn" type="button">提交</button>
                                 </div>
                             </div>
                         </form>
@@ -89,27 +89,39 @@
     editor.create()
 </script>
 @endsection
+<script src="/admin/js/jquery-1.8.0.min.js"></script>
 <script>
-    function displayDate(){
-        var cou_id=document.querySelector('.cou_id').value;
-        var notice_text = $(".w-e-text").children("p").text();
-        var nav_weight=document.querySelector('.nav_weight').value;
-        if(notice_text=="" || notice_text==undefined || notice_text==null || (notice_text.length>0 && notice_text.trim().length==0)){
-            alert('公告内容不能为空,不能全是空格！');
-            return false;
-        }else if(nav_weight==""){
-            alert('公告权重不能为空！');
-            return false;
-        }
-        $.ajax({
-            url:"/admin/noticedo",
-            type:"POST",
-            data:{cou_id:cou_id,notice_text:notice_text,nav_weight:nav_weight},
-            datatype:"json",
-            async:true,
-            success:function(res){
-                console.log(res);
+     $(document).ready(function () {
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        $("#btn").click(function()
+        {
+            var cou_id=document.querySelector('.cou_id').value;
+            var notice_text = $(".w-e-text").children("p").text();
+            var not_weight=document.querySelector('.not_weight').value;
+            if(notice_text=="" || notice_text==undefined || notice_text==null || (notice_text.length>0 && notice_text.trim().length==0)){
+                layer.msg('公告内容不能为空,不能全是空格！',{icon:2});
+                return false;
+            }else if(not_weight==""){
+                layer.msg('公告权重不能为空！',{icon:2});
+                return false;
             }
-        })
-    }
+            $.ajax({
+                url:"/admin/noticedo",
+                type:"POST",
+                data:{cou_id:cou_id,notice_text:notice_text,not_weight:not_weight},
+                datatype:"json",
+                async:true,
+                success:function(res){
+                    if(res==200){
+                        layer.msg('恭喜您，公告添加成功！',{icon:1});
+                        location.href="{{url('/admin/noticelist')}}";
+                    }else{
+                        layer.msg('很遗憾，公告添加失败！',{icon:2});
+                    }
+                }
+            })
+        })    
+    });
+})
 </script>

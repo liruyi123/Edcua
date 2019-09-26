@@ -6,10 +6,6 @@
     <title> - 表单验证 jQuery Validation</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
 </head>
 @extends('admin.first')
 @section('title','添加上下导航栏')
@@ -65,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <button class="btn btn-primary"  onclick="displayDate()" type="button">修改</button>
+                                    <button class="btn btn-primary"  id="btn" type="button">修改</button>
                                 </div>
                             </div>
                         </form>
@@ -76,43 +72,50 @@
     </div>
 </body>
 </html>
+ 
 @endsection
+<script src="/admin/js/jquery-1.8.0.min.js"></script>
 <script>
-    function displayDate()
-    {
-        var nav_name=document.querySelector('.nav_name').value;
-        var nav_url=document.querySelector('.nav_url').value;
-        var nav_type = document.querySelector('input[name=nav_type]:checked').value;
-        var nav_weight=document.querySelector('.nav_weight').value;
-        var nav_id=document.querySelector('.nav_id').value;
-        var u=/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
-        if(nav_name==""){
-            alert('导航栏名称不能为空！');
-            return false;
-        }else if(nav_url==""){
-            alert('导航栏路径不能为空！');
-            return false;
-        }else if(u.test(nav_url)==false){
-            alert('导航栏路径格式不正确例：http://www.educations.com/admin/index！');
-            return false;
-        }else if(nav_weight==""){
-            alert('导航栏权重不能为空！');
-            return false;
-        }
-        $.ajax({
-            url:"/admin/navupdatedo",
-            type:"POST",
-            data:{nav_name:nav_name,nav_url:nav_url,nav_type:nav_type,nav_weight:nav_weight,nav_id:nav_id},
-            dataType:"",
-            async:true,
-            success:function(res){
-                if(res==200){
-                    alert('恭喜您，导航栏修改成功！');
-                    location.href="{{url('/admin/navbarlist')}}";
-                }else{
-                    alert('很遗憾，导航栏修改失败！');
-                }
+    $(document).ready(function () {
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        $("#btn").click(function()
+        {
+            var nav_name=document.querySelector('.nav_name').value;
+            var nav_url=document.querySelector('.nav_url').value;
+            var nav_type = document.querySelector('input[name=nav_type]:checked').value;
+            var nav_weight=document.querySelector('.nav_weight').value;
+            var nav_id=document.querySelector('.nav_id').value;
+            var u=/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
+            if(nav_name==""){
+                layer.msg('导航栏名称不能为空!',{icon:2});
+                return false;
+            }else if(nav_url==""){
+                layer.msg('导航栏路径不能为空!',{icon:2});
+                return false;
+            }else if(u.test(nav_url)==false){
+                layer.msg('导航栏路径格式不正确例：http://www.educations.com/admin/index！',{icon:2});
+                return false;
+            }else if(nav_weight==""){
+                layer.msg('导航栏权重不能为空!',{icon:2});
+                return false;
             }
-        })
-    }
+            $.ajax({
+                url:"/admin/navupdatedo",
+                type:"POST",
+                data:{nav_name:nav_name,nav_url:nav_url,nav_type:nav_type,nav_weight:nav_weight,nav_id:nav_id},
+                dataType:"",
+                async:true,
+                success:function(res){
+                    if(res==200){
+                        layer.msg('恭喜您，导航栏修改成功！',{icon:1});
+                        location.href="{{url('/admin/navbarlist')}}";
+                    }else{
+                        layer.msg('很遗憾，导航栏修改失败！',{icon:2});
+                    }
+                }
+            })
+        })    
+    });
+})
 </script>

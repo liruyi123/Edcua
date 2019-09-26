@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-3">
-                                    <button class="btn btn-primary" onclick="displayDate()" type="button">提交</button>
+                                    <button class="btn btn-primary" id="btn" type="button">提交</button>
                                 </div>
                             </div>
                         </form>
@@ -77,37 +77,44 @@
     @endsection
 </body>
 </html>
+<script src="/admin/js/jquery-1.8.0.min.js"></script>
 <script>
-    function displayDate()
-    {
-       var q_name=document.querySelector('.q_name').value;
-       var q_answer=document.querySelector('.q_answer').value;
-       var q_weight=document.querySelector('.q_weight').value;
-       var q_id=document.querySelector('.q_id').value;
-       if(q_name==""){
-           alert('注意，题目名称不能为空！');
-           return false;
-       }else if(q_answer==""){
-           alert('注意，题目答案不能为空！');
-           return false;
-       }else if(q_weight==""){
-           alert('注意，权重不能为空！');
-           return false;
-       }
-        $.ajax({
-            url:"/admin/qupdatedo",
-            type:"POST",
-            data:{q_name:q_name,q_answer:q_answer,q_weight:q_weight,q_id:q_id},
-            dataType:"json",
-            async:true,
-            success:function(res){
-                if(res.code==200){
-                    alert(res.message);
-                    location.href="{{url('/admin/questionlist')}}";
-                }else{
-                    alert(res.message);
-                }
+   $(document).ready(function () {
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        $("#btn").click(function()
+        {
+            var q_name=document.querySelector('.q_name').value;
+            var q_answer=document.querySelector('.q_answer').value;
+            var q_weight=document.querySelector('.q_weight').value;
+            var q_id=document.querySelector('.q_id').value;
+            if(q_name==""){
+                layer.msg('注意，题目名称不能为空！',{icon:2});
+                return false;
+            }else if(q_answer==""){
+                layer.msg('注意，题目答案不能为空！',{icon:2});
+                return false;
+            }else if(q_weight==""){
+                layer.msg('注意，权重不能为空！',{icon:2});
+                return false;
             }
-        })
-    }
+            $.ajax({
+                url:"/admin/qupdatedo",
+                type:"POST",
+                data:{q_name:q_name,q_answer:q_answer,q_weight:q_weight,q_id:q_id},
+                dataType:"json",
+                async:true,
+                success:function(res){
+                    if(res.code==200){
+                        layer.msg(res.message,{icon:1});
+                        location.href="{{url('/admin/questionlist')}}";
+                    }else{
+                        layer.msg(res.message,{icon:2});
+                    }
+                }
+            })
+            
+        })    
+    });
+})
 </script>

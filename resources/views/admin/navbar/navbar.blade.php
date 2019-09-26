@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <button class="btn btn-primary"  onclick="displayDate()" type="button">提交</button>
+                                    <button class="btn btn-primary" id="btn" type="button">提交</button>
                                 </div>
                             </div>
                         </form>
@@ -69,41 +69,48 @@
 </body>
 </html>
 @endsection
+<script src="/admin/js/jquery-1.8.0.min.js"></script>
 <script>
-    function displayDate()
-    {
-        var nav_name=document.querySelector('.nav_name').value;
-        var nav_url=document.querySelector('.nav_url').value;
-        var nav_type = document.querySelector('input[name=nav_type]:checked').value;
-        var nav_weight=document.querySelector('.nav_weight').value;
-        var u=/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
-        if(nav_name==""){
-            alert('导航栏名称不能为空！');
-            return false;
-        }else if(nav_url==""){
-            alert('导航栏路径不能为空！');
-            return false;
-        }else if(u.test(nav_url)==false){
-            alert('导航栏路径格式不正确例：http://www.educations.com/admin/index！');
-            return false;
-        }else if(nav_weight==""){
-            alert('导航栏权重不能为空！');
-            return false;
-        }
-        $.ajax({
-            url:"./navbardo",
-            type:"POST",
-            data:{nav_name:nav_name,nav_url:nav_url,nav_type:nav_type,nav_weight:nav_weight},
-            dataType:"",
-            async:true,
-            success:function(res){
-                if(res==200){
-                    alert('恭喜您，导航栏添加成功！');
-                    location.href="{{url('/admin/navbarlist')}}";
-                }else{
-                    alert('很遗憾，导航栏添加失败！');
-                }
+    $(document).ready(function () {
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        $("#btn").click(function()
+        {
+            var nav_name=document.querySelector('.nav_name').value;
+            var nav_url=document.querySelector('.nav_url').value;
+            var nav_type = document.querySelector('input[name=nav_type]:checked').value;
+            var nav_weight=document.querySelector('.nav_weight').value;
+            var u=/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
+            if(nav_name==""){
+                layer.msg('导航栏名称不能为空!',{icon:2});
+                return false;
+            }else if(nav_url==""){
+                layer.msg('导航栏路径不能为空!',{icon:2});
+                return false;
+            }else if(u.test(nav_url)==false){
+                layer.msg('导航栏路径格式不正确例：http://www.educations.com/admin/index！',{icon:2});
+                return false;
+            }else if(nav_weight==""){
+                layer.msg('导航栏权重不能为空!',{icon:2});
+                return false;
             }
-        })
-    }
+            $.ajax({
+                url:"./navbardo",
+                type:"POST",
+                data:{nav_name:nav_name,nav_url:nav_url,nav_type:nav_type,nav_weight:nav_weight},
+                dataType:"",
+                async:true,
+                success:function(res){
+                    if(res==200){
+                        layer.msg('恭喜您，导航栏添加成功！',{icon:1});
+                        location.href="{{url('/admin/navbarlist')}}";
+                    }else{
+                        layer.msg('很遗憾，导航栏添加失败！',{icon:2});
+                    }
+                }
+            })
+        })    
+    });
+})
+    
 </script>
