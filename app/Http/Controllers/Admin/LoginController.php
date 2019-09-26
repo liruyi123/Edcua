@@ -22,7 +22,7 @@ class LoginController extends Controller
         $pwd = $request->pwd;
         $data = AdminModel::where(['admin_name'=>$name])->first();
         if(!empty($data)){
-            if($data->admin_pwd == $pwd){
+            if(decrypt($data->admin_pwd) == $pwd){
                 $request->session()->put(["uid"=>$data->admin_id]);
 //                Redis::put("uid",$data->admin_id);
                 $request->session()->put("uid",$data->admin_id);
