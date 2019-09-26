@@ -70,8 +70,10 @@
             dataType : "JSON",
             success : function (res) {
                 if(res.code == "200"){
-                    alert(res.message);
-                    location.href="/admin/index";
+                    layer.msg(res.message,{icon:1,time:3000},function () {
+                        location.href="/admin/index";
+                    });
+
                 }else{
                     alert(res.message);
                 }

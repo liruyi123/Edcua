@@ -86,6 +86,9 @@
 <script src="js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function () {
+        layui.use("layer",function () {
+            var layer = layui.layer;
+        })
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
@@ -96,6 +99,22 @@
         var ght = $("#ght").val();
         var style = $("#style").val();
         var resume = $(".resume").val();
+        if(name == ""){
+            layer.msg("姓名不能为空！",{icon:2});
+            return false;
+        }
+        if(ght == ""){
+            layer.msg("请设置权重!",{icon:2});
+            return false;
+        }
+        if(style == ""){
+            layer.msg("请简述讲师授课风格!",{icon:2});
+            return false;
+        }
+        if(resume == ""){
+            layer.msg("请填写讲师简历!",{icon:2});
+            return false;
+        }
         var obj = {};
         obj.name=name,
             obj.ght = ght,
@@ -107,8 +126,22 @@
             data : {data:obj},
             dataType : "JSON",
             success : function (res) {
-                alert(res.message);
-                history.go(0);
+                if(res.code == "200"){
+                    layer.alert("添加成功，是否跳转展示页面", {
+                        skin: 'layui-layer-molv' //样式类名  自定义样式
+                        ,closeBtn: 1    // 是否显示关闭按钮
+                        ,anim: 1 //动画类型
+                        ,btn: ['是','否'] //按钮
+                        ,icon: 6    // icon
+                        ,yes:function(){
+                            location.href="/admin/lecturerList";
+                        }
+                        ,btn2:function(){
+                            history.go(0);
+                        }});
+                }else{
+                    layer.msg(res.message);
+                }
             }
         });
     })

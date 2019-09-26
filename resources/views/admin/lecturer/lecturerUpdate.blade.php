@@ -87,6 +87,9 @@
 <script src="js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function () {
+        layui.use('layer',function () {
+            var layer = layui.layer;
+        })
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
@@ -110,9 +113,16 @@
             data : {data:obj},
             dataType : "JSON",
             success : function (res) {
+                if(res.code =="200"){
+                    layer.msg(res.message,{icon:1,time:2000},function () {
+                        location.href="/admin/lecturerList";
+                    })
+                }else{
+                    layer.msg(res.message,{icon:2,time:2000},function () {
+                        history.go(0);
+                    })
+                }
 
-                alert(res.message);
-                history.go(0);
             }
         });
     })

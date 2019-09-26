@@ -103,8 +103,10 @@
             dataType : "JSON",
             success : function (res) {
                if(res.code == "200"){
-                   layer.msg(res.message,{icon:6},{time:3000});
-                   location.href="/admin/login";
+                   layer.msg(res.message,{icon:6,time:3000},function () {
+                       location.href="/admin/login";
+                   });
+
                }else{
                    layue.msg(res.message,{icon:2});
                }
