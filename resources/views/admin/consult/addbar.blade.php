@@ -27,24 +27,27 @@
 
 
     <script>
-        $(function(){
-            $(".btn-success").click(function () {
-                var title = $("#title").val();
-                var weight = $("#weight").val();
+        $(document).ready(function(){
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $(".btn-success").click(function () {
+                    var title = $("#title").val();
+                    var weight = $("#weight").val();
 
-                $.post(
-                        '/admin/addbar',
-                        {title:title,weight:weight},
-                        function(res){
-                            if(res.error==10001){
-                                alert(res.msg);
-                                location.href=''
-                            }else{
-                                alert(res.msg);
-                            }
-                        },'json'
-                );
-            })
+                    $.post(
+                            '/admin/addbar',
+                            {title: title, weight: weight},
+                            function (res) {
+                                if (res.error == 10001) {
+                                    layer.msg(res.msg,{icon:6});
+                                    location.href = ''
+                                } else {
+                                    layer.msg(res.msg,{icon:2});
+                                }
+                            }, 'json'
+                    );
+                });
+            });
         });
     </script>
 @endsection

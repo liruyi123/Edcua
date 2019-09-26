@@ -39,22 +39,25 @@
 
     <script>
         $(function(){
-            $('.del').click(function () {
-                var id = $(this).parent('td').siblings('input').attr('cid');
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $('.del').click(function () {
+                    var id = $(this).parent('td').siblings('input').attr('cid');
 //                alert(id);
-                $.post(
-                        '/admin/delcon',
-                        {id:id},
-                        function(res){
-                            if(res.error == 10001){
-                                alert(res.msg);
-                                location.href = '/admin/consult'
-                            }else{
-                                alert(res.msg);
-                            }
-                        },'json'
-                );
-            })
+                    $.post(
+                            '/admin/delcon',
+                            {id: id},
+                            function (res) {
+                                if (res.error == 10001) {
+                                    alert(res.msg);
+                                    location.href = '/admin/consult'
+                                } else {
+                                    alert(res.msg);
+                                }
+                            }, 'json'
+                    );
+                });
+            });
         });
     </script>
 
