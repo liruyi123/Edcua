@@ -10,8 +10,11 @@
 
     <meta name="keywords" content="">
     <meta name="description" content="">
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 
     <link rel="shortcut icon" href="favicon.ico"> <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
 

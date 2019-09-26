@@ -52,11 +52,23 @@ class CourseController extends Controller
     }
 
     // 课程分类的展示
-    public function courseCategoryList(){
+    public function courseCategoryList(Request $request){
+        $keyword = "";
+
         $arr = CourseCategoryModel::where(['status'=>1])->select()->paginate(3);
+//        print_r($arr);die;
 
+        return view("admin.course.coursecategorylist" , ['arr'=>$arr,'keyword'=>$keyword]);
+    }
 
-        return view("admin.course.coursecategorylist" , ['arr'=>$arr]);
+    // 课程分类的展示搜索
+    public function courseCategoryListselect(Request $request){
+        $keyword = $request->input("keyword");
+
+        $arr = CourseCategoryModel::where('cate_name','like',"%$keyword%")->paginate(3);
+//        print_r($arr);die;
+
+        return view("admin.course.coursecategorylist" , ['arr'=>$arr,'keyword'=>$keyword]);
     }
 
     // 课程分类的删除
@@ -165,7 +177,7 @@ class CourseController extends Controller
             'cou_weight'=>$cou_weight,
             'cate_id'=>$cate_id,
             'cou_duration'=>$cou_duration,
-            'is_show'=>$is_show,
+            'c_is_show'=>$is_show,
             'lect_id'=>$lect_id,
             'path'=>$path,
             'cou_text'=>$text,
@@ -205,12 +217,13 @@ class CourseController extends Controller
     // 课程修改页面
     public function courseUpd(Request $request){
         $cou_id = $request->input("id");
-        print_r($cou_id);die;
+
 
         $arr = CourseModel::where(['cou_id'=>$cou_id])->first()->toArray();
 
         // 查询课程分类
-        $data = CourseCategoryModel::where(['is_show'=>1,'status'=>1,'pid'=>0])->get()->toArray();
+        $res = CourseCategoryModel::where(['status'=>1])->get()->toArray();
+        $data  = $this->getIndexCateInfo($res,0);
 
         // 查询讲师
         $lecArr = LecturerModel::where(['status'=>1,'is_show'=>1])->get()->toArray();
@@ -218,9 +231,8 @@ class CourseController extends Controller
         $data = [
             'arr' => $arr,
             'data' => $data,
-            'lectArr' => $lecArr
+            'lecArr' => $lecArr
         ];
-        print_r($data);die;
 
         return view("admin.course.courseupd" , $data);
     }
@@ -228,15 +240,19 @@ class CourseController extends Controller
     // 执行课程修改
     public function courseUpd_do(Request $request){
         $data = $request->input();
-        $id = $request->input("cid");
+        $id = $request->input("cou_id");
         $data = [
-            'cate_name' => $data['c_name'],
-            'is_show' => $data['type'],
-            'cate_weight' => $data['c_size'],
-            'pid' => $data['category'],
+            'cou_name' => $data['c_name'],
+            'c_is_show' => $data['type'],
+            'cou_weight' => $data['c_size'],
+            'lect_id' => $data['lecturer'],
+            'cate_id' => $data['category'],
+            'cou_text' => $data['text'],
+            'cou_duration' => $data['l_size'],
             'utime' => time(),
         ];
-        $res = CourseCategoryModel::where(['cate_id'=>$id])->update($data);
+        $res = CourseModel::where(['cou_id'=>$id])->update($data);
+//        print_r($res);die;
         if ($res == 1){
             return $this->code(200,"修改成功","");
         }else{

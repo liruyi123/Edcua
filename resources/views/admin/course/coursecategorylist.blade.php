@@ -12,6 +12,17 @@
                     </div>
                     <br>
                     <br>
+                    <form action="/admin/courseCategoryListselect" method="post">
+                        <div class="col-sm-5">
+                            <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Keyword search for course name" value="{{$keyword}}">
+                        </div>
+                        <div class="col-sm-7 control-label">
+                            <input type="submit" id="btn" value="搜&nbsp;&nbsp;&nbsp;&nbsp;所"  class="btn btn-primary  block full-width m-b">
+                        </div>
+                    </form>
+
+                    <br>
+                    <br>
                     <div class="ibox-content">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -51,10 +62,8 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-
-                    {{$arr->links()}}
+                    {{$arr->appends(['keyword'=>$keyword])->render()}}
                 </div>
             </div>
 
@@ -64,28 +73,30 @@
 
     <script src="/admin/js/jquery.min.js" type="text/javascript"></script>
     <script>
-        $(function () {
-
-            $('.del').click(function () {
-                var cid = $(this).parents('td').siblings('input').attr('cid');
-                // console.log(nid);
-                $.ajax({
-                    url:"/admin/CCGDel",
-                    type:"post",
-                    data:{cid:cid},
-                    dataType:"json",
-                    success:function (res) {
-                        // console.log(res)
-                        if(res.code == '200'){
-                            alert(res.message);
-                            window.location.href = "courseCategoryList";
-                        }else{
-                            alert(res.message);
+        $(document).ready(function () {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $('.del').click(function () {
+                    var cid = $(this).parents('td').siblings('input').attr('cid');
+                    // console.log(nid);
+                    $.ajax({
+                        url:"/admin/CCGDel",
+                        type:"post",
+                        data:{cid:cid},
+                        dataType:"json",
+                        success:function (res) {
+                            // console.log(res)
+                            if(res.code == '200'){
+                                layer.msg(res.message,{icon:6});
+                                window.location.href = "courseCategoryList";
+                            }else{
+                                layer.msg(res.message,{icon:2});
+                            }
                         }
-                    }
+                    })
                 })
-            })
-        })
+            });
+        });
     </script>
 
 @endsection

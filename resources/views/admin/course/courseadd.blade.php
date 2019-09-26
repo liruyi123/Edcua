@@ -117,76 +117,81 @@
     </script>
     <script src="/admin/js/jquery.min.js" type="text/javascript"></script>
     <script>
-        $(function () {
-            size = 1024*100;
-            index=1;
-            totalPage=0;
-            var per=0;
-            $("input[name='btn']").click(function(){
-                upload(index);
-            });
-            function upload(index){
-                var objfile = document.getElementById("img").files[0];
-                var filesize = objfile.size;//文件大小
-                var filename = objfile.name;
-                var start = (index-1) * size;
-                per =((start/filesize)*100).toFixed(2);
-                var end = start+size;
-                totalPage = Math.ceil(filesize/size);//多少页
-                var chunk = objfile.slice(start,end);
-                var form = new FormData();
-                form.append("file",chunk,filename);
-                $.ajax({
-                    type : "post",
-                    data: form,
-                    url : "uploadinfo",
-                    processData: false,
-                    contentType: false,
-                    cache:false,
-                    dataType : "json",
-                    async:true,//同步
-                    success:function(msg){
-
-                        if(index < totalPage ){
-                            index++;
-                            upload(index);
-                        }else{
-                            alert("上传成功");
-                            $("#imgs").attr('src',msg.msg);
-                        }
-                    }
+        $(document).ready(function () {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                size = 1024*100;
+                index=1;
+                totalPage=0;
+                var per=0;
+                $("input[name='btn']").click(function(){
+                    upload(index);
                 });
-            }
+                function upload(index){
+                    var objfile = document.getElementById("img").files[0];
+                    var filesize = objfile.size;//文件大小
+                    var filename = objfile.name;
+                    var start = (index-1) * size;
+                    per =((start/filesize)*100).toFixed(2);
+                    var end = start+size;
+                    totalPage = Math.ceil(filesize/size);//多少页
+                    var chunk = objfile.slice(start,end);
+                    var form = new FormData();
+                    form.append("file",chunk,filename);
+                    $.ajax({
+                        type : "post",
+                        data: form,
+                        url : "uploadinfo",
+                        processData: false,
+                        contentType: false,
+                        cache:false,
+                        dataType : "json",
+                        async:true,//同步
+                        success:function(msg){
 
-
-            $('#btn').click(function () {
-                var c_name = $("#c_name").val();
-                var c_size = $("#c_size").val();
-                var path = $("#path").val();
-                var l_size = $("#l_size").val();
-                var type = $('input:radio:checked').val();
-                var category = $("#category").find("option:selected").val();
-                var lecturer = $("#lecturer").find("option:selected").val();
-                var text = $(".w-e-text").children("p").text();
-
-                $.ajax({
-                    type : 'post',
-                    url : 'courseAdd_do',
-                    dataType:"json",
-                    data:{c_name:c_name,category:category,c_size:c_size,type:type,l_size:l_size,lecturer:lecturer,path:path,text:text},
-                    success : function (msg) {
-                        // console.log(msg);
-                        if(msg.code == '200'){
-                            alert(msg.message);
-                            window.location.href = "courseList";
-                        }else{
-                            alert(msg.message);
+                            if(index < totalPage ){
+                                index++;
+                                upload(index);
+                            }else{
+                                layer.msg('上传成功',{icon:6});
+                                $("#imgs").attr('src',msg.msg);
+                            }
                         }
-                    }
+                    });
+                }
+
+
+                $('#btn').click(function () {
+                    var c_name = $("#c_name").val();
+                    var c_size = $("#c_size").val();
+                    var path = $("#imgs").attr("src");
+                    var l_size = $("#l_size").val();
+                    var type = $('input:radio:checked').val();
+                    var category = $("#category").find("option:selected").val();
+                    var lecturer = $("#lecturer").find("option:selected").val();
+                    var text = $(".w-e-text").children("p").text();
+
+                    $.ajax({
+                        type : 'post',
+                        url : 'courseAdd_do',
+                        dataType:"json",
+                        data:{c_name:c_name,category:category,c_size:c_size,type:type,l_size:l_size,lecturer:lecturer,path:path,text:text},
+                        success : function (msg) {
+                            // console.log(msg);
+                            if(msg.code == '200'){
+                                layer.msg(msg.message,{icon:6});
+                                window.location.href = "courseList";
+                            }else{
+                                layer.msg(msg.message,{icon:2});
+                            }
+                        }
+                    })
+
                 })
 
-            })
-        })
+
+            });
+        });
     </script>
 
 @endsection

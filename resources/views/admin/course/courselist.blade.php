@@ -34,13 +34,13 @@
                                         <td>{{$v->cou_id}}</td>
                                         <td>{{$v->cou_name}}</td>
                                         <td>
-                                            @if($v->is_show == 1)
+                                            @if($v->c_is_show == 1)
                                                 展示
-                                            @elseif($v->is_show == 2)
+                                            @elseif($v->c_is_show == 2)
                                                 隐藏
                                             @endif
                                         </td>
-                                        <td>{{$v->cate_weight}}</td>
+                                        <td>{{$v->cou_weight}}</td>
                                         <td><img src="{{$v->path}}" height="10%"></td>
                                         <td>{{$v->cate_name}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v->ctime)}}</td>
@@ -66,28 +66,31 @@
 
     <script src="/admin/js/jquery.min.js" type="text/javascript"></script>
     <script>
-        $(function () {
-
-            $('.del').click(function () {
-                var cid = $(this).parents('td').siblings('input').attr('cid');
-                // console.log(nid);
-                $.ajax({
-                    url:"/admin/couserDel",
-                    type:"post",
-                    data:{cid:cid},
-                    dataType:"json",
-                    success:function (res) {
-                        // console.log(res)
-                        if(res.code == '200'){
-                            alert(res.message);
-                            window.location.href = "courseList";
-                        }else{
-                            alert(res.message);
+        $(document).ready(function () {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $('.del').click(function () {
+                    var cid = $(this).parents('td').siblings('input').attr('cid');
+                    // console.log(nid);
+                    $.ajax({
+                        url:"/admin/couserDel",
+                        type:"post",
+                        data:{cid:cid},
+                        dataType:"json",
+                        success:function (res) {
+                            // console.log(res)
+                            if(res.code == '200'){
+                                layer.msg(res.message,{icon:6});
+                                window.location.href = "courseList";
+                            }else{
+                                layer.msg(res.message,{icon:2});
+                            }
                         }
-                    }
+                    })
                 })
-            })
-        })
+
+            });
+        });
     </script>
 
 @endsection

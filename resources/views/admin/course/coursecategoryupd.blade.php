@@ -70,34 +70,37 @@
     {{--<script type="text/javascript" src="Editor/release/wangEditor.js"></script>--}}
     <script src="/admin/js/jquery.min.js" type="text/javascript"></script>
     <script>
-        $(function () {
+        $(document).ready(function () {
+            layui.use('layer', function () {
+                var layer = layui.layer;
 
+                $('#btn').click(function () {
+                    var c_name = $("#c_name").val();
+                    var cid = $("#cid").val();
+                    var c_size = $("#c_size").val();
+                    var type = $('input:radio:checked').val();
+                    var category = $("#category").find("option:selected").val();
 
-            $('#btn').click(function () {
-                var c_name = $("#c_name").val();
-                var cid = $("#cid").val();
-                var c_size = $("#c_size").val();
-                var type = $('input:radio:checked').val();
-                var category = $("#category").find("option:selected").val();
-
-                $.ajax({
-                    type : 'post',
-                    url : 'CCGUpd_do',
-                    dataType:"json",
-                    data:{c_name:c_name,category:category,c_size:c_size,type:type,cid:cid},
-                    success : function (msg) {
-                        // console.log(msg);
-                        if(msg.code == '200'){
-                            alert(msg.message);
-                            window.location.href = "courseCategoryList";
-                        }else{
-                            alert(msg.message);
+                    $.ajax({
+                        type : 'post',
+                        url : 'CCGUpd_do',
+                        dataType:"json",
+                        data:{c_name:c_name,category:category,c_size:c_size,type:type,cid:cid},
+                        success : function (msg) {
+                            // console.log(msg);
+                            if(msg.code == '200'){
+                                layer.msg(msg.message,{icon:6});
+                                window.location.href = "courseCategoryList";
+                            }else{
+                                layer.msg(msg.message,{icon:2});
+                            }
                         }
-                    }
+                    })
+
                 })
 
-            })
-        })
+            });
+        });
     </script>
 
 @endsection
