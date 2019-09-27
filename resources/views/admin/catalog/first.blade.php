@@ -46,7 +46,7 @@
                     var id = $(this).parent('td').siblings('input').attr('cid');
 //                alert(id);
                     $.post(
-                            '/admin/delcon',
+                            '/admin/delcata',
                             {id: id},
                             function (res) {
                                 if (res.error == 10001) {

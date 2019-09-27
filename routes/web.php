@@ -95,6 +95,9 @@ Route::post('/admin/delbar','Admin\ConsultController@barDel');   //资讯分类�
 Route::get('/admin/catalog','Admin\CatalogController@catalog');   //目录列表页
 Route::get('/admin/addcata','Admin\CatalogController@catalogAdd');   //目录添加页
 Route::post('/admin/addcata','Admin\CatalogController@catalogDo');   //目录执行添加
+Route::get('/admin/updcata/{id}','Admin\CatalogController@catalogUpd');   //目录修改页
+Route::post('/admin/updcata','Admin\CatalogController@catalogUpdDo');   //目录执行修改
+Route::post('/admin/delcata','Admin\CatalogController@catalogDel');   //目录执行删除
 
 
 Route::get('/admin/navbar','Admin\NavbarController@navbar');//导航栏添加静态页面

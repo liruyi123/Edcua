@@ -65,6 +65,28 @@ class CatalogController extends Controller
         return json_encode($res);
     }
 
+    //  目录修改页
+    public function catalogUpd($id)
+    {
+        $info = Course::where(['status'=>1])->get();
+        $a = Catalog::where(['cata_id'=>$id])->get()->toArray();
+        $b = Catalog::where(['show'=>1])->get()->toArray();
+        $data = $this->getIndexCateInfo($b,0);
+        return view('admin.catalog.updcata',compact('info','data','a'));
+    }
+
+    //  执行修改
+    public function catalogUpdDo(Request $request)
+    {
+
+    }
+
+    //  删除
+    public function catalogDel()
+    {
+
+    }
+
     // 无限极分类处理数组
     function getIndexCateInfo($data,$pid=0){
         $cateInfo=[];
