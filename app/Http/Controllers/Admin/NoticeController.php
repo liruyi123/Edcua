@@ -61,9 +61,7 @@ class NoticeController extends Controller
         ];
         $res=Notice::where($where)->update($data);
         if($res==1){
-            echo '<script>alert(\'恭喜您，删除成功！\');</script>';
-            header("refresh:1, url='/admin/noticelist");
-            die;
+            echo 200;
         }else{
             echo 500;
         }

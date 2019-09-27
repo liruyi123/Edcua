@@ -126,7 +126,7 @@ Route::post('/admin/qupdatedo','Admin\QuestionController@qupdatedo');//题库的
 Route::get('/admin/notice','Admin\NoticeController@notice');//公告添加静态页面
 Route::post('/admin/noticedo','Admin\NoticeController@noticedo');//公告添加执行页面
 Route::get('/admin/noticelist','Admin\NoticeController@noticelist');//公告展示列表面
-Route::get('/admin/ndelete/{not_id}','Admin\NoticeController@ndelete');//公告删除执行页面
+Route::post('/admin/ndelete','Admin\NoticeController@ndelete');//公告删除执行页面
 Route::get('/admin/nupdate/{not_id}','Admin\NoticeController@nupdate');//公告修改静态页面
 Route::post('/admin/nupdatedo','Admin\NoticeController@nupdatedo');//公告添加执行页面
 
