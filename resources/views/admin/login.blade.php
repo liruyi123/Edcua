@@ -18,7 +18,7 @@
             <h1 class="logo-name">h</h1>
 
         </div>
-        <h3>欢迎使用 hAdmin</h3>
+        <h3>欢迎登陆</h3>
 
         <form class="m-t" role="form" action="index.html">
             <div class="form-group">
@@ -30,7 +30,7 @@
             <button type="button" class="btn btn-primary block full-width m-b" id="btn">登 录</button>
 
 
-            <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="/admin/register">注册一个新账号</a>
+            <p class="text-muted text-center"> <a href="/admin/forgetpwd#"><small>忘记密码了？</small></a> | <a href="/admin/register">注册一个新账号</a>
             </p>
 
         </form>
@@ -74,7 +74,7 @@
                         location.href="/admin/index";
                     });
                 }else{
-                    alert(res.message);
+                    layer.msg(res.message,{icon:2});
                 }
             }
         });
