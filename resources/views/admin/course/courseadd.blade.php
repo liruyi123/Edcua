@@ -51,7 +51,7 @@
             </div>
         </div>
         <br>
-            <div class="form-group">
+        <div class="form-group">
             <h3 class="col-sm-12 control-label">轮播图：</h3>
             <br>
             <br>
@@ -61,15 +61,16 @@
             <div class="col-sm-7 control-label">
                 <input type="button" name="btn" value="上&nbsp;&nbsp;&nbsp;&nbsp;传"  class="btn btn-primary  block full-width m-b">
             </div>
-                <div>
-                    <img src="" alt="" id="imgs" width="70%">
-                </div>
-
         </div>
-
         <br>
         <br>
-
+        <div class="form-group">
+            <div class="col-sm-12 control-label">
+                <img src="" alt="" id="imgs" width="100px">
+            </div>
+        </div>
+        <br>
+        <br>
         <h3>对应讲师：</h3>
         <div class="col-sm-5">
             <select class="form-control" name="" id="lecturer">

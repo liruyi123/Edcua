@@ -12,7 +12,24 @@
         </div>
         <br>
         <br>
-        <h3>所属课程分类：</h3>
+        <h3>所属课程目录：</h3>
+        <div class="col-sm-5">
+            <select class="form-control" name="" id="catalog">
+                <option value="0">The course directory to which it belongs</option>
+                @foreach($data as $k => $v)
+                    <option value="{{$v['cata_id']}}">{{$v['cata_name']}}</option>
+                    @foreach($v['son'] as $key => $val)
+                        <option value="{{$val['cata_id']}}">|——{{$val['cata_name']}}</option>
+                        @foreach($val['son'] as $kk => $vv)
+                            <option value="{{$vv['cata_id']}}">|——|——{{$vv['cata_name']}}</option>
+                        @endforeach
+                    @endforeach
+                @endforeach
+            </select>
+        </div>
+        <br>
+        <br>
+        <h3>题库类型：</h3>
         <div class="col-sm-5">
             <select class="form-control" name="" id="type">
                 <option value="0">Please select the topic type</option>
@@ -64,7 +81,7 @@
                 </div>
             </div>
         </div>
-        {{--填空题--}}
+        {{--回答题--}}
         <div id="cloze">
             <div class="form-group">
                 <h3>真确答案：</h3>
@@ -108,8 +125,8 @@
 
     <script type="text/javascript" src="/Editor/release/wangEditor.min.js"></script>
     <script type="text/javascript">
-        var E = window.wangEditor
-        var editor = new E('#editor')
+        var E = window.wangEditor;
+        var editor = new E('#editor');
         // 或者 var editor = new E( document.getElementById('editor') )
         editor.create()
     </script>
@@ -118,50 +135,11 @@
         $(document).ready(function () {
             layui.use('layer', function () {
                 var layer = layui.layer;
-                size = 1024*100;
-                index=1;
-                totalPage=0;
-                var per=0;
-                $("input[name='btn']").click(function(){
-                    upload(index);
-                });
-                function upload(index){
-                    var objfile = document.getElementById("img").files[0];
-                    var filesize = objfile.size;//文件大小
-                    var filename = objfile.name;
-                    var start = (index-1) * size;
-                    per =((start/filesize)*100).toFixed(2);
-                    var end = start+size;
-                    totalPage = Math.ceil(filesize/size);//多少页
-                    var chunk = objfile.slice(start,end);
-                    var form = new FormData();
-                    form.append("file",chunk,filename);
-                    $.ajax({
-                        type : "post",
-                        data: form,
-                        url : "uploadinfo",
-                        processData: false,
-                        contentType: false,
-                        cache:false,
-                        dataType : "json",
-                        async:true,//同步
-                        success:function(msg){
-
-                            if(index < totalPage ){
-                                index++;
-                                upload(index);
-                            }else{
-                                layer.msg('上传成功',{icon:6});
-                                $("#imgs").attr('src',msg.msg);
-                            }
-                        }
-                    });
-                }
-
                 $("#choice").hide();
                 $("#TF").hide();
                 $("#cloze").hide();
 
+                // 改变事件
                 $('#type').change(function () {
                     var type = $("#type").find("option:selected").val();
                     if(type == 1){
@@ -178,7 +156,7 @@
                         $("#TF").hide();
                         $("#cloze").hide();
                     }else if(type == 3){
-                        // 填空题
+                        // 回答题
                         // 展示填空题部分
                         $("#choice").hide();
                         $("#TF").hide();
@@ -186,7 +164,36 @@
                     }
                 })
 
+                // 点击事件
+                $("#btn").click(function () {
+                    var topic = $("#topic").val();
+                    var catalog = $("#catalog").find("option:selected").val();
+                    var type = $("#type").find("option:selected").val();
+                    var choiceA = $("#choiceA").val();
+                    var choiceB = $("#choiceB").val();
+                    var choiceC = $("#choiceC").val();
+                    var choiceD = $("#choiceD").val();
+                    var choice_answer = $("#answer").val();
+                    var score = $("#score").val();
+                    var cloze = $(".w-e-text").children("p").text();
+                    var TF = $('input:radio:checked').val();
 
+                    $.ajax({
+                        type : 'post',
+                        url : 'question_do',
+                        dataType:"json",
+                        data:{topic:topic,catalog:catalog,choiceA:choiceA,type:type,choiceB:choiceB,choiceC:choiceC,choiceD:choiceD,score:score,cloze:cloze,TF:TF,choice_answer:choice_answer},
+                        success : function (msg) {
+                            // console.log(msg);
+                            if(msg.code == '200'){
+                                layer.msg(msg.message,{icon:6});
+                                window.location.href = "questionlist";
+                            }else{
+                                layer.msg(msg.message,{icon:2});
+                            }
+                        }
+                    })
+                })
             });
         });
     </script>

@@ -110,7 +110,7 @@ Route::get("/admin/lecturerUpdate","Admin\LecturerController@lecturerUpdate");//
 Route::post("/admin/lecturerUpdateDo","Admin\LecturerController@lecturerUpdateDo");//讲师数据修改执行
 
 Route::get('/admin/question','Admin\QuestionController@question');//题库添加静态页面
-Route::post('/admin/questiondo','Admin\QuestionController@questiondo');//题库添加执行页面
+Route::post('/admin/question_do','Admin\QuestionController@question_do');//题库添加执行页面
 Route::get('/admin/questionlist','Admin\QuestionController@questionlist');//题库的展示列表页面
 Route::get('/admin/qdelete/{q_id}','Admin\QuestionController@qdelete');//题库的执行删除方法
 Route::get('/admin/qupdate/{q_id}','Admin\QuestionController@qupdate');//题库的修改静态页面
