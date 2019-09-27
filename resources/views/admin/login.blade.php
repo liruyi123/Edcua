@@ -73,7 +73,6 @@
                     layer.msg(res.message,{icon:1,time:3000},function () {
                         location.href="/admin/index";
                     });
-
                 }else{
                     alert(res.message);
                 }
