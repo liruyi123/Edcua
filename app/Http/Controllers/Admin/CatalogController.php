@@ -82,9 +82,23 @@ class CatalogController extends Controller
     }
 
     //  删除
-    public function catalogDel()
+    public function catalogDel(Request $request)
     {
-
+        $id = $request->input('id');
+        $upd = ['show'  =>  2];
+        $data = Catalog::where(['cata_id'=>$id])->update($upd);
+        if($data){
+            $res = [
+                'error' => 10001,
+                'msg'   => '删除成功'
+            ];
+        }else{
+            $res = [
+                'error' =>  20002,
+                'msg'   =>  '发生未知错误'
+            ];
+        }
+        return json_encode($res);
     }
 
     // 无限极分类处理数组

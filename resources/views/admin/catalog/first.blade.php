@@ -51,7 +51,7 @@
                             function (res) {
                                 if (res.error == 10001) {
                                     layer.msg(res.msg,{icon:6});
-                                    location.href = '/admin/consult'
+                                    location.href = '/admin/catalog'
                                 } else {
                                     layer.msg(res.msg,{icon:2});
                                 }
