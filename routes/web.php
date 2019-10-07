@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+//    return view('welcome');
     return view('index.index');
 });
 
@@ -37,6 +38,8 @@ Route::get("/admin/login","Admin\LoginController@login");//登陆页面
 Route::post("admin/loginDo","Admin\LoginController@LoginDo");//登陆执行
 Route::get("/admin/register","Admin\LoginController@register");//注册页面
 Route::post("/admin/registerDo","Admin\LoginController@registerDo");//注册执行
+Route::get("/admin/forgetpwd","Admin\LoginController@forgetpwd");//忘记密码页面
+Route::post("/admin/codes","Admin\LoginController@codes");//获取验证码
 Route::get('/admin/index','Admin\IndexController@index');//后台首页
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
@@ -95,6 +98,9 @@ Route::post('/admin/delbar','Admin\ConsultController@barDel');   //资讯分类�
 Route::get('/admin/catalog','Admin\CatalogController@catalog');   //目录列表页
 Route::get('/admin/addcata','Admin\CatalogController@catalogAdd');   //目录添加页
 Route::post('/admin/addcata','Admin\CatalogController@catalogDo');   //目录执行添加
+Route::get('/admin/updcata/{id}','Admin\CatalogController@catalogUpd');   //目录修改页
+Route::post('/admin/updcata','Admin\CatalogController@catalogUpdDo');   //目录执行修改
+Route::post('/admin/delcata','Admin\CatalogController@catalogDel');   //目录执行删除
 
 
 Route::get('/admin/navbar','Admin\NavbarController@navbar');//导航栏添加静态页面
@@ -120,7 +126,7 @@ Route::post('/admin/qupdatedo','Admin\QuestionController@qupdatedo');//题库的
 Route::get('/admin/notice','Admin\NoticeController@notice');//公告添加静态页面
 Route::post('/admin/noticedo','Admin\NoticeController@noticedo');//公告添加执行页面
 Route::get('/admin/noticelist','Admin\NoticeController@noticelist');//公告展示列表面
-Route::get('/admin/ndelete/{not_id}','Admin\NoticeController@ndelete');//公告删除执行页面
+Route::post('/admin/ndelete','Admin\NoticeController@ndelete');//公告删除执行页面
 Route::get('/admin/nupdate/{not_id}','Admin\NoticeController@nupdate');//公告修改静态页面
 Route::post('/admin/nupdatedo','Admin\NoticeController@nupdatedo');//公告添加执行页面
 

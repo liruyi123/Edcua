@@ -27,7 +27,7 @@
 
 
     <script>
-        $(document).ready(function(){
+        $(function(){
             layui.use('layer', function () {
                 var layer = layui.layer;
                 $(".btn-success").click(function () {

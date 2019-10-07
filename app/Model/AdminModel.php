@@ -8,4 +8,5 @@ class AdminModel extends Model
 {
     //
     protected $table = "admin";
+    public $timestamps=false;
 }
