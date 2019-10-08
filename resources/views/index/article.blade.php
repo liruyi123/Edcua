@@ -10,31 +10,14 @@
 	<h3 class="righttit">全部资讯</h3>
     <div class="clearh"></div>
     <span class="bread nob">
-<<<<<<< Updated upstream
-        @foreach($nav as $k => $v)
-        <a class="fombtn" href="{{$v->url}}">{{$v->ntitle}}</a>
-        {{--<a class="fombtn cur" href="{{$v->url}}">{{$v->ntitle}}</a>--}}
-
-=======
         @foreach($data as $k=>$v)
         <a class="fombtn cur" href="/article">{{$v->ntitle}}</a>
->>>>>>> Stashed changes
         @endforeach
     </span>
     
 </div>
 <div class="clearh"></div>
 <div class="coursetext">
-<<<<<<< Updated upstream
-
-    @foreach($data as $k => $v)
-    <div class="articlelist">
-    	<h3><a class="artlink" href="{{$v->url}}">{{$v->title}}</a></h3>
-        <p>{{$v->count}}</p>
-        <p class="artilabel">
-        <span class="ask_label">热门资讯</span>
-        <b class="labtime">{{date('Y-m-d H:i',$v['c_time'])}}</b>
-=======
     @foreach($arr as $k=>$v)
 	<div class="articlelist">
     	<h3><a class="artlink" href="/articlelist">{{$v->title}}</a></h3>
@@ -46,15 +29,10 @@
                 <span class="ask_label">热门资讯</span>
             @endif
         <b class="labtime">{{date("Y-m-d",$v->c_time)}}</b>
->>>>>>> Stashed changes
         </p>
         <div class="clearh"></div>
     </div>
     @endforeach
-    
-<<<<<<< Updated upstream
-
-=======
 	<div class="clearh" style="height:20px;"></div>
 	<span class="pagejump">
     	<p class="userpager-list">
@@ -70,7 +48,6 @@
         </p>
     </span>
     <div class="clearh" style="height:10px;"></div>
->>>>>>> Stashed changes
 </div>
 
 <div class="courightext">
@@ -79,15 +56,9 @@
     <h3 class="righttit">热门资讯</h3>
     <div class="gonggao">
 	<ul class="hotask">
-<<<<<<< Updated upstream
-        @foreach($info as $k=>$v)
-        	<li><a class="ask_link" href="{{$v->url}}"><strong>●</strong>{{$v->title}}</a></li>
-        @endforeach
-=======
         @foreach($hotask as $key=>$val)
         	<li><a class="ask_link" href="#"><strong>●</strong>{{$val->title}}?</a></li>
             @endforeach
->>>>>>> Stashed changes
         </ul>
     </div>
     </div>
@@ -97,18 +68,6 @@
     <div class="cr1">
     <h3 class="righttit">推荐课程</h3>
     <div class="teacher">
-<<<<<<< Updated upstream
-        @foreach($cou as $k => $v)
-    <div class="teapic">
-        <a href="#"  target="_blank"><img src="{{$v->path}}" height="60" title="{{$v->cou_name}}"></a>
-        <h3 class="courh3"><a href="#" class="ask_link" target="_blank">{{$v->cou_name}}</a></h3>
-    </div>
-    <div class="clearh"></div>
-
-        @endforeach
-
-
-=======
         @foreach($course as $ka => $va)
     <div class="teapic">
         <a href="#"  target="_blank"><img src="{{$va->path}}" height="60" title="{{$va->cou_name}}"></a>
@@ -116,7 +75,6 @@
     </div>
     <div class="clearh"></div>
             @endforeach
->>>>>>> Stashed changes
     </div>
     </div>
 </div>
