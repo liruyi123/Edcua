@@ -21,8 +21,12 @@ class AdvisoryController extends Controller
         return view('index.article',compact('data','arr','hotask','course'));
     }
     //咨询详情页面
-    public function articlelist()
+    public function articlelist(Request $request)
     {
-        return view("index.articlelist");
+        $id = $request->id;
+        $data = Consult::where(['consult_id'=>$id])->first();
+        $hotask = Consult::where(['navbar_id'=>2])->get();
+        $course = Course::get();
+        return view("index.articlelist",compact('data','hotask','course'));
     }
 }

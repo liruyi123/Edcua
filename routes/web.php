@@ -17,14 +17,15 @@ Route::get('/', function () {
 });
 
 //前台
-Route::get('/index/courselist','Index\IndexController@course');
+Route::get('/index/courselist','Index\CourseController@course');
 Route::get('/index/login','Index\LoginController@login');
 Route::get('/index/register','Index\LoginController@register');
-Route::get('/index/coursecont','Index\CourseController@coursecont');
+Route::get('/index/coursecont/{id}','Index\CourseController@coursecont');
+Route::post("/index/lect","Index\CourseController@lect");
 Route::get('/index/study','Index\CourseController@study');
 Route::get('/index/video','Index\CourseController@video');
 Route::get('/index/article','Index\AdvisoryController@article');
-Route::get('/index/articlelist','Index\AdvisoryController@articlelist');
+Route::get('/index/articlelist/{id}','Index\AdvisoryController@articlelist');
 Route::get('/index/teacherlist','Index\TeacherController@teacherlist');
 Route::get('/index/teacher/{id}','Index\TeacherController@teacher');
 Route::get('/index/question','Index\QuestionController@question');

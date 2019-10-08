@@ -1,23 +1,23 @@
 @extends("index.ments")
 
-<link rel="stylesheet" href="css/course.css"/>
-<script src="js/jquery-1.8.0.min.js"></script>
-<link rel="stylesheet" href="css/tab.css" media="screen">
-<script src="js/jquery.tabs.js"></script>
-<script src="js/mine.js"></script>
+<link rel="stylesheet" href="/index/css/course.css"/>
+<script src="/index/js/jquery-1.8.0.min.js"></script>
+<link rel="stylesheet" href="/index/css/tab.css" media="screen">
+<script src="/index/js/jquery.tabs.js"></script>
+<script src="/index/js/mine.js"></script>
 @section("content")
 <body>
 <!-- InstanceBeginEditable name="EditRegion1" -->
 <div class="coursecont">
 <div class="coursepic">
-	<div class="course_img"><img src="images/c1.jpg" width="500"></div>
+	<div class="course_img"><img src="" width="500" class="img"></div>
     <div class="coursetitle">
    		<a class="state">更新中</a>
-    	<h2 class="courseh2">会计基础</h2>    
+    	<h2 class="courseh2">{{$data[0]['cou_name']}}</h2>
         <p class="courstime">总课时：<span class="course_tt">30课时</span></p>
 		<p class="courstime">课程时长：<span class="course_tt">3小时20分</span></p>
         <p class="courstime">学习人数：<span class="course_tt">25987人</span></p>
-		<p class="courstime">讲师：马老师</p>
+		<p class="courstime lect" lect_id="{{$data[0]['lect_id']}}"></p>
 		<p class="courstime">课程评价：<img width="71" height="14" src="images/evaluate5.png">&nbsp;&nbsp;<span class="hidden-sm hidden-xs">5.0分（10人评价）</span></p>
         <!--<p><a class="state end">完结</a></p>-->      
         <span class="coursebtn"><a class="btnlink" href="/study">加入学习</a><a class="codol fx" href="javascript:void(0);" onClick="$('#bds').toggle();">分享课程</a><a class="codol sc" href="#">收藏课程</a></span>
@@ -180,4 +180,23 @@
 	<span class="barico top" id="top">置顶</span>	
 </div>
 </body>
+    @endsection
+
+@section("js")
+    <script src="/index/js/jquery-1.8.0.min.js"></script>
+    <script>
+        $(function () {
+            var lect_id = $(".lect").attr("lect_id");
+            $.ajax({
+                url : "/index/lect",
+                type : "POST",
+                data : {lect_id:lect_id},
+                dataType : "JSON",
+                success : function (res) {
+                    $(".lect").text("讲师："+res.data.lect_name);
+                    $(".img").prop("src",res.data.lect_img);
+                }
+            });
+        })
+    </script>
     @endsection
