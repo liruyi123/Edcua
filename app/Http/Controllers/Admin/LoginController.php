@@ -23,11 +23,11 @@ class LoginController extends Controller
         $name = $request->name;
         $pwd = $request->pwd;
         $data = AdminModel::where(['admin_name'=>$name])->first();
-        $id = $data->admin_id;
-        $error_num = $data->error_num;
-        $error_time = $data->error_time;
         $time = time();
         if(!empty($data)){
+            $id = $data->admin_id;
+            $error_num = $data->error_num;
+            $error_time = $data->error_time;
             if(decrypt($data->admin_pwd) == $pwd){
                 if($error_num >= 3 && ($time-$error_time)<3600){
                     $num = 60-ceil(($time-$error_time)/60);

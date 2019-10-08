@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Model\Consult;
+use App\Model\Course;
+use App\Model\Navcon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Navcon;
@@ -14,6 +17,7 @@ class AdvisoryController extends Controller
     //咨询页面
     public function article()
     {
+<<<<<<< Updated upstream
         $where = [
             'show'  =>  0,
             'navbar_id' =>  1
@@ -23,6 +27,13 @@ class AdvisoryController extends Controller
         $info = Consult::where($where)->limit(5)->get();
         $cou = Course::where('c_is_show',1)->orderBy('cou_weight','desc')->limit(3)->get();
         return view('index.article',compact('nav','data','info','cou'));
+=======
+        $data = Navcon::get();
+        $arr = Consult::get();
+        $hotask = Consult::where(['navbar_id'=>2])->get();
+        $course = Course::get();
+        return view('index.article',compact('data','arr','hotask','course'));
+>>>>>>> Stashed changes
     }
     //咨询详情页面
     public function articlelist()
