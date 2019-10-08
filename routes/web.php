@@ -29,7 +29,7 @@ Route::get('/index/articlelist/{id}','Index\AdvisoryController@articlelist');
 Route::get('/index/teacherlist','Index\TeacherController@teacherlist');
 Route::get('/index/teacher/{id}','Index\TeacherController@teacher');
 Route::get('/index/question','Index\QuestionController@question');
-
+Route::get('/index/ments','Index\NavbarController@ments');
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
