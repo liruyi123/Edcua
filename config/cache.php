@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 
-return [
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Default Cache Store
@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_DRIVER', 'Rediss'),
 
     /*
     |--------------------------------------------------------------------------
@@ -71,8 +71,8 @@ return [
             ],
         ],
 
-        'redis' => [
-            'driver' => 'redis',
+        'Rediss' => [
+            'driver' => 'Rediss',
             'connection' => 'cache',
         ],
 

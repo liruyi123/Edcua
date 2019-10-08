@@ -111,53 +111,104 @@ class QuestionController extends Controller
     }
 
     //题库删除页面
-    public function qdelete(Request $request)
+    public function Qdel(Request $request)
     {
-        $q_id=$request->q_id;
-        $where=[
-            'q_id'=>$q_id
-        ];
-        $data=[
-            'status'=>2
-        ];
-        $res=Question::where($where)->update($data);
-        if($res){
-            echo '<script>alert(\'恭喜您，删除成功！\');</script>';
-            header("refresh:1, url='/admin/questionlist");
-            die;
+        $id = $request->input("qid");
+//        print_r($id);die;
+        $res = QuestionBank::where(['b_id' => $id])->update(['status'=>2]);
+//        print_r($res);die;
+        if ($res == 1){
+            return $this->code(200,"删除成功" ,"");
         }else{
-            echo '删除失败！';
+            return $this->code(201,"删除失败" ,"");
         }
     }
 
     //题库修改展示静态页面
-    public function qupdate(Request $request)
+    public function QUpd(Request $request)
     {
-        $q_id=$request->q_id;
+        $q_id=$request->id;
+//        print_r($q_id);die;
         $where=[
-            'q_id'=>$q_id
+            'b_id'=>$q_id
         ];
-        $data=Question::where($where)->first();
-        return view('admin.question.qupdate',['data'=>$data]);
+        $data=QuestionBank::where($where)->first();
+
+        $info = Catalog::where(['show'=>1])->get()->toArray();
+        $catalogdata = $this->getIndexCateInfo($info,0,0);
+
+        return view('admin.question.qupdate',['data'=>$data,'catalogdata'=>$catalogdata]);
     }
 
     //题库修改执行页面
     public function qupdatedo(Request $request)
     {
-        $q_id=$request->q_id;
-        $q_name=$request->q_name;
-        $q_answer=$request->q_answer;
-        $q_weight=$request->q_weight;
-        $data=[
-             'q_name'=>$q_name,
-             'q_answer'=>$q_answer,
-             'q_weight'=>$q_weight,
-             'utime'=>time(),
-        ];
-        $where=[
-            'q_id'=>$q_id
-        ];
-        $res=Question::where($where)->update($data);
+        $topic = $request -> input('topic');
+        $bid = $request -> input('bid');
+        $catalog = $request -> input('catalog');
+        $choiceA = $request -> input('choiceA');
+        $choiceB = $request -> input('choiceB');
+        $choiceC = $request -> input('choiceC');
+        $choiceD = $request -> input('choiceD');
+        $choice_answer = $request -> input('choice_answer');
+        $type = $request -> input('type');
+        $score = $request -> input('score');
+        $cloze_answer = $request -> input('cloze');
+        $TF_answer = $request -> input('TF');
+        if (empty($topic) || empty($score) || $type == 0){
+            return $this->code(201,"请完善信息" ,"");
+        }
+
+        // 判断题目的类型
+        if ($type == 1){
+            // 判断题
+            if (empty($TF_answer)){
+                return $this->code(201,"真确答案不能为空" ,"");
+            }
+
+            $data = [
+                'b_name'=>$topic,
+                'b_type' => $type,
+                'cata_id' => $catalog,
+                'b_answer' => $TF_answer,
+                'b_score' => $score,
+                'ctime' => time(),
+                'utime' => time()
+            ];
+        }elseif ($type == 2){
+            // 选择题
+            if (empty($choiceA) || empty($choiceB) || empty($choiceC) || empty($choiceD) || empty($choice_answer)){
+                return $this->code(201,"请完善信息" ,"");
+            }
+            $data = [
+                'b_name'=>$topic,
+                'b_type' => $type,
+                'cata_id' => $catalog,
+                'b_choiceA' => $choiceA,
+                'b_choiceB' => $choiceB,
+                'b_choiceC' => $choiceC,
+                'b_choiceD' => $choiceD,
+                'b_answer' => $choice_answer,
+                'b_score' => $score,
+                'ctime' => time(),
+                'utime' => time()
+            ];
+        }else if ($type == 3){
+            // 回答题
+            if (empty($cloze_answer)){
+                return $this->code(201,"真确答案不能为空" ,"");
+            }
+            $data = [
+                'b_name'=>$topic,
+                'b_type' => $type,
+                'cata_id' => $catalog,
+                'b_answer' => $cloze_answer,
+                'b_score' => $score,
+                'ctime' => time(),
+                'utime' => time()
+            ];
+        }
+        $res=QuestionBank::where(['b_id'=>$bid])->update($data);
         if($res==1){
             return $this->code(200,"恭喜您，修改成功！","");
        }else{

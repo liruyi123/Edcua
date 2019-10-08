@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+//    return view('welcome');
     return view('index.index');
 });
 
@@ -26,6 +27,7 @@ Route::get('/index/article','Index\AdvisoryController@article');
 Route::get('/index/articlelist','Index\AdvisoryController@articlelist');
 Route::get('/index/teacherlist','Index\TeacherController@teacherlist');
 Route::get('/index/teacher','Index\TeacherController@teacher');
+Route::get('/index/question','Index\QuestionController@question');
 
 
 //后台
@@ -37,6 +39,9 @@ Route::get("/admin/login","Admin\LoginController@login");//登陆页面
 Route::post("admin/loginDo","Admin\LoginController@LoginDo");//登陆执行
 Route::get("/admin/register","Admin\LoginController@register");//注册页面
 Route::post("/admin/registerDo","Admin\LoginController@registerDo");//注册执行
+Route::get("/admin/forgetpwd","Admin\LoginController@forgetpwd");//忘记密码页面
+Route::post("/admin/codes","Admin\LoginController@codes");//获取验证码
+Route::post("/admin/userFindPwd","Admin\LoginController@userFindPwd");//修改密码执行
 Route::get('/admin/index','Admin\IndexController@index');//后台首页
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
@@ -115,15 +120,15 @@ Route::post("/admin/lecturerUpdateDo","Admin\LecturerController@lecturerUpdateDo
 Route::get('/admin/question','Admin\QuestionController@question');//题库添加静态页面
 Route::post('/admin/question_do','Admin\QuestionController@question_do');//题库添加执行页面
 Route::get('/admin/questionlist','Admin\QuestionController@questionlist');//题库的展示列表页面
-Route::get('/admin/qdelete/{q_id}','Admin\QuestionController@qdelete');//题库的执行删除方法
-Route::get('/admin/qupdate/{q_id}','Admin\QuestionController@qupdate');//题库的修改静态页面
+Route::post('/admin/Qdel','Admin\QuestionController@Qdel');//题库的执行删除方法
+Route::get('/admin/QUpd','Admin\QuestionController@QUpd');//题库的修改静态页面
 Route::post('/admin/qupdatedo','Admin\QuestionController@qupdatedo');//题库的修改静态页面
 
 
 Route::get('/admin/notice','Admin\NoticeController@notice');//公告添加静态页面
 Route::post('/admin/noticedo','Admin\NoticeController@noticedo');//公告添加执行页面
 Route::get('/admin/noticelist','Admin\NoticeController@noticelist');//公告展示列表面
-Route::get('/admin/ndelete/{not_id}','Admin\NoticeController@ndelete');//公告删除执行页面
+Route::post('/admin/ndelete','Admin\NoticeController@ndelete');//公告删除执行页面
 Route::get('/admin/nupdate/{not_id}','Admin\NoticeController@nupdate');//公告修改静态页面
 Route::post('/admin/nupdatedo','Admin\NoticeController@nupdatedo');//公告添加执行页面
 
