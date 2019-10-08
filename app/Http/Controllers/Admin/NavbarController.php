@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\CommonController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Model\NavbarModel;
-class NavbarController extends Controller
+class NavbarController extends CommonController
 {
     //导航栏添加静态添加页面
     public function navbar()

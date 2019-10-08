@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\CommonController;
 use App\Http\Middleware\RequestMiddleware;
 use App\Model\LecturerModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class LecturerController extends Controller
+class LecturerController extends CommonController
 {
     //讲师添加页面
     public function lecturer()

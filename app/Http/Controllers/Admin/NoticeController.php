@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\CommonController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Course;
 use App\Model\Notice;
-class NoticeController extends Controller
+class NoticeController extends CommonController
 {
     //公告的添加静态页面
     public function notice()

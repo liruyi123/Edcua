@@ -43,17 +43,13 @@ Route::get("/admin/forgetpwd","Admin\LoginController@forgetpwd");//忘记密码�
 Route::post("/admin/codes","Admin\LoginController@codes");//获取验证码
 Route::post("/admin/userFindPwd","Admin\LoginController@userFindPwd");//修改密码执行
 Route::get('/admin/index','Admin\IndexController@index');//后台首页
-Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
-Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
-Route::get('/admin/courseCategoryList','Admin\CourseController@courseCategoryList');//课程分类的展示页面
-Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的展示页面
 
-//后台 --- 资讯模块
-Route::get('/admin/infor','Admin\InforController@first');   //展示资讯
-Route::get('/admin/information','Admin\InforController@add');  //添加资讯页面
-Route::post('/admin/information','Admin\InforController@doAdd');    //执行添加资讯
-Route::get('/admin/upinfor/{id}','Admin\InforController@upInfor');   //修改资讯页面
-Route::post('/admin/upinfor','Admin\InforController@inforUp');   //执行修改资讯
+////后台 --- 资讯模块
+//Route::get('/admin/infor','Admin\InforController@first');   //展示资讯
+//Route::get('/admin/information','Admin\InforController@add');  //添加资讯页面
+//Route::post('/admin/information','Admin\InforController@doAdd');    //执行添加资讯
+//Route::get('/admin/upinfor/{id}','Admin\InforController@upInfor');   //修改资讯页面
+//Route::post('/admin/upinfor','Admin\InforController@inforUp');   //执行修改资讯
 
 // 课程的模块
 Route::get('/admin/courseAdd','Admin\CourseController@courseAdd');// 课程添加页面
@@ -62,7 +58,6 @@ Route::post('/admin/courseAdd_do','Admin\CourseController@courseAdd_do');// 课�
 Route::post('/admin/couserDel','Admin\CourseController@couserDel');// 课程删除
 Route::get('/admin/courseUpd','Admin\CourseController@courseUpd');// 课程修改页面
 Route::post('/admin/courseUpd_do','Admin\CourseController@courseUpd_do');// 课程修改执行
-Route::post('/admin/couserUpd_do','Admin\CourseController@couserUpd_do');// 课程修改页面的执行
 Route::post('/admin/uploadinfo','Admin\CourseController@uploadinfo');// 课程封面的文件上传
 
 // 课程分类的模块
@@ -107,7 +102,7 @@ Route::post('/admin/delcata','Admin\CatalogController@catalogDel');   //目录�
 
 Route::get('/admin/navbar','Admin\NavbarController@navbar');//导航栏添加静态页面
 Route::post('/admin/navbardo','Admin\NavbarController@navbardo');//导航栏添加静态页面
-Route::get('/admin/navbarlist','Admin\NavbarController@navlist');//导航栏添加静态页面
+Route::get('/admin/navbarlist','Admin\NavbarController@navlist');//导航栏展示页面
 Route::get('/admin/navdelete/{nav_id}','Admin\NavbarController@navdelete');//导航栏删除执行
 Route::get('/admin/navupdate/{nav_id}','Admin\NavbarController@navupdate');//导航栏修改静态页面
 Route::post('/admin/navupdatedo','Admin\NavbarController@navupdatedo');//导航栏修改执行
@@ -130,5 +125,18 @@ Route::post('/admin/noticedo','Admin\NoticeController@noticedo');//公告添加�
 Route::get('/admin/noticelist','Admin\NoticeController@noticelist');//公告展示列表面
 Route::post('/admin/ndelete','Admin\NoticeController@ndelete');//公告删除执行页面
 Route::get('/admin/nupdate/{not_id}','Admin\NoticeController@nupdate');//公告修改静态页面
-Route::post('/admin/nupdatedo','Admin\NoticeController@nupdatedo');//公告添加执行页面
+Route::post('/admin/nupdatedo','Admin\NoticeController@nupdatedo');//公告修改执行页面
 
+/*======================RBAC(权限管理)=======================*/
+Route::get('/admin/adminadd','Admin\AdminController@adminadd');// 后台管理员的添加
+Route::post('/admin/adminadd_do','Admin\AdminController@adminadd_do');// 后台管理员的添加执行
+Route::get('/admin/adminlist','Admin\AdminController@adminlist');// 后台管理员的添加执行
+
+Route::get('/admin/nodeadd','Admin\NodeController@nodeadd');// 后台节点的添加
+Route::post('/admin/nodeadd_do','Admin\NodeController@nodeadd_do');// 后台节点的添加执行
+Route::get('/admin/nodelist','Admin\NodeController@nodelist');// 后台节点的展示
+Route::post('/admin/NodeDel','Admin\NodeController@NodeDel');// 后台节点的隐藏
+Route::get('/admin/NodeUpd','Admin\NodeController@NodeUpd');// 后台节点的修改页面
+Route::post('/admin/NodeUpd_do','Admin\NodeController@NodeUpd_do');// 后台节点的修改执行
+
+Route::get('/admin/roleadd','Admin\RoleController@roleadd');// 后台角色的添加

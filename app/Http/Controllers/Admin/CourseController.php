@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\CommonController;
 use App\Model\CourseCategoryModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CourseController extends Controller
+
+class CourseController extends CommonController
 {
     //课程分类的添加
     public function courseCategoryAdd(){

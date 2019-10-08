@@ -162,6 +162,52 @@
                 </li>
 
                 <li class="line dk"></li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">管理员列表</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="/admin/adminadd">管理员添加</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="/admin/adminlist">管理员列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">节点管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="/admin/nodeadd">节点添加</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="/admin/nodelist">节点列表</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">角色管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="/admin/roleadd">角色添加</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="/admin/rolelist">节点列表</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="line dk"></li>
 
 

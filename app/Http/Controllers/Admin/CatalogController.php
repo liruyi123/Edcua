@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\CommonController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Catalog;
 use App\Model\Course;
 
-
-class CatalogController extends Controller
+class CatalogController extends CommonController
 {
     //  目录展示页
     public function catalog()

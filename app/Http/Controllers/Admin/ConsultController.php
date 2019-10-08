@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\CommonController;
 use App\Model\Consult;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Navcon;
 
-class ConsultController extends Controller
+class ConsultController extends CommonController
 {
     //  资讯列表页
     public function first()

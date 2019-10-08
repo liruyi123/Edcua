@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\CommonController;
 use App\Model\Catalog;
 use App\Model\QuestionBank;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Question;
 use vendor\project\StatusTest;
 
-class QuestionController extends Controller
+class QuestionController extends CommonController
 {
     //题库添加静态页面
     public function question()
