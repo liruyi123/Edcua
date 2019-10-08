@@ -92,6 +92,8 @@ class CatalogController extends Controller
                 'error' => 10001,
                 'msg'   => '删除成功'
             ];
+
+
         }else{
             $res = [
                 'error' =>  20002,

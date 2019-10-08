@@ -10,6 +10,7 @@
     <div class="nav">
         <span class="navimg"><a href="/"><img border="0" src="/index/images/logo.png"></a></span>
         <ul class="nag">
+
             <li><a href="/index/courselist" class="link1">课程</a></li>
             <li><a href="/index/article" class="link1">资讯</a></li>
             <li><a href="/index/teacherlist" class="link1">讲师</a></li>
