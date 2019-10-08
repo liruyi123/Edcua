@@ -27,6 +27,7 @@ Route::get('/index/article','Index\AdvisoryController@article');
 Route::get('/index/articlelist','Index\AdvisoryController@articlelist');
 Route::get('/index/teacherlist','Index\TeacherController@teacherlist');
 Route::get('/index/teacher','Index\TeacherController@teacher');
+Route::get('/index/question','Index\QuestionController@question');
 
 
 //后台

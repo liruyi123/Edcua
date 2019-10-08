@@ -13,7 +13,7 @@
             <li><a href="/index/courselist" class="link1">课程</a></li>
             <li><a href="/index/article" class="link1">资讯</a></li>
             <li><a href="/index/teacherlist" class="link1">讲师</a></li>
-            <li><a href="" class="link1" target="_blank">题库</a></li>
+            <li><a href="/index/question" class="link1">题库</a></li>
             <li><a href="" class="link1" target="_blank">问答</a></li>
 
         </ul>
