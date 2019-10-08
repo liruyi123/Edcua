@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Index;
 
 use App\Model\Course;
 use App\Model\CourseCategoryModel;
+use App\Model\NavbarModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use Illuminate\Http\Request;
@@ -17,14 +18,16 @@ class CourseController extends Controller
         $data = Course::get();
         $arr = CourseCategoryModel::where(["status"=>1])->get()->toArray();
         $res = $this->getIndexCateInfo($arr,0);
-        return view("index.courselist",compact("data","res"));
+        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        return view("index.courselist",compact("data","res",'ments'));
     }
     //课程详情页面
     public function coursecont(Request $request)
     {
         $id = $request->id;
         $data = Course::where(['cou_id'=>$id])->get()->toArray();
-        return view("index.coursecont",compact("data"));
+        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        return view("index.coursecont",compact("data",'ments'));
     }
     //获取讲师信息
     public function lect(Request $request)
@@ -36,7 +39,8 @@ class CourseController extends Controller
     //加入学习页面
     public function study()
     {
-        return view("index.study");
+        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        return view("index.study",compact('ments'));
     }
     //开始学习
     public function video()

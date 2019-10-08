@@ -21,7 +21,10 @@ class AdvisoryController extends Controller
         $course = Course::get();
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
         return view('index.article',compact('data','arr','hotask','course','ments'));
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     }
     //咨询详情页面
     public function articlelist(Request $request)
