@@ -4,17 +4,22 @@ namespace App\Http\Controllers\Index;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\LecturerModel;
+use App\Model\Course;
 
 class TeacherController extends Controller
 {
     //讲师页面
     public function teacherlist()
     {
-        return view("index.teacherlist");
+        $data = LecturerModel::where(['status'=>1])->get();
+        return view("index.teacherlist",['data'=>$data]);
     }
     //讲师详情页面
-    public function teacher()
+    public function teacher($lect_id)
     {
-        return view("index.teacher");
+        $data = LecturerModel::where(['lect_id'=>$lect_id])->first();
+        $res=Course::where(['c_is_show'=>1,'lect_id'=>$lect_id])->get()->toarray();
+        return view("index.teacher",['data'=>$data,'res'=>$res]);
     }
 }
