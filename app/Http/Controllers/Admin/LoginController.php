@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-//use Illuminate\Support\Facades\Mail;
 use App\Tools\Smtp;
-use Illuminate\Support\Facades\Redis;
 use App\Http\Middleware\Session;
 use App\Model\AdminModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
+
 class LoginController extends Controller
 {
     //登陆页面
@@ -108,6 +109,52 @@ class LoginController extends Controller
     {
         return view("admin.forgetpwd.forgetpwd");
     }
+    //密码修改执行
+    public function userFindPwd(Request $request)
+    {
+        $name = $request->name;
+        $code = $request->code;
+        $email = $request->email;
+        $pwd = $request->pwd;
+        $pwd1 = $request->pwd1;
+        $time = time();
+        $data = AdminModel::where(['admin_name'=>$name])->first();
+        if(!empty($data)){
+            $ema = Cookie::get("email");
+            $codes = Cookie::get("code");
+            if(!empty($ema)){
+                if($email == $ema){
+                    if(!empty($codes)){
+                        if($code == $codes){
+                            $pwd = encrypt($pwd);
+                            $arr = [
+                                "admin_name" => $name,
+                                "admin_pwd"  => $pwd,
+                                "admin_email" => $email,
+                                "utime" => $time,
+                            ];
+                            $res = AdminModel::where(["admin_name"=>$name])->update($arr);
+                            if($res){
+                                $this->code("200","OK");
+                            }else{
+                                $this->code("10101","SUCCESS");
+                            }
+                        }else{
+                            $this->code("10101","验证码错误或已失效，请重新获取！");
+                        }
+                }else{
+                        $this->code("10101","验证码错误或已失效，请重新获取！");
+                    }
+                }else{
+                    $this->code("10101","邮箱有误，和原邮箱不一致!");
+                }
+            }else{
+                $this->code("10101","邮箱有误，请重新输入!");
+            }
+        }else{
+            $this->code("10101","修改失败!");
+        }
+    }
     //获取验证码
     public function codes(Request $request)
     {
@@ -116,11 +163,12 @@ class LoginController extends Controller
         $data = AdminModel::where(["admin_name"=>$name,"admin_email"=>$email])->first();
         if($data){
             $arr = rand(11111,99999);
+            Cookie::queue("code",$arr,1);
+            Cookie::queue("email",$email);
             $this->email($email,$arr);
         }else{
             $this->code("10101","该用户不存在！");
         }
-
     }
     //发送验证码
     public function email($email,$arr)
@@ -139,13 +187,11 @@ class LoginController extends Controller
         $state = $smtp->sendmail($smtpemailto, $smtpusermail, $mailtitle, $mailcontent, $mailtype);
         if($state==""){
             echo "error";
-            echo "<a href='index.html'>点此返回</a>";
+            echo "<a href='/admin/register'>点此返回</a>";
             exit();
         }else{
-            echo "ok";
+            $this->code("200","OK");
         }
-
-
     }
     //状态返回码
     public function code($code="",$msg="",$data=[])

@@ -28,7 +28,7 @@
                     <input type="text" class="form-control" placeholder="请输入邮箱" required="" id="emali">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="请输入验证码" required="" id="code" style="width:70% ;float: left">
+                    <input type="text" class="form-control" placeholder="请输入验证码" required="" id="codes" style="width:70% ;float: left">
                     <button class="layui-btn" style="float: right;width:25%" type="button" id="code">获取</button>
                     {{--<button class="layui-btn" style="width: 30%;height:45px; float:right; background-color:chartreuse;"id="span_email" disabled="true">获取验证码</button>--}}
                 </div>
@@ -59,6 +59,7 @@
     })
     //获取验证码
     $(document).on("click","#code",function () {
+
         var name = $("#name").val();
         var email = $("#emali").val();
         if(name == ""){
@@ -69,6 +70,7 @@
             layer.msg("请输入邮箱!",{icon:2});
             return false;
         }
+        $(this).attr("disabled",true);
         $.ajax({
             url : "/admin/codes",
             type : "POST",
@@ -76,36 +78,62 @@
             dataType : "JSON",
             async : false,
             success : function (res) {
-                console.log(res);
+                if(res.code == 200){
+                    layer.msg("发送成功,验证码60秒内有效!",{icon:1});
+                    $(this).attr("disabled",false);
+                }else{
+                    layer.msg("发送失败!",{icon:2});
+                    $(this).attr("disabled",false);
+                }
             }
         });
     })
-    //登陆
+    //确认
     $(document).on("click","#btn",function () {
-
-
         var name = $("#name").val();
+        var email = $("#emali").val();
+        var code = $("#codes").val();
         var pwd = $("#pwd").val();
+        var pwd1 = $("#pwd1").val();
         if(name ==""){
-            // layer.alert('见到你真的很高兴', {icon: 6});
             layer.msg('用户名不能为空!',{icon:2});
             return false;
-            // alert("用户名不能为空!");
+        }
+        if(email == ""){
+            layer.msg("请输入邮箱！",{icon:2});
+            return false;
+        }
+        if(code == ""){
+            layer.msg("请输入验证码！",{icon:2});
+            return false;
         }
         if(pwd == ""){
             layer.msg("密码不能为空!",{icon:2});
             return false;
         }
+        if(pwd1 == ""){
+            layer.msg("请输入确认密码！",{icon:2});
+            return false;
+        }
         $.ajax({
-            url : "/admin/loginDo",
+            url : "/admin/userFindPwd",
             type : "POST",
-            data : {name:name,pwd:pwd},
+            data : {name:name,code:code,email:email,pwd:pwd,pwd1:pwd1},
             dataType : "JSON",
             success : function (res) {
                 if(res.code == "200"){
-                    layer.msg(res.message,{icon:1,time:3000},function () {
-                        location.href="/admin/index";
-                    });
+                    layer.alert("密码已重置，是否跳转登陆页面", {
+                        skin: 'layui-layer-molv' //样式类名  自定义样式
+                        ,closeBtn: 1    // 是否显示关闭按钮
+                        ,anim: 1 //动画类型
+                        ,btn: ['是','否'] //按钮
+                        ,icon: 6    // icon
+                        ,yes:function(){
+                            location.href="/admin/login";
+                        }
+                        ,btn2:function(){
+                            history.go(0);
+                        }});
                 }else{
                     layer.msg(res.message,{icon:2});
                 }

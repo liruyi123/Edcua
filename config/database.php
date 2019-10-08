@@ -115,10 +115,6 @@ return [
 
         'client' => 'phpredis',
 
-        'options' => [
-            'cluster' => env('REDIS_CLUSTER', 'phpredis'),
-        ],
-
         'default' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),

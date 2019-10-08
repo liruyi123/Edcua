@@ -41,6 +41,7 @@ Route::get("/admin/register","Admin\LoginController@register");//注册页面
 Route::post("/admin/registerDo","Admin\LoginController@registerDo");//注册执行
 Route::get("/admin/forgetpwd","Admin\LoginController@forgetpwd");//忘记密码页面
 Route::post("/admin/codes","Admin\LoginController@codes");//获取验证码
+Route::post("/admin/userFindPwd","Admin\LoginController@userFindPwd");//修改密码执行
 Route::get('/admin/index','Admin\IndexController@index');//后台首页
 Route::get('/admin/courseCategoryAdd','Admin\CourseController@courseCategoryAdd');//课程分类的添加页面
 Route::post('/admin/courseCategoryAdd_do','Admin\CourseController@courseCategoryAdd_do');//课程分类的添加执行
