@@ -12,14 +12,9 @@ class IndexController extends Controller
     //首页操作->课程页面
     public function index()
     {
-<<<<<<< Updated upstream
-        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         return view("index.index",compact('ments','res'));
-=======
-        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view("index.index",compact('ments'));
->>>>>>> Stashed changes
     }
 
 

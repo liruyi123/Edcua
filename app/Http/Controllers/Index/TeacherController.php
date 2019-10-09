@@ -14,27 +14,17 @@ class TeacherController extends Controller
     public function teacherlist()
     {
         $data = LecturerModel::where(['status'=>1])->get();
-<<<<<<< Updated upstream
-        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         return view("index.teacherlist",['data'=>$data,'ments'=>$ments,'res'=>$res]);
-=======
-        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view("index.teacherlist",['data'=>$data,'ments'=>$ments]);
->>>>>>> Stashed changes
     }
     //讲师详情页面
     public function teacher($lect_id)
     {
         $data = LecturerModel::where(['lect_id'=>$lect_id])->first();
         $res=Course::where(['c_is_show'=>1,'lect_id'=>$lect_id])->get()->toarray();
-<<<<<<< Updated upstream
-        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $date=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         return view("index.teacher",['data'=>$data,'res'=>$res,'ments'=>$ments,'date'=>$date]);
-=======
-        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view("index.teacher",['data'=>$data,'res'=>$res,'ments'=>$ments]);
->>>>>>> Stashed changes
     }
 }
