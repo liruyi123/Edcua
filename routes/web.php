@@ -141,3 +141,6 @@ Route::get('/admin/NodeUpd','Admin\NodeController@NodeUpd');// 后台节点的�
 Route::post('/admin/NodeUpd_do','Admin\NodeController@NodeUpd_do');// 后台节点的修改执行
 
 Route::get('/admin/roleadd','Admin\RoleController@roleadd');// 后台角色的添加
+Route::post('/admin/roleadd_do','Admin\RoleController@roleadd_do');// 后台角色添加的执行
+Route::get('/admin/rolelist','Admin\RoleController@rolelist');// 后台角色展示
+Route::post('/admin/RoleDel','Admin\RoleController@RoleDel');// 后台角色删除

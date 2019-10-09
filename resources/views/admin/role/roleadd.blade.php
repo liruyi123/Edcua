@@ -17,25 +17,19 @@
             <h3>选择角色</h3>
             <br>
             @foreach($data as $k=>$v)
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="checkbox i-checks">
-                        <label>
-                            <input type="checkbox" value="" class="fu"> <span style="font-size: 20px;"><i>{{$v['node_name']}}</i></span>
-                        </label>
+                        <input type="checkbox" value="{{$v['node_id']}}" class="fu"> <span style="font-size: 20px;"><i>{{$v['node_name']}}</i></span>
+                        <br>
+                        @foreach($v['son'] as $kk=>$vv)
+                            <input type="checkbox" value="{{$vv['node_id']}}"> {{$vv['node_name']}}
+                            <br>
+                        @endforeach
                     </div>
-                    @foreach($v['son'] as $kk=>$vv)
-                        <div class="checkbox i-checks">
-                            <label>
-                                <input type="checkbox" value=""> {{$vv['node_name']}}
-                            </label>
-                        </div>
-                    @endforeach
                 </div>
             @endforeach
         </div>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
         <div class="form-group">
             <div class="col-sm-5">
@@ -51,24 +45,31 @@
                 var layer = layui.layer;
 
                 $('.fu').click(function () {
+                    if ($(this).prop('checked')==true){
+                        $(this).siblings().prop('checked',true)
+                    } else{
+                        $(this).siblings().prop('checked',false)
+                    }
 
                 });
 
+                var checked = [];
                 $('#btn').click(function () {
                     var a_name = $("#a_name").val();
-                    var a_url = $("#a_url").val();
-                    var pid = $("#node").find("option:selected").val();
-                    var type = $('input:radio:checked').val();
+                    $('input:checkbox:checked').each(function() {
+                        checked.push($(this).val());
+                    });
+
                     $.ajax({
                         type : 'post',
-                        url : 'nodeadd_do',
+                        url : 'roleadd_do',
                         dataType:"json",
-                        data:{a_name:a_name,a_url:a_url,pid:pid,type:type},
+                        data:{a_name:a_name,checked:checked},
                         success : function (msg) {
-                            console.log(msg);
+                            // console.log(msg);
                             if(msg.code == '200'){
                                 layer.msg(msg.message,{icon:6});
-                                window.location.href = "nodeadd";
+                                window.location.href = "roleadd";
                             }else{
                                 layer.msg(msg.message,{icon:2});
                             }

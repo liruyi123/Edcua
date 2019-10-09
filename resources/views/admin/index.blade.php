@@ -43,172 +43,188 @@
                     <div class="logo-element">hAdmin
                     </div>
                 </li>
-                <li>
-                    <a class="J_menuItem" href="/admin/indexV1">
-                        <i class="fa fa-home"></i>
-                        <span class="nav-label">主页</span>
-                    </a>
-                </li>
-                <li class="line dk"></li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">导航栏</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="navbar">导航栏添加</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="navbarlist">导航栏展示</a>
-                        </li>
-                    </ul>
-                </li>
 
+                @foreach($data as $k=>$v)
                 <li>
-                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">课程 </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="courseCategoryAdd">课程分类添加</a>
-                        </li>
-                        <li><a class="J_menuItem" href="courseCategoryList">课程分类展示</a>
-                        </li>
-                        <li><a class="J_menuItem" href="courseAdd">课程添加</a>
-                        </li>
-                        <li><a class="J_menuItem" href="courseList">课程展示</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">讲师</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="lecturer">讲师添加</a>
-                        </li>
-                        <li><a class="J_menuItem" href="lecturerList">讲师列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">友链</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="lecturer">友链添加</a>
-                        </li>
-                        <li><a class="J_menuItem" href="lecturerList">友链列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">资讯</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="/admin/addbar">资讯分类添加</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/admin/navcon">资讯分类列表</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/admin/addcon">资讯添加</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/admin/consult">资讯列表</a>
-                        </li>
-                        <li><a class="J_menuItem" href="">活动添加</a>
-                        </li>
-                        <li><a class="J_menuItem" href="">活动列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i><svg t="1569374065195" class="icon" viewBox="0 0 1133 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2733" width="13" height="13"><path d="M0 77.897143v868.205714A77.897143 77.897143 0 0 0 77.897143 1024h977.92A77.897143 77.897143 0 0 0 1133.714286 946.102857V77.897143A77.897143 77.897143 0 0 0 1055.817143 0H77.897143A77.897143 77.897143 0 0 0 0 77.897143z m1045.942857 846.811428H566.857143V91.428571h479.085714z" fill="#999999" p-id="2734"></path><path d="M637.622857 217.965714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2735"></path><path d="M637.622857 385.645714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2736"></path><path d="M637.622857 553.325714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2737"></path></svg></i>
-                        <span class="nav-label">题库</span>
+                    <a href="{{$v['node_url']}}">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">{{$v['node_name']}}</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
+                        @foreach($v['son'] as $kk=>$vv)
                         <li>
-                            <a class="J_menuItem" href="question">题库添加</a>
+                            <a class="J_menuItem" href="{{$vv['node_url']}}">{{$vv['node_name']}}</a>
                         </li>
-                        <li>
-                            <a class="J_menuItem" href="questionlist">题库展示</a>
-                        </li>
+                        @endforeach
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <i><svg t="1569374065195" class="icon" viewBox="0 0 1133 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2733" width="13" height="13"><path d="M0 77.897143v868.205714A77.897143 77.897143 0 0 0 77.897143 1024h977.92A77.897143 77.897143 0 0 0 1133.714286 946.102857V77.897143A77.897143 77.897143 0 0 0 1055.817143 0H77.897143A77.897143 77.897143 0 0 0 0 77.897143z m1045.942857 846.811428H566.857143V91.428571h479.085714z" fill="#999999" p-id="2734"></path><path d="M637.622857 217.965714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2735"></path><path d="M637.622857 385.645714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2736"></path><path d="M637.622857 553.325714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2737"></path></svg></i>
-                        <span class="nav-label">公告</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="notice">公告添加</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="noticelist">公告展示</a>
-                        </li>
-                    </ul>
-                </li>
+                @endforeach
 
-                <li>
-                    <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">课程目录</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="/admin/catalog">目录展示</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="/admin/addcata">目录添加</a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="line dk"></li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">管理员列表</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="/admin/adminadd">管理员添加</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="/admin/adminlist">管理员列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">节点管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="/admin/nodeadd">节点添加</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="/admin/nodelist">节点列表</a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li>
-                    <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">角色管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="/admin/roleadd">角色添加</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="/admin/rolelist">节点列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="line dk"></li>
+                {{--<li>--}}
+                    {{--<a class="J_menuItem" href="/admin/indexV1">--}}
+                        {{--<i class="fa fa-home"></i>--}}
+                        {{--<span class="nav-label">主页</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="line dk"></li>--}}
+                {{--<li>--}}
+                    {{--<a href="#">--}}
+                        {{--<i class="fa fa fa-bar-chart-o"></i>--}}
+                        {{--<span class="nav-label">导航栏</span>--}}
+                        {{--<span class="fa arrow"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="navbar">导航栏添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="navbarlist">导航栏展示</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">课程 </span><span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li><a class="J_menuItem" href="courseCategoryAdd">课程分类添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="courseCategoryList">课程分类展示</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="courseAdd">课程添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="courseList">课程展示</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#"><i class="fa fa-edit"></i> <span class="nav-label">讲师</span><span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li><a class="J_menuItem" href="lecturer">讲师添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="lecturerList">讲师列表</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#"><i class="fa fa-edit"></i> <span class="nav-label">友链</span><span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li><a class="J_menuItem" href="lecturer">友链添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="lecturerList">友链列表</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">资讯</span><span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li><a class="J_menuItem" href="/admin/addbar">资讯分类添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="/admin/navcon">资讯分类列表</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="/admin/addcon">资讯添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="/admin/consult">资讯列表</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="">活动添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="J_menuItem" href="">活动列表</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#">--}}
+                        {{--<i><svg t="1569374065195" class="icon" viewBox="0 0 1133 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2733" width="13" height="13"><path d="M0 77.897143v868.205714A77.897143 77.897143 0 0 0 77.897143 1024h977.92A77.897143 77.897143 0 0 0 1133.714286 946.102857V77.897143A77.897143 77.897143 0 0 0 1055.817143 0H77.897143A77.897143 77.897143 0 0 0 0 77.897143z m1045.942857 846.811428H566.857143V91.428571h479.085714z" fill="#999999" p-id="2734"></path><path d="M637.622857 217.965714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2735"></path><path d="M637.622857 385.645714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2736"></path><path d="M637.622857 553.325714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2737"></path></svg></i>--}}
+                        {{--<span class="nav-label">题库</span>--}}
+                        {{--<span class="fa arrow"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="question">题库添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="questionlist">题库展示</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#">--}}
+                        {{--<i><svg t="1569374065195" class="icon" viewBox="0 0 1133 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2733" width="13" height="13"><path d="M0 77.897143v868.205714A77.897143 77.897143 0 0 0 77.897143 1024h977.92A77.897143 77.897143 0 0 0 1133.714286 946.102857V77.897143A77.897143 77.897143 0 0 0 1055.817143 0H77.897143A77.897143 77.897143 0 0 0 0 77.897143z m1045.942857 846.811428H566.857143V91.428571h479.085714z" fill="#999999" p-id="2734"></path><path d="M637.622857 217.965714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2735"></path><path d="M637.622857 385.645714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2736"></path><path d="M637.622857 553.325714m42.057143 0l253.257143 0q42.057143 0 42.057143 42.057143l0 0q0 42.057143-42.057143 42.057143l-253.257143 0q-42.057143 0-42.057143-42.057143l0 0q0-42.057143 42.057143-42.057143Z" fill="#999999" p-id="2737"></path></svg></i>--}}
+                        {{--<span class="nav-label">公告</span>--}}
+                        {{--<span class="fa arrow"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="notice">公告添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="noticelist">公告展示</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#">--}}
+                        {{--<i class="fa fa fa-bar-chart-o"></i>--}}
+                        {{--<span class="nav-label">课程目录</span>--}}
+                        {{--<span class="fa arrow"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/catalog">目录展示</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/addcata">目录添加</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li class="line dk"></li>--}}
+                {{--<li>--}}
+                    {{--<a href="#">--}}
+                        {{--<i class="fa fa fa-bar-chart-o"></i>--}}
+                        {{--<span class="nav-label">管理员列表</span>--}}
+                        {{--<span class="fa arrow"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/adminadd">管理员添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/adminlist">管理员列表</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#">--}}
+                        {{--<i class="fa fa fa-bar-chart-o"></i>--}}
+                        {{--<span class="nav-label">节点管理</span>--}}
+                        {{--<span class="fa arrow"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/nodeadd">节点添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/nodelist">节点列表</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="#">--}}
+                        {{--<i class="fa fa fa-bar-chart-o"></i>--}}
+                        {{--<span class="nav-label">角色管理</span>--}}
+                        {{--<span class="fa arrow"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/roleadd">角色添加</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="J_menuItem" href="/admin/rolelist">节点列表</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li class="line dk"></li>--}}
 
 
             </ul>

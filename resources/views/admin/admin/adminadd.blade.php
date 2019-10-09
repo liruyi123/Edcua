@@ -28,13 +28,25 @@
                 <input type="text" id="a_tel" class="form-control" placeholder="Admin Tel">
             </div>
         </div>
-
         <br>
         <br>
         <div class="form-group">
             <h3>管理员邮箱：</h3>
             <div class="col-sm-5">
                 <input type="text" id="a_email" class="form-control" placeholder="Admin Email">
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group">
+            <h3>对应角色：</h3>
+            <div class="col-sm-5">
+                <select class="form-control" name="" id="role">
+                    <option value="0">Role</option>
+                    @foreach($data as $k=>$v)
+                        <option value="{{$v['role_id']}}">{{$v['role_name']}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
 
@@ -59,11 +71,12 @@
                     var a_pwd = $("#a_pwd").val();
                     var a_email = $("#a_email").val();
                     var a_tel = $("#a_tel").val();
+                    var role = $("#role").find("option:selected").val();
                     $.ajax({
                         type : 'post',
                         url : 'adminadd_do',
                         dataType:"json",
-                        data:{a_name:a_name,a_pwd:a_pwd,a_tel:a_tel,a_email:a_email},
+                        data:{a_name:a_name,a_pwd:a_pwd,a_tel:a_tel,a_email:a_email,role:role},
                         success : function (msg) {
                             // console.log(msg);
                             if(msg.code == '200'){

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\CommonController;
 use App\Model\AdminModel;
+use App\Model\AdminRole;
+use App\Model\RoleModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +13,8 @@ class AdminController extends CommonController
 {
     // 管理员添加页面
     public function adminadd(){
-        return view("admin.admin.adminadd");
+        $data = RoleModel::where(['status'=>1])->get()->toArray();
+        return view("admin.admin.adminadd" , ['data'=>$data]);
     }
 
     // 管理员添加执行
@@ -20,6 +23,7 @@ class AdminController extends CommonController
         $email = $request->input("a_email");
         $tel = $request->input("a_tel");
         $pwd = encrypt($request->input("a_pwd"));
+        $role_id = $request->input("role");
         if (empty($name) || empty($email) || empty($tel) || empty($pwd) ){
             return $this->code(201,"请完善信息");
         }
@@ -35,7 +39,10 @@ class AdminController extends CommonController
             "utime" => time(),
             "status" => 1
         ];
-        $res = AdminModel::insert($data);
+        $id = AdminModel::insertGetId($data);
+
+        $res = AdminRole::insert(['role_id'=>$role_id,'admin_id'=>$id]);
+
         if ($res == 1){
             return $this->code(200,"添加成功，正在为您跳转到展示页面");
         }else{
