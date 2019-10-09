@@ -104,3 +104,6 @@
 </div>
 </body>
     @endsection
+@section("js")
+
+    @endsection
