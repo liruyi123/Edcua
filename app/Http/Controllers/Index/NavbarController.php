@@ -12,6 +12,7 @@ class NavbarController extends Controller
     public function ments()
     {
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+//        print_r($ments);die;
         return view('index.ments',compact('ments'));
     }
 }
