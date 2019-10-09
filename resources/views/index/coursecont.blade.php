@@ -10,14 +10,13 @@
 <!-- InstanceBeginEditable name="EditRegion1" -->
 <div class="coursecont">
 <div class="coursepic">
-	<div class="course_img"><img src="" width="500" class="img"></div>
+	<div class="course_img"><img src="{{$data['path']}}" width="500" class="img"></div>
     <div class="coursetitle">
    		<a class="state">更新中</a>
-    	<h2 class="courseh2">{{$data[0]['cou_name']}}</h2>
+    	<h2 class="courseh2">{{$data['cou_name']}}</h2>
         <p class="courstime">总课时：<span class="course_tt">30课时</span></p>
-		<p class="courstime">课程时长：<span class="course_tt">3小时20分</span></p>
+		<p class="courstime">课程时长：<span class="course_tt">{{$data['cou_duration']}}分钟</span></p>
         <p class="courstime">学习人数：<span class="course_tt">25987人</span></p>
-		<p class="courstime lect" lect_id="{{$data[0]['lect_id']}}"></p>
 		<p class="courstime">课程评价：<img width="71" height="14" src="images/evaluate5.png">&nbsp;&nbsp;<span class="hidden-sm hidden-xs">5.0分（10人评价）</span></p>
         <!--<p><a class="state end">完结</a></p>-->      
         <span class="coursebtn"><a class="btnlink" href="/index/study">加入学习</a><a class="codol fx" href="javascript:void(0);" onClick="$('#bds').toggle();">分享课程</a><a class="codol sc" href="#">收藏课程</a></span>
@@ -60,8 +59,10 @@
     <h3 class="righttit">授课讲师</h3>
     <div class="teacher">
     <div class="teapic ppi">
-    <a href="teacher.html" target="_blank"><img src="images/teacher.png" width="80" class="teapicy" title="" id="img"></a>
-    <h3 class="tname"><a href="teacher.html" class="peptitle" target="_blank" id="title"></a><p style="font-size:14px;color:#666">会计讲师</p></h3>
+        @foreach($lectsql as $v)
+    <a href="/index/teacher/{{$v['lect_id']}}"><img src="{{$v['lect_img']}}" width="80" class="teapicy" title="" id="img"></a>
+    <h3 class="tname"><a href="/index/teacher/{{$v['lect_id']}}" class="peptitle" id="title"></a><p style="font-size:14px;color:#666">{{$v['lect_name']}}</p></h3>
+    @endforeach
     </div>
     <div class="clearh"></div>
     <p id="text"></p>
@@ -73,14 +74,12 @@
     <div class="cr1">
     <h3 class="righttit">课程公告</h3>
     <div class="gonggao">
+@foreach($coursesql as $v)
 	<div class="clearh"></div>
-    <p>人所缺乏的不是才干而是志向，不是成功的能力而是勤劳的意志。<br/>
-	<span class="gonggao_time">2014-12-12 15:01</span>
+    <p>{{$v['notice_text']}}<br/>
+	<span class="notice_text">{{date('Y-m-d H:i:s',$v['ctime'])}}</span>
 	</p>
-	<div class="clearh"></div>
-	<p>请学习的同学在每节课学习后务必做完当节课的测试！<br/>
-	<span class="gonggao_time">2014-12-12 15:01</span>
-	</p>
+	@endforeach
 	<div class="clearh"></div>
     </div>
     </div>
@@ -90,20 +89,13 @@
     <div class="cr1">
     <h3 class="righttit">相关课程</h3>
     <div class="teacher">
-    <div class="teapic">
-        <a href="#"  target="_blank"><img src="images/c1.jpg" height="60" title="财经法规与财经职业道德"></a>
-        <h3 class="courh3"><a href="#" class="peptitle" target="_blank">财经法规与财经职业道德</a></h3>
-    </div>
+    @foreach($countsql as $k=>$v)
     <div class="clearh"></div>
     <div class="teapic">
-        <a href="#"  target="_blank"><img src="images/c2.jpg" height="60" title="财经法规与财经职业道德"></a>
-        <h3 class="courh3"><a href="#" class="peptitle" target="_blank">财经法规与财经职业道德</a></h3>
+        <a href="#"><img src="{{$v['path']}}" height="60"></a>
+        <h3 class="courh3"><a href="/index/coursecont/{{$v['cou_id']}}" class="peptitle">{{$v['cou_name']}}</a></h3>
     </div>
-    <div class="clearh"></div>
-    <div class="teapic">
-        <a href="#"  target="_blank"><img src="images/c3.jpg" height="60" title="财经法规与财经职业道德"></a>
-        <h3 class="courh3"><a href="#" class="peptitle" target="_blank">财经法规与财经职业道德</a></h3>
-    </div>
+    @endforeach
     <div class="clearh"></div>
     </div>
     </div>
@@ -123,14 +115,19 @@
 <div class="fcontainer">
       <div class="fwxwb"> 
 	       <div class="fwxwb_1">
-		       <span>关注微信</span><img width="95" alt="" src="images/num.png">
+		       <span>关注微信</span><img width="95" alt="" src="/index/images/num.png">
 		   </div>
            <div>
-               <span>关注微博</span><img width="95" alt="" src="images/wb.png">
+               <span>关注微博</span><img width="95" alt="" src="/index/images/wb.png">
 		   </div>	              
       </div>
       <div class="fmenu">
-	     <p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">优秀讲师</a> | <a href="#">帮助中心</a> | <a href="#">意见反馈</a> | <a href="#">加入我们</a></p>
+    <p>
+        @foreach($res as $k=>$v)
+            <a href="{{$v['nav_url']}}">{{$v['nav_name']}}</a> | 
+        @endforeach
+            <a href="https://www.mobantu.com/advertisement">广告合作</a> 
+    </p>
       </div>
       <div class="copyright">      
         <div><a href="/">谋刻网</a>所有&nbsp;晋ICP备12006957号-9</div>

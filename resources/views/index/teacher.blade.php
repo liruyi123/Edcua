@@ -35,7 +35,7 @@
 	<li>
 	    <span class="courseimg tcourseimg"><a href="/index/coursecont"><img width="230" src="{{$v['path']}}"></a></span>
 	    <span class="tcoursetext">
-	       <h4><a href="/index/coursecont">{{$v['cou_name']}}</a><a class="state">
+	       <h4><a href="/index/coursecont/{{$v['cou_id']}}">{{$v['cou_name']}}</a><a class="state">
 					@if($v['status']==1)
 						已完成
 					@else
@@ -68,7 +68,12 @@
 		   </div>	              
       </div>
       <div class="fmenu">
-	     <p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">优秀讲师</a> | <a href="#">帮助中心</a> | <a href="#">意见反馈</a> | <a href="#">加入我们</a></p>
+			<p>
+				@foreach($date as $k=>$v)
+					<a href="{{$v['nav_url']}}">{{$v['nav_name']}}</a> | 
+				@endforeach
+					<a href="https://www.mobantu.com/advertisement">广告合作</a> 
+		</p>
       </div>
       <div class="copyright">      
         <div><a href="/">谋刻网</a>所有&nbsp;晋ICP备12006957号-9</div>

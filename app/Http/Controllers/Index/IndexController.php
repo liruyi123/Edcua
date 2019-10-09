@@ -13,7 +13,8 @@ class IndexController extends Controller
     public function index()
     {
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
-        return view("index.index",compact('ments'));
+        $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
+        return view("index.index",compact('ments','res'));
     }
 
 

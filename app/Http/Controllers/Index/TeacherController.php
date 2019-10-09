@@ -15,7 +15,8 @@ class TeacherController extends Controller
     {
         $data = LecturerModel::where(['status'=>1])->get();
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
-        return view("index.teacherlist",['data'=>$data,'ments'=>$ments]);
+        $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
+        return view("index.teacherlist",['data'=>$data,'ments'=>$ments,'res'=>$res]);
     }
     //讲师详情页面
     public function teacher($lect_id)
@@ -23,6 +24,7 @@ class TeacherController extends Controller
         $data = LecturerModel::where(['lect_id'=>$lect_id])->first();
         $res=Course::where(['c_is_show'=>1,'lect_id'=>$lect_id])->get()->toarray();
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
-        return view("index.teacher",['data'=>$data,'res'=>$res,'ments'=>$ments]);
+        $date=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
+        return view("index.teacher",['data'=>$data,'res'=>$res,'ments'=>$ments,'date'=>$date]);
     }
 }

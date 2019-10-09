@@ -192,10 +192,10 @@
                 <h3 class="righttit" onclick="reglog_open();">最新学员</h3>
                 <div class="teacher zxxy">
                     <ul class="stuul">
-                        <li><img src="images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-                        <li><img src="images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-                        <li><img src="images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-                        <li><img src="images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
+                        <li><img src="/index/images/0-0.JPG" width="60"><p class="stuname">张三李四</p></li>
+                        <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
+                        <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
+                        <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
                     </ul>
                     <div class="clearh"></div>
                 </div>
@@ -206,20 +206,13 @@
             <div class="cr1">
                 <h3 class="righttit">相关课程</h3>
                 <div class="teacher">
-                    <div class="teapic">
-                        <a href="#"  target="_blank"><img src="images/c1.jpg" height="60" title="财经法规与财经职业道德"></a>
-                        <h3 class="courh3"><a href="#" class="peptitle" target="_blank">财经法规与财经职业道德</a></h3>
-                    </div>
-                    <div class="clearh"></div>
-                    <div class="teapic">
-                        <a href="#"  target="_blank"><img src="images/c2.jpg" height="60" title="财经法规与财经职业道德"></a>
-                        <h3 class="courh3"><a href="#" class="peptitle" target="_blank">财经法规与财经职业道德</a></h3>
-                    </div>
-                    <div class="clearh"></div>
-                    <div class="teapic">
-                        <a href="#"  target="_blank"><img src="images/c3.jpg" height="60" title="财经法规与财经职业道德"></a>
-                        <h3 class="courh3"><a href="#" class="peptitle" target="_blank">财经法规与财经职业道德</a></h3>
-                    </div>
+                @foreach($countsql as $k=>$v)
+                <div class="clearh"></div>
+                <div class="teapic">
+                    <a href="#"><img src="{{$v['path']}}" height="60"></a>
+                    <h3 class="courh3"><a href="/index/coursecont/{{$v['cou_id']}}" class="peptitle">{{$v['cou_name']}}</a></h3>
+                </div>
+                @endforeach
                     <div class="clearh"></div>
                 </div>
             </div>
@@ -334,14 +327,19 @@
     <div class="fcontainer">
         <div class="fwxwb">
             <div class="fwxwb_1">
-                <span>关注微信</span><img width="95" alt="" src="images/num.png">
+                <span>关注微信</span><img width="95" alt="" src="/index/images/num.png">
             </div>
             <div>
-                <span>关注微博</span><img width="95" alt="" src="images/wb.png">
+                <span>关注微博</span><img width="95" alt="" src="/index/images/wb.png">
             </div>
         </div>
         <div class="fmenu">
-            <p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">优秀讲师</a> | <a href="#">帮助中心</a> | <a href="#">意见反馈</a> | <a href="#">加入我们</a></p>
+        <p>
+            @foreach($res as $k=>$v)
+                <a href="{{$v['nav_url']}}">{{$v['nav_name']}}</a> | 
+            @endforeach
+                <a href="https://www.mobantu.com/advertisement">广告合作</a> 
+        </p>
         </div>
         <div class="copyright">
             <div><a href="/">谋刻网</a>所有&nbsp;晋ICP备12006957号-9</div>
