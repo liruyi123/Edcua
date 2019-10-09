@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'Rediss'),
+    'default' => env('CACHE_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -71,8 +71,8 @@ return [
             ],
         ],
 
-        'Rediss' => [
-            'driver' => 'Rediss',
+        'Redis' => [
+            'driver' => 'Redis',
             'connection' => 'cache',
         ],
 

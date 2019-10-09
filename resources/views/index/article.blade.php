@@ -10,17 +10,29 @@
 	<h3 class="righttit">全部资讯</h3>
     <div class="clearh"></div>
     <span class="bread nob">
+<<<<<<< Updated upstream
         @foreach($data as $k=>$v)
-        <a class="fombtn cur" href="/article">{{$v->ntitle}}</a>
+        <a class="fombtn cur" href="{{$v->url}}">{{$v->ntitle}}</a>
         @endforeach
+=======
+
+        @foreach($data as $k=>$v)
+        <a class="fombtn cur" href="{{$v->url}}">{{$v->ntitle}}</a>
+        @endforeach
+
+>>>>>>> Stashed changes
     </span>
     
 </div>
 <div class="clearh"></div>
 <div class="coursetext">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     @foreach($arr as $k=>$v)
 	<div class="articlelist">
-    	<h3><a class="artlink" href="/articlelist">{{$v->title}}</a></h3>
+    	<h3><a class="artlink" href="{{$v->url}}/{{$v->consult_id}}">{{$v->title}}</a></h3>
         <p>{{$v->count}}</p>
         <p class="artilabel">
             @if($v->navbar == 1)
@@ -48,6 +60,10 @@
         </p>
     </span>
     <div class="clearh" style="height:10px;"></div>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 </div>
 
 <div class="courightext">
@@ -56,9 +72,17 @@
     <h3 class="righttit">热门资讯</h3>
     <div class="gonggao">
 	<ul class="hotask">
+<<<<<<< Updated upstream
         @foreach($hotask as $key=>$val)
-        	<li><a class="ask_link" href="#"><strong>●</strong>{{$val->title}}?</a></li>
+        	<li><a class="ask_link" href="{{$val->url}}/{{$val->consult_id}}"><strong>●</strong>{{$val->title}}?</a></li>
             @endforeach
+=======
+
+        @foreach($hotask as $key=>$val)
+        	<li><a class="ask_link" href="{{$val->url}}/{{$val->consult_id}}"><strong>●</strong>{{$val->title}}?</a></li>
+            @endforeach
+
+>>>>>>> Stashed changes
         </ul>
     </div>
     </div>
@@ -68,6 +92,10 @@
     <div class="cr1">
     <h3 class="righttit">推荐课程</h3>
     <div class="teacher">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         @foreach($course as $ka => $va)
     <div class="teapic">
         <a href="#"  target="_blank"><img src="{{$va->path}}" height="60" title="{{$va->cou_name}}"></a>
@@ -75,6 +103,7 @@
     </div>
     <div class="clearh"></div>
             @endforeach
+
     </div>
     </div>
 </div>

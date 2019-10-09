@@ -10,13 +10,10 @@
     <div class="nav">
         <span class="navimg"><a href="/"><img border="0" src="/index/images/logo.png"></a></span>
         <ul class="nag">
+        @foreach($ments as $k => $v)
+            <li><a href="{{$v->nav_url}}" class="link1">{{$v->nav_name}}</a></li>
 
-            <li><a href="/index/courselist" class="link1">课程</a></li>
-            <li><a href="/index/article" class="link1">资讯</a></li>
-            <li><a href="/index/teacherlist" class="link1">讲师</a></li>
-            <li><a href="/index/question" class="link1">题库</a></li>
-            <li><a href="" class="link1" target="_blank">问答</a></li>
-
+        @endforeach
         </ul>
         <span class="massage">
             <!--<span class="select">
