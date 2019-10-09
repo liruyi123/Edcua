@@ -19,9 +19,9 @@ class QuestionController extends Controller
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         if ($id != ""){
             if ($keywords != ""){
-                $data = QuestionBank::where(['status'=>1,'q_id'=>$id])->orderBy('ctime','desc')->get()->toArray();
+                $data = QuestionBank::where(['status'=>1,'cate_id'=>$id])->orderBy('ctime','desc')->get()->toArray();
             }else{
-                $data = QuestionBank::where('b_name','like',"%$keywords%")->where(['q_id'=>$id])->orderBy('ctime','desc')->get()->toArray();
+                $data = QuestionBank::where('b_name','like',"%$keywords%")->where(['cate_id'=>$id])->orderBy('ctime','desc')->get()->toArray();
             }
         }else{
             if ($keywords != ""){
