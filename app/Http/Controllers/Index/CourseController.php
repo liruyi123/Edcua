@@ -27,12 +27,9 @@ class CourseController extends Controller
     {
         $id = $request->id;
         $data = Course::where(['cou_id'=>$id])->get()->toArray();
-<<<<<<< Updated upstream
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
-        return view("index.coursecont",compact("data",'ments'));
-=======
         $couData = Catalog::where(["cou_id"=>$id])->get()->toArray();
-        return view("index.coursecont",compact("data","couData"));
+        return view("index.coursecont",compact("data","couData","ments"));
     }
     //课程详情页面
     public function coursecont1(Request $request)
@@ -40,7 +37,6 @@ class CourseController extends Controller
         $id = $request->id;
         $data = Course::join("lecturer",['course.lect_id'=>'lecturer.lect_id'])->where(['cou_id'=>$id])->first()->toArray();
         return view("index.coursecont1",compact('data'));
->>>>>>> Stashed changes
     }
     //获取讲师信息
     public function lect(Request $request)
