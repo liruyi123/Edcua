@@ -19,16 +19,26 @@ class CourseController extends Controller
         $data = Course::get();
         $arr = CourseCategoryModel::where(["status"=>1])->get()->toArray();
         $res = $this->getIndexCateInfo($arr,0);
+<<<<<<< Updated upstream
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
         $date=NavbarModel::where(['status'=>1,'nav_type'=>2]) ->orderBy('nav_weight','desc')->get();
         return view("index.courselist",compact("data","res",'ments','date'));
+=======
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
+        return view("index.courselist",compact("data","res",'ments'));
+>>>>>>> Stashed changes
     }
     //课程介绍，目录页面
     public function coursecont(Request $request)
     {
         $id = $request->id;
+<<<<<<< Updated upstream
         $data = Course::where(['course.cou_id'=>$id])->first();
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+=======
+        $data = Course::where(['cou_id'=>$id])->get()->toArray();
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
+>>>>>>> Stashed changes
         $couData = Catalog::where(["cou_id"=>$id])->get()->toArray();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
@@ -41,10 +51,15 @@ class CourseController extends Controller
     {
         $id = $request->id;
         $data = Course::join("lecturer",['course.lect_id'=>'lecturer.lect_id'])->where(['cou_id'=>$id])->first()->toArray();
+<<<<<<< Updated upstream
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
         return view("index.coursecont1",compact('data',"ments","res","countsql"));
+=======
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
+        return view("index.coursecont1",compact('data',"ments"));
+>>>>>>> Stashed changes
     }
     //获取讲师信息
     public function lect(Request $request)
@@ -56,9 +71,14 @@ class CourseController extends Controller
     //加入学习页面
     public function study()
     {
+<<<<<<< Updated upstream
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         return view("index.study",compact('ments','res'));
+=======
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
+        return view("index.study",compact('ments'));
+>>>>>>> Stashed changes
     }
     //开始学习
     public function video()

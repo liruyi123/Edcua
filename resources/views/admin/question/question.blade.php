@@ -12,17 +12,15 @@
         </div>
         <br>
         <br>
-        <h3>所属课程目录：</h3>
+        <h3>所属课程：</h3>
         <div class="col-sm-5">
             <select class="form-control" name="" id="catalog">
                 <option value="0">The course directory to which it belongs</option>
                 @foreach($data as $k => $v)
-                    <option value="{{$v['cata_id']}}">{{$v['cata_name']}}</option>
+                    <option value="{{$v['cate_id']}}">{{$v['cate_name']}}</option>
                     @foreach($v['son'] as $key => $val)
-                        <option value="{{$val['cata_id']}}">|——{{$val['cata_name']}}</option>
-                        @foreach($val['son'] as $kk => $vv)
-                            <option value="{{$vv['cata_id']}}">|——|——{{$vv['cata_name']}}</option>
-                        @endforeach
+                        <option value="{{$val['cate_id']}}">|——{{$val['cate_name']}}</option>
+
                     @endforeach
                 @endforeach
             </select>

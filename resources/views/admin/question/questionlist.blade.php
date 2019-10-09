@@ -30,7 +30,7 @@
                                     <th>ID</th>
                                     <th>题目</th>
                                     <th>题目类型</th>
-                                    <th>所属目录</th>
+                                    <th>所属课程</th>
                                     <th>分数</th>
                                     <th>添加时间</th>
                                     <th>修改时间</th>
@@ -52,7 +52,7 @@
                                                 回答题
                                             @endif
                                         </td>
-                                        <td>{{$v['cata_name']}}</td>
+                                        <td>{{$v['cate_name']}}</td>
                                         <td>{{$v['b_score']}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['ctime'])}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['utime'])}}</td>
@@ -74,7 +74,7 @@
                                     <th>ID</th>
                                     <th>题目</th>
                                     <th>题目类型</th>
-                                    <th>所属目录</th>
+                                    <th>所属课程</th>
                                     <th>分数</th>
                                     <th>添加时间</th>
                                     <th>修改时间</th>
@@ -96,7 +96,7 @@
                                                 回答题
                                             @endif
                                         </td>
-                                        <td>{{$v['cata_name']}}</td>
+                                        <td>{{$v['cate_name']}}</td>
                                         <td>{{$v['b_score']}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['ctime'])}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['utime'])}}</td>
@@ -118,7 +118,7 @@
                                     <th>ID</th>
                                     <th>题目</th>
                                     <th>题目类型</th>
-                                    <th>所属目录</th>
+                                    <th>所属课程</th>
                                     <th>分数</th>
                                     <th>添加时间</th>
                                     <th>修改时间</th>
@@ -140,7 +140,7 @@
                                                 回答题
                                             @endif
                                         </td>
-                                        <td>{{$v['cata_name']}}</td>
+                                        <td>{{$v['cate_name']}}</td>
                                         <td>{{$v['b_score']}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['ctime'])}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['utime'])}}</td>
@@ -162,7 +162,7 @@
                                     <th>ID</th>
                                     <th>题目</th>
                                     <th>题目类型</th>
-                                    <th>所属目录</th>
+                                    <th>所属课程</th>
                                     <th>分数</th>
                                     <th>添加时间</th>
                                     <th>修改时间</th>
@@ -184,7 +184,7 @@
                                                 回答题
                                             @endif
                                         </td>
-                                        <td>{{$v['cata_name']}}</td>
+                                        <td>{{$v['cate_name']}}</td>
                                         <td>{{$v['b_score']}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['ctime'])}}</td>
                                         <td>{{date('Y-m-d H:i:s',$v['utime'])}}</td>

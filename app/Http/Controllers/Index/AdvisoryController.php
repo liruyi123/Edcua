@@ -19,9 +19,14 @@ class AdvisoryController extends Controller
         $arr = Consult::get();
         $hotask = Consult::where(['navbar_id'=>2])->get();
         $course = Course::get();
+<<<<<<< Updated upstream
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         return view('index.article',compact('data','arr','hotask','course','ments','res'));
+=======
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
+        return view('index.article',compact('data','arr','hotask','course','ments'));
+>>>>>>> Stashed changes
     }
     //咨询详情页面
     public function articlelist(Request $request)
@@ -30,7 +35,7 @@ class AdvisoryController extends Controller
         $data = Consult::where(['consult_id'=>$id])->first();
         $hotask = Consult::where(['navbar_id'=>2])->get();
         $course = Course::get();
-        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         return view("index.articlelist",compact('data','hotask','course','ments'));
     }
 }

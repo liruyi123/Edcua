@@ -18,24 +18,17 @@
             <select class="form-control" name="" id="catalog">
                 <option value="0">The course directory to which it belongs</option>
                 @foreach($catalogdata as $k => $v)
-                    @if($data['cata_id'] == $v['cata_id'])
-                        <option value="{{$v['cata_id']}}" selected>|——|——{{$v['cata_name']}}</option>
+                    @if($data['cate_id'] == $v['cate_id'])
+                        <option value="{{$v['cate_id']}}" selected>|——{{$v['cate_name']}}</option>
                     @else
-                        <option value="{{$v['cata_id']}}">|——|——{{$v['cata_name']}}</option>
+                        <option value="{{$v['cate_id']}}">|——{{$v['cate_name']}}</option>
                     @endif
                     @foreach($v['son'] as $key => $val)
-                        @if($data['cata_id'] == $val['cata_id'])
-                            <option value="{{$val['cata_id']}}" selected>|——|——{{$val['cata_name']}}</option>
+                        @if($data['cate_id'] == $val['cate_id'])
+                            <option value="{{$val['cate_id']}}" selected>|——|——{{$val['cate_name']}}</option>
                         @else
-                            <option value="{{$val['cata_id']}}">|——|——{{$val['cata_name']}}</option>
+                            <option value="{{$val['cate_id']}}">|——|——{{$val['cate_name']}}</option>
                         @endif
-                        @foreach($val['son'] as $kk => $vv)
-                            @if($data['cata_id'] == $vv['cata_id'])
-                            <option value="{{$vv['cata_id']}}" selected>|——|——{{$vv['cata_name']}}</option>
-                            @else
-                                <option value="{{$vv['cata_id']}}">|——|——{{$vv['cata_name']}}</option>
-                            @endif
-                        @endforeach
                     @endforeach
                 @endforeach
             </select>

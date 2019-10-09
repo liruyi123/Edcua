@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\CommonController;
 use App\Model\Catalog;
+use App\Model\CourseCategoryModel;
 use App\Model\QuestionBank;
+use App\Model\QuestionType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Question;
@@ -15,7 +17,7 @@ class QuestionController extends CommonController
     //题库添加静态页面
     public function question()
     {
-        $info = Catalog::where(['show'=>1])->get()->toArray();
+        $info = CourseCategoryModel::where(['status'=>1])->get()->toArray();
         $data = $this->getIndexCateInfo($info,0,0);
         return view('admin.question.question',['data'=>$data]);
     }
@@ -99,13 +101,13 @@ class QuestionController extends CommonController
     //题库列表展示页面
     public function questionlist(Request $request)
     {
-        $TFdata = QuestionBank::leftjoin('catalog','question_bank.cata_id','=','catalog.cata_id')->where(['question_bank.status'=>1,'b_type'=>1])->paginate(3);
+        $TFdata = QuestionBank::leftjoin('course_category','question_bank.cate_id','=','course_category.cate_id')->where(['question_bank.status'=>1,'b_type'=>1])->paginate(3);
 
-        $choicedata = QuestionBank::leftjoin('catalog','question_bank.cata_id','=','catalog.cata_id')->where(['question_bank.status'=>1,'b_type'=>2])->paginate(3);
+        $choicedata = QuestionBank::leftjoin('course_category','question_bank.cate_id','=','course_category.cate_id')->where(['question_bank.status'=>1,'b_type'=>2])->paginate(3);
 
-        $clozedata = QuestionBank::leftjoin('catalog','question_bank.cata_id','=','catalog.cata_id')->where(['question_bank.status'=>1,'b_type'=>3])->paginate(3);
+        $clozedata = QuestionBank::leftjoin('course_category','question_bank.cate_id','=','course_category.cate_id')->where(['question_bank.status'=>1,'b_type'=>3])->paginate(3);
 
-        $data = QuestionBank::leftjoin('catalog','question_bank.cata_id','=','catalog.cata_id')->where(['question_bank.status'=>1])->paginate(3);
+        $data = QuestionBank::leftjoin('course_category','question_bank.cate_id','=','course_category.cate_id')->where(['question_bank.status'=>1])->paginate(3);
 
 //        print_r($data);die;
         return view('admin.question.questionlist',['TFdata'=>$TFdata,'choicedata'=>$choicedata,'clozedata'=>$clozedata,'data'=>$data]);
@@ -135,7 +137,7 @@ class QuestionController extends CommonController
         ];
         $data=QuestionBank::where($where)->first();
 
-        $info = Catalog::where(['show'=>1])->get()->toArray();
+        $info = CourseCategoryModel::where(['status'=>1])->get()->toArray();
         $catalogdata = $this->getIndexCateInfo($info,0,0);
 
         return view('admin.question.qupdate',['data'=>$data,'catalogdata'=>$catalogdata]);
@@ -234,7 +236,7 @@ class QuestionController extends CommonController
         foreach($data as $k=>$v){
             // print_r($v);
             if($v['pid']==$pid){
-                $son=$this->getIndexCateInfo($data,$v['cata_id']);
+                $son=$this->getIndexCateInfo($data,$v['cate_id']);
                 $v['son']=$son;
                 $cateInfo[]=$v;
             }

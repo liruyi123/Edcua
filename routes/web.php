@@ -27,7 +27,8 @@ Route::get('/index/article','Index\AdvisoryController@article');
 Route::get('/index/articlelist/{id}','Index\AdvisoryController@articlelist');
 Route::get('/index/teacherlist','Index\TeacherController@teacherlist');
 Route::get('/index/teacher/{id}','Index\TeacherController@teacher');
-Route::get('/index/question','Index\QuestionController@question');
+Route::get('/index/question','Index\QuestionController@question'); // 题库页面
+Route::post('/index/review','Index\QuestionController@review');
 Route::get('/index/ments','Index\NavbarController@ments');
 Route::get('/index/catenews','Index\CourseController@news');
 
