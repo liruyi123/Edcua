@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-//    return view('welcome');
-    return view('index.index');
-});
+
+Route::get('/','Index\IndexController@index');
 
 //前台
 Route::get('/index/courselist','Index\CourseController@course');
