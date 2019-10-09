@@ -10,21 +10,12 @@
 	<h3 class="righttit">全部资讯</h3>
     <div class="clearh"></div>
     <span class="bread nob">
-<<<<<<< Updated upstream
-=======
-        @foreach($data as $k=>$v)
-        <a class="fombtn cur" href="{{$v->url}}">{{$v->ntitle}}</a>
-        @endforeach
 
->>>>>>> Stashed changes
 
         @foreach($data as $k=>$v)
         <a class="fombtn cur" href="{{$v->url}}">{{$v->ntitle}}</a>
         @endforeach
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
     </span>
     
 </div>

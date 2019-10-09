@@ -29,6 +29,7 @@ Route::get('/index/teacherlist','Index\TeacherController@teacherlist');
 Route::get('/index/teacher/{id}','Index\TeacherController@teacher');
 Route::get('/index/question','Index\QuestionController@question');
 Route::get('/index/ments','Index\NavbarController@ments');
+Route::get('/index/catenews','Index\CourseController@news');
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');

@@ -21,7 +21,7 @@
                 <ul class="sortul">
                     @foreach($val['son'] as $k => $v)
                         {{--class="course_curr"--}}
-                    <li ><a href="#">{{$v['cate_name']}}</a></li>
+                    <li><a href="/index/catenews?id={{$v['cate_id']}}">{{$v['cate_name']}}</a></li>
                         @endforeach
                 </ul>
                 <div class="clearh"></div>
@@ -90,4 +90,4 @@
 </div>
 </body>
 @endsection
-<!-- InstanceEnd --></html>
+

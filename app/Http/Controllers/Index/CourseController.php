@@ -80,4 +80,23 @@ class CourseController extends Controller
         ];
         echo  json_encode($data,JSON_UNESCAPED_UNICODE);die;
     }
+
+    public function news(Request $request)
+    {
+        $id = $request->input('id');
+        if($id == ''){
+            $data = Course::where(['c_is_show'=>1])->get()->toArray();
+        }else{
+            $where=[
+                'cate_id' => $id,
+                'c_is_show' => 1
+            ];
+            $data = Course::where($where)->get()->toArray();
+        }
+
+        $arr = CourseCategoryModel::where(["status"=>1])->get()->toArray();
+        $res = $this->getIndexCateInfo($arr,0);
+        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        return view('index.catanews',compact("data","res",'ments'));
+    }
 }
