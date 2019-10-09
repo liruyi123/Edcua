@@ -10,7 +10,6 @@ use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 class CourseController extends Controller
 {
     //课程首页
@@ -36,7 +35,8 @@ class CourseController extends Controller
     {
         $id = $request->id;
         $data = Course::join("lecturer",['course.lect_id'=>'lecturer.lect_id'])->where(['cou_id'=>$id])->first()->toArray();
-        return view("index.coursecont1",compact('data'));
+        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        return view("index.coursecont1",compact('data',"ments"));
     }
     //获取讲师信息
     public function lect(Request $request)
