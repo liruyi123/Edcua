@@ -10,10 +10,21 @@
 	<h3 class="righttit">全部资讯</h3>
     <div class="clearh"></div>
     <span class="bread nob">
+<<<<<<< Updated upstream
+=======
+        @foreach($data as $k=>$v)
+        <a class="fombtn cur" href="{{$v->url}}">{{$v->ntitle}}</a>
+        @endforeach
+
+>>>>>>> Stashed changes
 
         @foreach($data as $k=>$v)
         <a class="fombtn cur" href="{{$v->url}}">{{$v->ntitle}}</a>
         @endforeach
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     </span>
     
 </div>
@@ -61,6 +72,7 @@
         @foreach($hotask as $key=>$val)
         	<li><a class="ask_link" href="{{$val->url}}/{{$val->consult_id}}"><strong>●</strong>{{$val->title}}?</a></li>
             @endforeach
+
         </ul>
     </div>
     </div>
@@ -70,6 +82,7 @@
     <div class="cr1">
     <h3 class="righttit">推荐课程</h3>
     <div class="teacher">
+
         @foreach($course as $ka => $va)
     <div class="teapic">
         <a href="#"  target="_blank"><img src="{{$va->path}}" height="60" title="{{$va->cou_name}}"></a>
