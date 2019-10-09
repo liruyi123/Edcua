@@ -21,6 +21,7 @@ Route::get('/index/courselist','Index\CourseController@course');
 Route::get('/index/login','Index\LoginController@login');
 Route::get('/index/register','Index\LoginController@register');
 Route::get('/index/coursecont/{id}','Index\CourseController@coursecont');
+Route::get("/index/coursecont1/{id}","Index\CourseController@coursecont1");
 Route::post("/index/lect","Index\CourseController@lect");
 Route::get('/index/study','Index\CourseController@study');
 Route::get('/index/video','Index\CourseController@video');

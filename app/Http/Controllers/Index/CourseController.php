@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Model\Catalog;
 use App\Model\Course;
 use App\Model\CourseCategoryModel;
 use App\Model\NavbarModel;
@@ -21,13 +22,25 @@ class CourseController extends Controller
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
         return view("index.courselist",compact("data","res",'ments'));
     }
-    //课程详情页面
+    //课程介绍，目录页面
     public function coursecont(Request $request)
     {
         $id = $request->id;
         $data = Course::where(['cou_id'=>$id])->get()->toArray();
+<<<<<<< Updated upstream
         $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
         return view("index.coursecont",compact("data",'ments'));
+=======
+        $couData = Catalog::where(["cou_id"=>$id])->get()->toArray();
+        return view("index.coursecont",compact("data","couData"));
+    }
+    //课程详情页面
+    public function coursecont1(Request $request)
+    {
+        $id = $request->id;
+        $data = Course::join("lecturer",['course.lect_id'=>'lecturer.lect_id'])->where(['cou_id'=>$id])->first()->toArray();
+        return view("index.coursecont1",compact('data'));
+>>>>>>> Stashed changes
     }
     //获取讲师信息
     public function lect(Request $request)
