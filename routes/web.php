@@ -39,6 +39,7 @@ Route::get('/index/catenews','Index\CourseController@news');
 Route::post('/index/coursecontadd','Index\CourseController@coursecontadd');//前台课程评论页面
 
 Route::post('/index/collect','Index\CollectController@index');  // 添加收藏
+Route::get('/index/my','Index\MyCourseController@index');   //  个人中心首页
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');

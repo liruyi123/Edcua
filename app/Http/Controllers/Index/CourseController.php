@@ -10,11 +10,8 @@ use App\Model\NavbarModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use App\Model\Notice;
-<<<<<<< Updated upstream
 use App\Model\UserModel;
-=======
 use App\Model\Collect;
->>>>>>> Stashed changes
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class CourseController extends Controller
