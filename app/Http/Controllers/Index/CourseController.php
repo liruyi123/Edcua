@@ -11,9 +11,14 @@ use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use App\Model\Notice;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 use App\Model\UserModel;
 =======
 use App\Model\Collect;
+>>>>>>> Stashed changes
+=======
+use App\Model\Question;
+use App\Model\QuestionComment;
 >>>>>>> Stashed changes
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,13 +35,15 @@ class CourseController extends Controller
 
         return view("index.courselist",compact("data","res",'ments','date'));
     }
+
     //课程介绍，目录页面
     public function coursecont(Request $request)
     {
         $id = $request->id;
         $data = Course::where(['course.cou_id'=>$id])->first();
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        $couData = Catalog::where(["cou_id"=>$id])->get()->toArray();
+        $couData = Catalog::where(["cou_id"=>$id,'pid'=>0,"show"=>1])->get()->toArray();
+//        print_r($couData);die;
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
         // print_r($countsql);die;
@@ -51,17 +58,84 @@ class CourseController extends Controller
         $collect = Collect::where($where)->first();
         return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql","collect"));
     }
+
     //课程详情页面
     public function coursecont1(Request $request)
     {
+
+
         $id = $request->id;
         $data = Course::join("lecturer",['course.lect_id'=>'lecturer.lect_id'])->where(['cou_id'=>$id])->first()->toArray();
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
+<<<<<<< Updated upstream
         $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])->where('course_comment.status',1)->get();//课程评价展示sql
         return view("index.coursecont1",compact('data',"ments","res","countsql","coursecommentlist"));
+=======
+        // 查询目录
+        $catadata = Catalog::where(['show'=>1])->get()->toArray();
+        $catadata = $this->getIndexCataInfo($catadata,0);
+        // 查询问题
+        $arr = Question::join("user",'user.user_id',"=","question.user_id")->where(['question.status'=>1])->orderBy('q_ctime','desc')->get()->toArray();
+        // 查询回答
+        $QCarr = QuestionComment::join("user",'user.user_id',"=","question_comment.user_id")
+            ->join("question",'question.q_id',"=","question_comment.q_id")
+            ->where(['question_comment.status'=>1])
+            ->orderBy('q_ctime','desc')
+            ->get()->toArray();
+
+        return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr"));
+>>>>>>> Stashed changes
     }
+
+    // 回复问题
+    public function reply(Request $request){
+        $id = $request->session()->get("user_id");
+        if ($id == ""){
+            return $this->code(201,"您还没有登陆，请先登录~~");
+        }
+        $c_answer = $request->input("c_answer");
+        $q_id = $request->input("q_id");
+
+        $data = [
+            'c_test'=>$c_answer,
+            'q_id'=>$q_id,
+            'user_id'=>$id,
+            'ctime'=>time(),
+            'utime'=>time(),
+            'status'=>1
+        ];
+
+        $res = QuestionComment::insert($data);
+        if ($res == 1){
+            return $this->code(200,"回复成功，感谢您的回复");
+        }else{
+            return $this->code(202,"回复失败");
+        }
+    }
+
+    public function tiwen_con(Request $request){
+        $id = $request->session()->get("user_id");
+        if ($id == ""){
+            return $this->code(201,"您还没有登陆，请先登录~~");
+        }
+        $wenti = $request->input("wenti");
+        $data = [
+            'user_id'=>$id,
+            'q_name'=>$wenti,
+            'ctime'=>time(),
+            'utime'=>time(),
+            'status'=>1,
+        ];
+        $res = Question::insert($data);
+        if ($res == 1){
+            return $this->code(200,"提问成功，请耐心等待回复");
+        }else{
+            return $this->code(202,"提问失败，请稍后再次尝试");
+        }
+    }
+
     //获取讲师信息
     public function lect(Request $request)
     {
@@ -90,6 +164,19 @@ class CourseController extends Controller
             // print_r($v);
             if($v['pid']==$pid){
                 $son=$this->getIndexCateInfo($data,$v['cate_id']);
+                $v['son']=$son;
+                $cateInfo[]=$v;
+            }
+        }
+        return $cateInfo;
+    }
+    public function getIndexCataInfo($data,$pid=0)
+    {
+        $cateInfo=[];
+        foreach($data as $k=>$v){
+            // print_r($v);
+            if($v['pid']==$pid){
+                $son=$this->getIndexCataInfo($data,$v['cata_id']);
                 $v['son']=$son;
                 $cateInfo[]=$v;
             }
