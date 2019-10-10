@@ -114,8 +114,8 @@ class CourseController extends Controller
         $data = [
             'user_id'=>$id,
             'q_name'=>$wenti,
-            'ctime'=>time(),
-            'utime'=>time(),
+            'q_ctime'=>time(),
+            'q_utime'=>time(),
             'status'=>1,
         ];
         $res = Question::insert($data);

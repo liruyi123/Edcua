@@ -139,7 +139,6 @@
 							<img src="/index/images-slider/guy.png" alt="">
 						</div>
 					</li>
-
 					<!-- THE FIRST SLIDE -->
 					<li data-transition="fade" data-slotamount="10" data-masterspeed="300" data-thumb="images-slider/thumbs/thumb1.jpg">
 						<!--  BACKGROUND IMAGE -->
@@ -263,9 +262,6 @@
 							<img src="/index/images-slider/fresh.png" alt="">
 						</div>
 					</li>
-
-
-
 				</ul>
 			</div>
 		</div>
@@ -276,7 +272,7 @@
 				<span class="tdtext">
         	<h3>完全免费课程</h3>
             <p>精心录制视频课程与讲解，全部课程完全免费。</p><br/>
-            <p><a href="courselist.html" class="btninto">开始学习</a></p>
+            <p><a href="/index/courselist" class="btninto">开始学习</a></p>
         </span>
 				<div style="clear:both"></div>
 			</div>
@@ -288,7 +284,7 @@
         	<h3 class="co1">智能评估题库</h3>
             <p>智能能力评估，学员可以通过具体题目，匹配相
 关知识点,文字解析与视频解析相结合。</p><br/>
-			<p><a href="training.html" class="btninto">点击测评</a></p>
+			<p><a href="/index/question" class="btninto">点击测评</a></p>
         </span>
 				<div style="clear:both"></div>
 			</div>
