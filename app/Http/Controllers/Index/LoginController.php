@@ -29,12 +29,8 @@ class LoginController extends Controller
 //        print_r($ass);die;
         $password = $request->session()->get("password");
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-<<<<<<< Updated upstream
         $eee = NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         return view("index.login",compact("ments","eee"));
-=======
-        return view("index.login",compact("ments","password"));
->>>>>>> Stashed changes
     }
     //登陆执行
     public function loginAdd(Request $request)

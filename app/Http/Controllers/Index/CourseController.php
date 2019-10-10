@@ -12,13 +12,18 @@ use App\Model\LecturerModel;
 use App\Model\Notice;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-use App\Model\UserModel;
+<<<<<<< Updated upstream
 =======
+>>>>>>> Stashed changes
+use App\Model\UserModel;
 use App\Model\Collect;
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 use App\Model\Question;
 use App\Model\QuestionComment;
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
