@@ -15,6 +15,7 @@
 Route::get('/','Index\IndexController@index');//首页
 
 //前台
+<<<<<<< Updated upstream
 Route::get('/index/courselist','Index\CourseController@course');//课程页面
 Route::get('/index/login','Index\LoginController@login');//登陆页面
 Route::post("/index/loginAdd","Index\LoginController@loginAdd");//登陆执行
@@ -23,6 +24,13 @@ Route::post("/index/registerAdd","Index\LoginController@registerAdd");//注册�
 Route::post("/index/uploads","Index\LoginController@uploads");//注册执行
 Route::get('/index/coursecont/{id}','Index\CourseController@coursecont');//课程介绍，目录
 Route::get("/index/coursecont1/{id}","Index\CourseController@coursecont1");//课程详情
+=======
+Route::get('/index/courselist','Index\CourseController@course');
+Route::get('/index/login','Index\LoginController@login'); 
+Route::get('/index/register','Index\LoginController@register');
+Route::get('/index/coursecont/{id}','Index\CourseController@coursecont');
+Route::get("/index/coursecont1/{id}","Index\CourseController@coursecont1");
+>>>>>>> Stashed changes
 Route::post("/index/lect","Index\CourseController@lect");
 Route::get('/index/study','Index\CourseController@study');
 Route::get('/index/video','Index\CourseController@video');
