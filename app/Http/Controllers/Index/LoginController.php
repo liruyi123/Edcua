@@ -25,7 +25,8 @@ class LoginController extends Controller
 //        $ass = $oss->putObject($bucket,$object,$content);
 //        print_r($ass);die;
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view("index.login",compact("ments"));
+        $eee = NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
+        return view("index.login",compact("ments","eee"));
     }
     //登陆执行
     public function loginAdd(Request $request)
@@ -92,7 +93,8 @@ class LoginController extends Controller
     public function register()
     {
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view("index.register",compact("ments"));
+        $eee = NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
+        return view("index.register",compact("ments","eee"));
     }
     //注册执行
     public function registerAdd(Request $request)

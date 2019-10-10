@@ -112,7 +112,8 @@ class CourseController extends Controller
         $arr = CourseCategoryModel::where(["status"=>1])->get()->toArray();
         $res = $this->getIndexCateInfo($arr,0);
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view('index.catanews',compact("data","res",'ments'));
+        $eee = NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
+        return view('index.catanews',compact("data","res",'ments',"eee"));
     }
     //前台课程评论添加
     public function coursecontadd(Request $request)
