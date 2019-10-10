@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>谋刻职业教育在线测评与学习平台</title>
-    <link rel="stylesheet" href="css/course.css"/>
+    {{--<link rel="stylesheet" href="css/course.css"/>--}}
+    @yield("css")
     <link rel="stylesheet" href="css/register-login.css"/>
-    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="css/tab.css" media="screen">
-    <link rel="stylesheet" href="/static/build/layui.css" media="all">
+    {{--<link rel="stylesheet" href="/static/build/layui.css" media="all">--}}
 </head>
 
 <div class="head" id="fixed">
@@ -60,7 +60,7 @@
 @yield('content')
 <script src="/index/js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="/index/js/rev-setting-1.js"></script>
-<script type="text/javascript" src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="/layui/layui.js"></script>
 @yield('js')
 <script>

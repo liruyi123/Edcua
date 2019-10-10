@@ -1,6 +1,9 @@
 @extends("index.ments")
 
-
+@section("css")
+<link rel="stylesheet" href="css/course.css"/>
+{{--<link rel="stylesheet" href="/layui/css/layui.css" media="all">--}}
+    @endsection
 @section("content")
 <body>
 <!-- InstanceBeginEditable name="EditRegion1" -->
