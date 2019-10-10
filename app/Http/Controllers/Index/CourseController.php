@@ -10,7 +10,11 @@ use App\Model\NavbarModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use App\Model\Notice;
+<<<<<<< Updated upstream
 use App\Model\UserModel;
+=======
+use App\Model\Collect;
+>>>>>>> Stashed changes
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class CourseController extends Controller
@@ -38,7 +42,14 @@ class CourseController extends Controller
         // print_r($countsql);die;
         $coursesql=Notice::where('status',1)->orderBy('not_weight','desc')->take(2)->get();
         $lectsql=LecturerModel::where('status',1)->take(1)->get();
-        return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql"));
+
+        $u_id = $this->getUserId();
+        $where= [
+            'user_id' => $u_id,
+            'cate_id'  => $id
+        ];
+        $collect = Collect::where($where)->first();
+        return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql","collect"));
     }
     //课程详情页面
     public function coursecont1(Request $request)
@@ -134,5 +145,11 @@ class CourseController extends Controller
         }else{
             echo 500;
         }
+    }
+
+    //  用户ID
+    public function getUserId()
+    {
+        return session('user_id');
     }
 }

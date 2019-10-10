@@ -10,6 +10,7 @@
 <!-- InstanceBeginEditable name="EditRegion1" -->
 <div class="coursecont">
 <div class="coursepic">
+    <input type="hidden" value="{{$data['cou_id']}}" id="cou_id">
 	<div class="course_img"><img src="{{$data['path']}}" width="500" class="img"></div>
     <div class="coursetitle">
    		<a class="state">更新中</a>
@@ -19,7 +20,15 @@
         <p class="courstime">学习人数：<span class="course_tt">25987人</span></p>
 		<p class="courstime">课程评价：<img width="71" height="14" src="images/evaluate5.png">&nbsp;&nbsp;<span class="hidden-sm hidden-xs">5.0分（10人评价）</span></p>
         <!--<p><a class="state end">完结</a></p>-->      
-        <span class="coursebtn"><a class="btnlink" href="/index/study">加入学习</a><a class="codol fx" href="javascript:void(0);" onClick="$('#bds').toggle();">分享课程</a><a class="codol sc" href="#">收藏课程</a></span>
+        <span class="coursebtn">
+            <a class="btnlink" href="/index/study">加入学习</a>
+            <a class="codol fx" href="javascript:void(0);" onClick="$('#bds').toggle();">分享课程</a>
+                @if($collect)
+                    <a class="codol sc" href="#" style="background-position: 0px -1800px;">取消收藏</a>
+                    @else
+                    <a class="codol sc" href="#" style="background-position: 1px -5px;">收藏课程</a>
+                @endif
+        </span>
 		<div style="clear:both;"></div>
 		<div id="bds">
             <div class="bdsharebuttonbox">
@@ -156,6 +165,29 @@
     <script src="/index/js/jquery-1.8.0.min.js"></script>
     <script>
         $(function () {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $('.codol').click(function () {
+                    var _this = $(this);
+                    var cou_id = $("#cou_id").val();
+
+                    $.post(
+                            '/index/collect',
+                            {cou_id: cou_id},
+                            function (res) {
+                                if (res.error == 10001) {
+                                    layer.msg(res.msg, {icon: 6});
+                                } else {
+                                    layer.msg(res.msg, {icon: 2});
+                                }
+                            }, 'json'
+                    );
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
             var lect_id = $(".lect").attr("lect_id");
             $.ajax({
                 url : "/index/lect",
@@ -173,4 +205,6 @@
             });
         })
     </script>
+
+
     @endsection

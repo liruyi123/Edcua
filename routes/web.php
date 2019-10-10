@@ -38,6 +38,8 @@ Route::get('/index/ments','Index\NavbarController@ments');
 Route::get('/index/catenews','Index\CourseController@news');
 Route::post('/index/coursecontadd','Index\CourseController@coursecontadd');//前台课程评论页面
 
+Route::post('/index/collect','Index\CollectController@index');  // 添加收藏
+
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
 Route::get('/admin/indexV1','Admin\IndexController@indexV1');
