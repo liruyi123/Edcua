@@ -10,6 +10,8 @@ use App\Model\NavbarModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use App\Model\Notice;
+use App\Model\Question;
+use App\Model\QuestionComment;
 use App\Model\UserModel;
 use App\Model\Collect;
 use Illuminate\Http\Request;

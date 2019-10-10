@@ -454,42 +454,34 @@
                         }
                     })
 
-                })
+                });
+
+                $('.courseconts').click(function () {
+                    var comments=document.querySelector('.comments').value;
+                    var cou_id=document.querySelector('.cou_id').value;
+                    if(comments==""){
+                        layer.msg('评论区域不能为空！',{icon:2});
+                        return false;
+                    }
+                    $.ajax({
+                        url:"/index/coursecontadd",
+                        type:"POST",
+                        data:{comments:comments,cou_id:cou_id},
+                        datatype:"json",
+                        async:true,
+                        success:function(res){
+                            if(res==200){
+                                layer.msg('恭喜您，评论添加成功！',{icon:1});
+                                window.location.reload();
+                            }else{
+                                layer.msg('很遗憾，评论添加失败！',{icon:2});
+                            }
+                        }
+                    })
+                });
 
 
             });
         });
     </script>
     @endsection
-<script type="text/javascript" src="/Editor/release/wangEditor.min.js"></script>
-<script src="/admin/js/jquery-1.8.0.min.js"></script>
-<script>
-     $(document).ready(function(){
-        layui.use('layer', function () {
-            var layer = layui.layer;
-            $('.courseconts').click(function () {
-                var comments=document.querySelector('.comments').value;
-                var cou_id=document.querySelector('.cou_id').value;
-                if(comments==""){
-                    layer.msg('评论区域不能为空！',{icon:2});
-                    return false;
-                }
-                $.ajax({
-                    url:"/index/coursecontadd",
-                    type:"POST",
-                    data:{comments:comments,cou_id:cou_id},
-                    datatype:"json",
-                    async:true,
-                    success:function(res){
-                        if(res==200){
-                            layer.msg('恭喜您，公告添加成功！',{icon:1});
-                            window.location.reload();
-                        }else{
-                            layer.msg('很遗憾，公告添加失败！',{icon:2});
-                        }
-                    }
-                })
-            });
-        });
-    });
-</script>
