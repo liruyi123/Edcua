@@ -30,7 +30,7 @@ class LoginController extends Controller
         $password = $request->session()->get("password");
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $eee = NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
-        return view("index.login",compact("ments","eee"));
+        return view("index.login",compact("ments","eee","password"));
     }
     //登陆执行
     public function loginAdd(Request $request)
