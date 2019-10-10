@@ -63,8 +63,10 @@ class CourseController extends Controller
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
-<<<<<<< Updated upstream
-        $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])->where('course_comment.status',1)->get();//课程评价展示sql
+        $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])
+            ->where('course_comment.status',1)
+            ->orderBy('course_comment.ctime','desc')
+            ->get();//课程评价展示sql
         // 查询目录
         $catadata = Catalog::where(['show'=>1])->get()->toArray();
         $catadata = $this->getIndexCataInfo($catadata,0);
@@ -78,13 +80,6 @@ class CourseController extends Controller
             ->get()->toArray();
 
         return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr","coursecommentlist"));
-=======
-        $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])
-                            ->where('course_comment.status',1)
-                            ->orderBy('course_comment.ctime','desc')
-                            ->get();//课程评价展示sql
-        return view("index.coursecont1",compact('data',"ments","res","countsql","coursecommentlist"));
->>>>>>> Stashed changes
     }
 
     // 回复问题
