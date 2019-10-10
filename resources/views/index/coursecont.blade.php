@@ -42,12 +42,12 @@
 <div class="clearh"></div>
 <div class="coursetext">
 	<h3 class="leftit">课程简介</h3>
-    <p class="coutex"> {{$data[0]['cou_text']}}</p>
+    <p class="coutex"> {{$data['cou_text']}}</p>
 	<div class="clearh"></div>
 	<h3 class="leftit">课程目录</h3>
     <dl class="mulu">
         @foreach($couData as $k=>$v)
-    	<dt><a href="/index/coursecont1/{{$data[0]['cou_id']}}" class="graylink">{{$v['cata_name']}}</a></dt>
+    	<dt><a href="/index/coursecont1/{{$v['cou_id']}}" class="graylink">{{$v['cata_name']}}</a></dt>
         <dd>{{$v['cata_text']}}</dd>
         @endforeach
     </dl>
