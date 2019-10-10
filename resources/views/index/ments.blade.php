@@ -5,9 +5,9 @@
     <title>谋刻职业教育在线测评与学习平台</title>
     {{--<link rel="stylesheet" href="css/course.css"/>--}}
     @yield("css")
-    <link rel="stylesheet" href="css/register-login.css"/>
+    <link rel="stylesheet" href="/index/css/register-login.css"/>
 
-    <link rel="stylesheet" href="css/tab.css" media="screen">
+    <link rel="stylesheet" href="/index/css/tab.css" media="screen">
     {{--<link rel="stylesheet" href="/static/build/layui.css" media="all">--}}
 </head>
 
@@ -32,27 +32,30 @@
             </span>
         </span>-->
             <!--未登录-->
+            @if(Session('user_id') == "")
         	<span class="exambtn_lore">
-                 <a class="tkbtn tklog" href="/index/login">登录</a>
-                 <a class="tkbtn tkreg" href="/index/register">注册</a>
+                <a class="tkbtn tkreg" href="/index/register" style="float: right">注册</a>
+                 <a class="tkbtn tklog" href="/index/login" style="float: right">登录&nbsp;&nbsp;</a>
+
             </span>
+            @elseif(session("user_id") !="")
             <!--登录后-->
-            <!--<div class="logined">
-                <a href="mycourse.html"  onMouseOver="logmine()" style="width:70px" class="link2 he ico" target="_blank">sherley</a>
+            <div class="logined">
+                <a href="/index/my"  onMouseOver="logmine()" style="width:70px" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
                 <span id="lne" style="display:none" onMouseOut="logclose()" onMouseOver="logmine()">
                     <span style="background:#fff;">
-                        <a href="mycourse.html" style="width:70px; display:block;" class="link2 he ico" target="_blank">sherley</a>
+                        <a href="/index/my" style="width:70px; display:block;" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
                     </span>
                     <div class="clearh"></div>
                     <ul class="logmine" >
                         <li><a class="link1" href="#">我的课程</a></li>
                         <li><a class="link1" href="#">我的题库</a></li>
                         <li><a class="link1" href="#">我的问答</a></li>
-                        <li><a class="link1" href="#">退出</a></li>
+                        <li><a class="link1 exit" href="javascript:;">退出</a></li>
                     </ul>
                 </span>
-            </div>-->
-
+            </div>
+            @endif
         </span>
     </div>
 </div>
@@ -69,6 +72,21 @@
         $(".link1").click(function () {
             $(this).addClass("current").parent("li").next("li").children("a").removeClass("current");
         })
+    })
+    layui.use("layer",function () {
+        var layer = layui.layer;
+    })
+    $(document).on("click",".exit",function () {
+        $.ajax({
+            url : "/index/exit",
+            type: "POST",
+            data : {},
+            dataType : "JSON",
+            success : function (res) {
+                layer.msg(res.message,{icon:1});
+                history.go(0);
+            }
+        });
     })
 
 </script>

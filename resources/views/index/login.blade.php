@@ -32,7 +32,7 @@
 <div class="loginbtn lb">
    <a href="/index/register" class="link-muted">还没有账号？立即免费注册</a>
    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>   
-   <a href="forgetpassword.html" class="link-muted">找回密码</a>
+   <a href="/index/pwd" class="link-muted">找回密码</a>
 </div>
 </form>
 <div class="hezuologo">

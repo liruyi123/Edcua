@@ -1,6 +1,7 @@
 <!doctype html>
 <html><!-- InstanceBegin template="/Templates/dwt.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
+
     <meta charset="utf-8">
     <!-- InstanceBeginEditable name="doctitle" -->
     <title>谋刻职业教育在线测评与学习平台</title>
@@ -37,6 +38,7 @@
             @foreach($ments as $k => $v)
                 <li class="a"><a href="{{$v->nav_url}}" class="link1">{{$v->nav_name}}</a></li>
             @endforeach
+
         </ul>
         <span class="massage">
             <!--<span class="select">
@@ -48,7 +50,7 @@
                 <p>题库</p>
                 <p>讲师</p>
             </span>
-        </span>-->
+
             <!--未登录-->
             @if(Session('user_id') == "")
                 <span class="exambtn_lore">
@@ -80,6 +82,7 @@
 <!-- InstanceBeginEditable name="EditRegion1" -->
 <div class="clearh"></div>
 <div class="membertab">
+
     <div class="memblist">
         <div class="membhead">
             <div style="text-align:center;"><img src="images/0-0.JPG" width="80" ></div>
@@ -135,10 +138,12 @@
                                     <div class="lv" style="width:20%;"></div>
                                 </div>
                                 <p class="goon"><a href="video.html"><span>继续学习</span></a></p>
+
                             </div>
                         </li>
                         <li>
                             <div class="courseli">
+
                                 <a href="video.html" target="_blank"><img width="230" src="images/c8.jpg"></a>
                                 <p class="memb_courname"><a href="video.html" class="blacklink">会计基础</a></p>
                                 <div class="mpp">
@@ -223,6 +228,7 @@
 
 
     <div class="clearh"></div>
+
 </div>
 
 <!-- InstanceEndEditable -->
@@ -230,6 +236,7 @@
 
 <div class="clearh"></div>
 <div class="foot">
+
     <div class="fcontainer">
         <div class="fwxwb">
             <div class="fwxwb_1">
@@ -251,16 +258,20 @@
 <div class="rmbar">
 	<span class="barico qq" style="position:relative">
 	<div  class="showqq">
+
         <p>官方客服QQ:<br>335049335</p>
     </div>
+
 	</span>
 	<span class="barico em" style="position:relative">
 	  <img src="images/num.png" width="75" class="showem">
 	</span>
 	<span class="barico wb" style="position:relative">
 	  <img src="images/wb.png" width="75" class="showwb">
+
 	</span>
     <span class="barico top" id="top">置顶</span>
+
 </div>
 </body>
 

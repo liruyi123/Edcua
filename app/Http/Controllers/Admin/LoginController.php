@@ -163,7 +163,7 @@ class LoginController extends Controller
         $data = AdminModel::where(["admin_name"=>$name,"admin_email"=>$email])->first();
         if($data){
             $arr = rand(11111,99999);
-            Cookie::queue("code",$arr,1);
+            Cookie::queue("code",$arr);
             Cookie::queue("email",$email);
             $this->email($email,$arr);
         }else{

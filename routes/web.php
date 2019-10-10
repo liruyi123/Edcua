@@ -22,6 +22,10 @@ Route::post("/index/loginAdd","Index\LoginController@loginAdd");//登陆执行
 Route::get('/index/register','Index\LoginController@register');//注册页面
 Route::post("/index/registerAdd","Index\LoginController@registerAdd");//注册执行
 Route::post("/index/uploads","Index\LoginController@uploads");//注册执行
+Route::post("/index/exit","Index\LoginController@exit");//退出操作
+Route::get("/index/pwd","Index\LoginController@pwd");//修改密码页面
+Route::post("/index/pwdCode","Index\LoginController@pwdCode");//获取验证码
+Route::post("/index/pwdAdd","Index\LoginController@pwdAdd");//修改密码执行
 Route::get('/index/coursecont/{id}','Index\CourseController@coursecont');//课程介绍，目录
 Route::get("/index/coursecont1/{id}","Index\CourseController@coursecont1");//课程详情
 
@@ -39,6 +43,7 @@ Route::get('/index/catenews','Index\CourseController@news');
 Route::post('/index/coursecontadd','Index\CourseController@coursecontadd');//前台课程评论页面
 
 Route::post('/index/collect','Index\CollectController@index');  // 添加收藏
+
 Route::get('/index/my','Index\MyCourseController@index');   //  个人中心首页
 
 //后台

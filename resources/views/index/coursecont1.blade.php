@@ -3,6 +3,12 @@
 <link rel="stylesheet" href="/index/css/course.css"/>
 <link rel="stylesheet" href="/index/css/register-login.css"/>
 <link rel="stylesheet" href="/index/css/tab.css" media="screen">
+<link rel="stylesheet" href="/index/css/style2.css"/>
+<script src="/index/js/init.js"></script>
+<script src="/index/js/home.js"></script>
+<link href="/index/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<script src="js/jquery.tabs.js"></script>
+{{--<link rel="stylesheet" href="/index/css/ui1.css"/>--}}
 @section('content')
 <body>
 <!-- InstanceBeginEditable name="EditRegion1" -->
@@ -30,6 +36,7 @@
         </div>
         <div class="course_img1">
             <img src="{{$data['path']}}" height="140">
+            <input type="hidden" value="{{$data['cou_id']}}" id="cou_id">
         </div>
         <div class="course_xq">
             <span class="courstime1"><p>课时<br/><span class="coursxq_num">100课时</span></p></span>
@@ -55,28 +62,24 @@
             <div class="tab_box">
                 <div>
                     <dl class="mulu noo">
-                        <div>
-                            <dt class="mulu_title"><span class="mulu_img"></span>第一章&nbsp;&nbsp;总论
-                                <span class="mulu_zd">+</span></dt>
-                            <div class="mulu_con">
-                                <dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计的概念与目标</strong></dd>
-                                <a href="video.html"><dd><strong class="cataloglink">课时1：会计的概念与目标1</strong><i class="fini nn"></i></dd></a>
-                                <a href="video.html"><dd><strong class="cataloglink">课时2：会计的概念与目标2</strong><i class="fini fn"></i></dd></a>
-                                <dd class="smalltitle"><strong>第二节&nbsp;&nbsp;会计的职能与方法</strong></dd>
-                                <a href="video.html"><dd><strong class="cataloglink">课时1：会计的职能与方法1</strong><i class="fini nn"></i></dd></a>
-                                <a href="video.html"><dd><strong class="cataloglink">课时2：会计的职能与方法2</strong><i class="fini fn"></i></dd></a>
-                                <a href="video.html"><dd><strong class="cataloglink">课时1：会计的职能与方法3</strong><i class="fini ff"></i></dd></a>
+
+
+                        @foreach($catadata as $k=>$v)
+                            <div>
+                                <dt class="mulu_title"><span class="mulu_img"></span>{{$v['cata_name']}}
+                                    <span class="mulu_zd">+</span></dt>
+                                <div class="mulu_con">
+                                    @foreach($v['son'] as $kk=>$vv)
+                                        <dd class="smalltitle"><strong>{{$vv['cata_name']}}</strong></dd>
+                                        @foreach($vv['son'] as $kkk=>$vvv)
+                                            <a href="video.html"><dd><strong class="cataloglink">{{$vvv['cata_name']}}</strong><i class="fini nn"></i></dd></a>
+                                        @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <dt class="mulu_title"><span class="mulu_img"></span>第二章&nbsp;&nbsp;会计要素与会计等式
-                                <span class="mulu_zd">+</span></dt>
-                            <div class="mulu_con">
-                                <dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计要素</strong></dd>
-                                <a href="video.html"><dd><strong class="cataloglink">课时1：会计要素与会计等式1</strong><i class="fini nn"></i></dd></a>
-                                <a href="video.html"><dd><strong class="cataloglink">课时2：会计要素与会计等式2</strong><i class="fini nn"></i></dd></a>
-                            </div>
-                        </div>
+                        @endforeach
+
+
                     </dl>
                 </div>
                  <!-- 课程评论模块开始 -->
@@ -117,30 +120,47 @@
                     <div>
                         <h3 class="pingjia">提问题</h3>
                         <div class="c_eform">
-                            <input type="text" class="pingjia_con" value="请输入问题标题" onblur="if (this.value =='') this.value='请输入问题标题';this.className='pingjia_con'" onclick="if (this.value=='请输入问题标题') this.value='';this.className='pingjia_con_on'"/><br/>
-                            <textarea rows="7" class="pingjia_con" onblur="if (this.value =='') this.value='请输入问题的详细内容';this.className='pingjia_con'" onclick="if (this.value=='请输入问题的详细内容') this.value='';this.className='pingjia_con_on'">请输入问题的详细内容</textarea>
-                            <a href="#" class="fombtn">发布</a>
+                            <textarea rows="7" id="tiwen_con" class="pingjia_con tiwen_con" onblur="if (this.value =='') this.value='请输入问题的详细内容';this.className='pingjia_con'" onclick="if (this.value=='请输入问题的详细内容') this.value='';this.className='pingjia_con_on'">请输入问题的详细内容</textarea>
+                            <a href="javascript:;" class="fombtn aaa">发布</a>
                             <div class="clearh"></div>
                         </div>
                         <ul class="evalucourse">
+                        @foreach($arr as $k=>$v)
                             <li>
-                        	<span class="pephead"><img src="images/0-0.JPG" width="50" title="候候">
-							<p class="pepname">候候</p>
+                        	<span class="pephead"><img src="/index/images/0-0.JPG" width="50" title="">
+							<p class="pepname">{{$v['user_name']}}</p>
                             </span>
                                 <span class="pepcont">
-                            <p><a href="#" class="peptitle" target="_blank">2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年?</a></p>
-                            <p class="peptime pswer"><span class="pepask">回答(<strong><a class="bluelink" href="#">10</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong><a class="bluelink" href="#">10</a></strong>)</span>2015-01-02</p>
+                            <p><a  href="javascript:;"  class="peptitle" target="_blank" data-toggle="modal" data-target="#myModal2_{{$v['q_id']}}">{{$v['q_name']}}</a></p>
+                            <p class="peptime pswer"><span class="pepask">回答(<strong><a class="bluelink" href="#">10</a></strong>)</span>{{date('Y-m-d H:i:s',$v['q_ctime'])}}</p>
                             </span>
+                                <div class="modal inmodal" id="myModal2_{{$v['q_id']}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content animated flipInY">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <h4 class="modal-title">问题：{{$v['q_name']}}</h4>
+                                            </div>
+                                            <div class="modal-body" aaa="111">
+                                                @foreach($QCarr as $kk=>$vv)
+                                                    @if($vv['q_id'] == $v['q_id'])
+                                                        {{$vv['user_name']}}:{{$vv['c_test']}}
+                                                        <br>
+                                                    @endif
+                                                @endforeach
+                                                <br>
+                                                <input type="text" id="c_answer" class="form-control ccc" placeholder="期待您的回答">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="hidden" aid="{{$v['q_id']}}">
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                                <button type="button" class="btn bbb btn-primary">提交</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
-                            <li>
-                        	<span class="pephead"><img src="images/0-0.JPG" width="50" title="候候">
-							<p class="pepname">候候</p>
-                            </span>
-                                <span class="pepcont">
-							<p><a href="#" class="peptitle" target="_blank">2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年?</a></p>
-                            <p class="peptime pswer"><span class="pepask">回答(<strong><a class="bluelink" href="#">10</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong><a class="bluelink" href="#">10</a></strong>)</span>2015-01-02</p>
-                            </span>
-                            </li>
+                            @endforeach
                         </ul>
 
                     </div>
@@ -362,10 +382,15 @@
 </body>
 @endsection
 @section("js")
+    <script src="/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script src="/admin/js/content.js?v=1.0.0"></script>
 
     <script src="/index/js/jquery-1.8.0.min.js"></script>
-
+    <script src="/admin/js/bootstrap.min.js"></script>
     <script src="/index/js/jquery.tabs.js"></script>
+    <script src="/layui/layui.js"></script>
     <script src="/index/js/mine.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -377,7 +402,63 @@
                 event:'click'
             });
         });
+        $(document).ready(function () {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                $('.aaa').click(function () {
+                    var wenti = $("#tiwen_con").val();
+                    var cou_id = $("#cou_id").val();
+                    // console.log(tiwen_con);
+                    $.ajax({
+                        type : 'post',
+                        url : '/index/tiwen_con',
+                        dataType:"json",
+                        data:{wenti:wenti},
+                        success : function (msg) {
+                            // console.log(msg);
+                            if(msg.code == '200'){
+                                layer.msg(msg.message,{icon:6});
+                                window.location.href = "/index/coursecont1/"+cou_id;
+                            }else if (msg.code == '201') {
+                                layer.msg(msg.message,{icon:2});
+                                window.location.href = "/index/login";
+                            }else{
+                                layer.msg(msg.message,{icon:2});
+                            }
+                        }
+                    })
 
+                });
+
+                $('.bbb').click(function () {
+                    var q_id = $(this).siblings(":first").attr("aid");
+                    var c_answer = $(this).parent("div").prev().find("input").val();
+                    var cou_id = $("#cou_id").val();
+                    // alert(b_id);
+                    $.ajax({
+                        type : 'post',
+                        url : '/index/reply',
+                        dataType:"json",
+                        data:{c_answer:c_answer,q_id:q_id},
+                        success : function (msg) {
+                            // console.log(msg);
+                            if(msg.code == '200'){
+                                layer.msg(msg.message,{icon:6});
+                                window.location.href = "/index/coursecont1/"+cou_id;
+                            }else if(msg.code == '201'){
+                                layer.msg(msg.message,{icon:2});
+                                window.location.href = "/index/login";
+                            }else{
+                                layer.msg(msg.message,{icon:2});
+                            }
+                        }
+                    })
+
+                })
+
+
+            });
+        });
     </script>
     @endsection
 <script type="text/javascript" src="/Editor/release/wangEditor.min.js"></script>
