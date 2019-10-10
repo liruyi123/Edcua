@@ -1,9 +1,10 @@
 @extends('index.ments')
+@section("css")
 <link rel="stylesheet" href="/index/css/style.css"/>
 <link rel="stylesheet" href="/index/css/tab.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/index/css/main.css" id="main-css">
 <link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css" id="main-css">
-
+@endsection
 @section('content')
 <body>
 <div class="content">
@@ -580,6 +581,7 @@
 
 </body>
 @endsection
+@section("js")
 <script src="/index/js/jquery-1.8.0.min.js"></script>
 <script>
 function logmine(){
@@ -611,3 +613,4 @@ function logclose(){
 		600);
 	});
 </script>
+	@endsection

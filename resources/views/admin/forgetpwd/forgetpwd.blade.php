@@ -70,7 +70,7 @@
             layer.msg("请输入邮箱!",{icon:2});
             return false;
         }
-        $(this).attr("disabled",true);
+        // $(this).attr("disabled",true);
         $.ajax({
             url : "/admin/codes",
             type : "POST",
