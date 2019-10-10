@@ -63,6 +63,7 @@ class CourseController extends Controller
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
+<<<<<<< Updated upstream
         $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])->where('course_comment.status',1)->get();//课程评价展示sql
         // 查询目录
         $catadata = Catalog::where(['show'=>1])->get()->toArray();
@@ -77,6 +78,13 @@ class CourseController extends Controller
             ->get()->toArray();
 
         return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr","coursecommentlist"));
+=======
+        $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])
+                            ->where('course_comment.status',1)
+                            ->orderBy('course_comment.ctime','desc')
+                            ->get();//课程评价展示sql
+        return view("index.coursecont1",compact('data',"ments","res","countsql","coursecommentlist"));
+>>>>>>> Stashed changes
     }
 
     // 回复问题
@@ -206,21 +214,25 @@ class CourseController extends Controller
     //前台课程评论添加
     public function coursecontadd(Request $request)
     {
-        $comments=$request->comments;
-        $cou_id=$request->cou_id;
-        $user_id=$request->session()->get("user_id");
-        $data=[
-            'c_text'=>$comments,
-            'ctime'=>time(),
-            'user_id'=>$user_id,
-            'cou_id'=>$cou_id,
-            'status'=>1
-        ];
-        $data=CourseComment::insert($data);
-        if($data==1){
-            echo 200;
+        if($request->session()->get("user_id")==NULL){
+            echo 404;
         }else{
-            echo 500;
+            $comments=$request->comments;
+            $cou_id=$request->cou_id;
+            $user_id=$request->session()->get("user_id");
+            $data=[
+                'c_text'=>$comments,
+                'ctime'=>time(),
+                'user_id'=>$user_id,
+                'cou_id'=>$cou_id,
+                'status'=>1
+            ];
+            $data=CourseComment::insert($data);
+            if($data==1){
+                echo 200;
+            }else{
+                echo 500;
+            }
         }
     }
 
