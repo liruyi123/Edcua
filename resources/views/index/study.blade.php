@@ -3,21 +3,9 @@
 
 <link rel="stylesheet" href="/css/course.css"/>
 <link rel="stylesheet" href="/css/register-login.css"/>
-<script src="/js/jquery-1.8.0.min.js"></script>
-<link rel="stylesheet" href="/css/tab.css" media="screen">
-<script src="/js/jquery.tabs.js"></script>
-<script src="/js/mine.js"></script>
-<script type="text/javascript">
-    $(function(){
 
-        $('.demo2').Tabs({
-            event:'click'
-        });
-        $('.demo3').Tabs({
-            event:'click'
-        });
-    });
-</script>
+<link rel="stylesheet" href="/css/tab.css" media="screen">
+
 @section("content")
 <body>
 <!-- InstanceBeginEditable name="EditRegion1" -->
@@ -385,3 +373,19 @@
 </div>
 </body>
 @endsection
+@section("js")
+    <script src="/js/jquery.tabs.js"></script>
+    <script src="/js/mine.js"></script>
+    <script src="/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            $('.demo2').Tabs({
+                event:'click'
+            });
+            $('.demo3').Tabs({
+                event:'click'
+            });
+        });
+    </script>
+    @endsection
