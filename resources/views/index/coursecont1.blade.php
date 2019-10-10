@@ -402,9 +402,6 @@
                 event:'click'
             });
         });
-<<<<<<< Updated upstream
-
-=======
         $(document).ready(function () {
             layui.use('layer', function () {
                 var layer = layui.layer;
@@ -462,7 +459,6 @@
 
             });
         });
->>>>>>> Stashed changes
     </script>
     @endsection
 <script type="text/javascript" src="/Editor/release/wangEditor.min.js"></script>
