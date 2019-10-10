@@ -10,11 +10,8 @@
     <script src="/index/js/home.js"></script>
     <link rel="stylesheet" href="/index/css/style2.css"/>
     <link rel="stylesheet" href="/index/css/ui1.css"/>
-        {{--<link rel="shortcut icon" href="favicon.ico">--}}
+
         <link href="/index/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-        {{--<link href="/index/css/font-awesome.css?v=4.4.0" rel="stylesheet">--}}
-        {{--<link href="/index/css/animate.css" rel="stylesheet">--}}
-        {{--<link href="/index/css/style.css?v=4.1.0" rel="stylesheet">--}}
         <div class="uk-grid">
             <div class="uk-width-1-4">
                 <div class="pb pb-category">

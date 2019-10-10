@@ -4,8 +4,13 @@
     <meta charset="utf-8">
     <title>谋刻职业教育在线测评与学习平台</title>
     {{--<link rel="stylesheet" href="css/course.css"/>--}}
+<<<<<<< Updated upstream
     @yield("css")
     <link rel="stylesheet" href="css/register-login.css"/>
+=======
+    <link rel="stylesheet" href="css/register-login.css"/>
+    {{--<link rel="stylesheet" href="/layui/css/layui.css" media="all">--}}
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="css/tab.css" media="screen">
     {{--<link rel="stylesheet" href="/static/build/layui.css" media="all">--}}
 </head>

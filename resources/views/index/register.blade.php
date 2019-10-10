@@ -4,6 +4,8 @@
 {{--<link rel="stylesheet" href="/layui/css/layui.css" media="all">--}}
     @endsection
 @section("content")
+    {{--<link rel="stylesheet" href="/layui/css/layui.css" media="all">--}}
+    <link rel="stylesheet" href="css/course.css"/>
 <body>
 <!-- InstanceBeginEditable name="EditRegion1" -->
 <div class="register" style="background:url(images/13.jpg) right center no-repeat #fff">

@@ -24,7 +24,7 @@ class LoginController extends Controller
 //        $oss = new OssClient($accessKeyId,$accessKeySecret,$endpoint);
 //        $ass = $oss->putObject($bucket,$object,$content);
 //        print_r($ass);die;
-        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         return view("index.login",compact("ments"));
     }
     //登陆执行
@@ -91,7 +91,7 @@ class LoginController extends Controller
     //注册页面
     public function register()
     {
-        $ments = NavbarModel::where('status',1)->orderBy('nav_weight','desc')->get();
+        $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         return view("index.register",compact("ments"));
     }
     //注册执行
