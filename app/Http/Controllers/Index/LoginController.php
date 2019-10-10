@@ -155,6 +155,6 @@ class LoginController extends Controller
             "message" => $msg,
             "data" => $data
         ];
-        echo  json_encode($data,JSON_UNESCAPED_UNICODE);die;
+        echo  json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 }

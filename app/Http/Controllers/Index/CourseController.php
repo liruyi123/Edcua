@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Index;
 
 use App\Model\Catalog;
 use App\Model\Course;
+use App\Model\CourseComment;
 use App\Model\CourseCategoryModel;
 use App\Model\NavbarModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use App\Model\Notice;
+use App\Model\UserModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class CourseController extends Controller
@@ -33,7 +35,7 @@ class CourseController extends Controller
         $couData = Catalog::where(["cou_id"=>$id])->get()->toArray();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
-//        print_r($countsql);die;
+        // print_r($countsql);die;
         $coursesql=Notice::where('status',1)->orderBy('not_weight','desc')->take(2)->get();
         $lectsql=LecturerModel::where('status',1)->take(1)->get();
         return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql"));
@@ -46,7 +48,8 @@ class CourseController extends Controller
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
-        return view("index.coursecont1",compact('data',"ments","res","countsql"));
+        $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])->where('course_comment.status',1)->get();//课程评价展示sql
+        return view("index.coursecont1",compact('data',"ments","res","countsql","coursecommentlist"));
     }
     //获取讲师信息
     public function lect(Request $request)
@@ -110,5 +113,25 @@ class CourseController extends Controller
         $res = $this->getIndexCateInfo($arr,0);
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         return view('index.catanews',compact("data","res",'ments'));
+    }
+    //前台课程评论添加
+    public function coursecontadd(Request $request)
+    {
+        $comments=$request->comments;
+        $cou_id=$request->cou_id;
+        $user_id=$request->session()->get("user_id");
+        $data=[
+            'c_text'=>$comments,
+            'ctime'=>time(),
+            'user_id'=>$user_id,
+            'cou_id'=>$cou_id,
+            'status'=>1
+        ];
+        $data=CourseComment::insert($data);
+        if($data==1){
+            echo 200;
+        }else{
+            echo 500;
+        }
     }
 }

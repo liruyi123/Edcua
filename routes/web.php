@@ -36,6 +36,7 @@ Route::get('/index/question','Index\QuestionController@question'); // 题库页�
 Route::post('/index/review','Index\QuestionController@review');
 Route::get('/index/ments','Index\NavbarController@ments');
 Route::get('/index/catenews','Index\CourseController@news');
+Route::post('/index/coursecontadd','Index\CourseController@coursecontadd');//前台课程评论页面
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');

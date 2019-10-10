@@ -22,6 +22,7 @@
                     <a href="#" class="bds_more" data-cmd="more"></a>
                     <a class="bds_count" data-cmd="count"></a>
                 </div>
+                <input type="hidden" class="cou_id" value="{{$data['cou_id']}}">
                 <script>
                     window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                 </script>
@@ -78,6 +79,7 @@
                         </div>
                     </dl>
                 </div>
+                 <!-- 课程评论模块开始 -->
                 <div class="hide">
                     <div>
                         <div id="star">
@@ -93,28 +95,24 @@
                             <p></p>
                         </div>
                         <div class="c_eform">
-                            <textarea rows="7" class="pingjia_con" onblur="if (this.value =='') this.value='评价详细内容';this.className='pingjia_con'" onclick="if (this.value=='评价详细内容') this.value='';this.className='pingjia_con_on'">评价详细内容</textarea>
-                            <a href="#" class="fombtn">发布评论</a>
+                            <textarea rows="7" class="pingjia_con comments"></textarea>
+                            <a href="#" class="fombtn courseconts">发布评论</a>
                             <div class="clearh"></div>
                         </div>
                         <ul class="evalucourse">
+                        @foreach($coursecommentlist as $k=>$v)
                             <li>
-                        	<span class="pephead"><img src="images/0-0.JPG" width="50" title="候候">
-                            <p class="pepname">候候候候</p>
+                        	<span class="pephead"><img src="{{$v['user_image']}}" width="50" title="候候">
+                            <p class="pepname">{{$v['user_name']}}</p>
                             </span>
-                                <span class="pepcont"><p>2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013试真3年国家公。</p>
-                            <p class="peptime pswer">2015-01-02</p></span>
+                                <span class="pepcont"><p>{{$v['c_text']}}</p>
+                            <p class="peptime pswer">{{date('Y-m-d H:i:s',$v['utime'])}}</p></span>
                             </li>
-                            <li>
-                        	<span class="pephead"><img src="images/0-0.JPG" width="50" title="候候">
-                            <p class="pepname">候候15kpiii</p>
-                            </span>
-                                <span class="pepcont"><p>2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公。</p>
-                            <p class="peptime pswer">2015-01-02</p></span>
-                            </li>
+                        @endforeach
                         </ul>
                     </div>
                 </div>
+                <!-- 前台课程评论模块结束 -->
                 <div class="hide">
                     <div>
                         <h3 class="pingjia">提问题</h3>
@@ -379,5 +377,38 @@
                 event:'click'
             });
         });
+
     </script>
     @endsection
+<script type="text/javascript" src="/Editor/release/wangEditor.min.js"></script>
+<script src="/admin/js/jquery-1.8.0.min.js"></script>
+<script>
+     $(document).ready(function(){
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            $('.courseconts').click(function () {
+                var comments=document.querySelector('.comments').value;
+                var cou_id=document.querySelector('.cou_id').value;
+                if(comments==""){
+                    layer.msg('评论区域不能为空！',{icon:2});
+                    return false;
+                }
+                $.ajax({
+                    url:"/index/coursecontadd",
+                    type:"POST",
+                    data:{comments:comments,cou_id:cou_id},
+                    datatype:"json",
+                    async:true,
+                    success:function(res){
+                        if(res==200){
+                            layer.msg('恭喜您，公告添加成功！',{icon:1});
+                            window.location.reload();
+                        }else{
+                            layer.msg('很遗憾，公告添加失败！',{icon:2});
+                        }
+                    }
+                })
+            });
+        });
+    });
+</script>
