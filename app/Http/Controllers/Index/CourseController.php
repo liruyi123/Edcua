@@ -10,21 +10,10 @@ use App\Model\NavbarModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
 use App\Model\Notice;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 use App\Model\UserModel;
 use App\Model\Collect;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 use App\Model\Question;
 use App\Model\QuestionComment;
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class CourseController extends Controller

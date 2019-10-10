@@ -5,9 +5,9 @@
     <title>谋刻职业教育在线测评与学习平台</title>
     {{--<link rel="stylesheet" href="css/course.css"/>--}}
     @yield("css")
-    <link rel="stylesheet" href="css/register-login.css"/>
+    <link rel="stylesheet" href="/index/css/register-login.css"/>
 
-    <link rel="stylesheet" href="css/tab.css" media="screen">
+    <link rel="stylesheet" href="/index/css/tab.css" media="screen">
     {{--<link rel="stylesheet" href="/static/build/layui.css" media="all">--}}
 </head>
 

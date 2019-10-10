@@ -40,14 +40,11 @@ Route::get('/index/question','Index\QuestionController@question'); // 题库页�
 Route::post('/index/review','Index\QuestionController@review');
 Route::get('/index/ments','Index\NavbarController@ments');
 Route::get('/index/catenews','Index\CourseController@news');
-<<<<<<< Updated upstream
 Route::post('/index/coursecontadd','Index\CourseController@coursecontadd');//前台课程评论页面
 
 Route::post('/index/collect','Index\CollectController@index');  // 添加收藏
-=======
 Route::post('/index/tiwen_con','Index\CourseController@tiwen_con');
 Route::post('/index/reply','Index\CourseController@reply');
->>>>>>> Stashed changes
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
