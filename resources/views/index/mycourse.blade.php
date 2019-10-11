@@ -119,19 +119,18 @@
             <div class="tab_box">
                 <div>
                     <ul class="memb_course">
-
+                    @foreach($teach as $k => $v)
                         <li>
                             <div class="courseli">
-
-                                <a href="video.html" target="_blank"><img width="230" src="images/c8.jpg"></a>
-                                <p class="memb_courname"><a href="video.html" class="blacklink">会计基础</a></p>
+                                <a href="/index/coursecont/{{$v['cou_id']}}" target="_blank"><img width="230" src="{{$v->path}}"></a>
+                                <p class="memb_courname"><a href="/index/coursecont/{{$v['cou_id']}}" class="blacklink">{{$v->cou_name}}</a></p>
                                 <div class="mpp">
                                     <div class="lv" style="width:20%;"></div>
                                 </div>
                                 <p class="goon"><a href="video.html"><span>继续学习</span></a></p>
                             </div>
                         </li>
-
+                    @endforeach
 
                     </ul>
 
@@ -139,18 +138,18 @@
                 <div class="hide">
                     <div>
                         <ul class="memb_course">
-
+                        @foreach($teachEnd as $k => $v)
                             <li>
                                 <div class="courseli">
-                                    <a href="video.html" target="_blank"><img width="230" src="images/c8.jpg"></a>
-                                    <p class="memb_courname"><a href="coursecont.html" class="blacklink">会计基础</a></p>
+                                    <a href="/index/coursecont/{{$v['cou_id']}}" target="_blank"><img width="230" src="{{$v->path}}"></a>
+                                    <p class="memb_courname"><a href="/index/coursecont/{{$v['cou_id']}}" class="blacklink">{{$v->cou_name}}</a></p>
                                     <div class="mpp">
                                         <div class="lv" style="width:100%;"></div>
                                     </div>
                                     <p class="goon"><a href="coursecont.html"><span>查看课程</span></a></p>
                                 </div>
                             </li>
-
+                        @endforeach
                         </ul>
 
                     </div>

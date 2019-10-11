@@ -96,8 +96,8 @@
 
             <ul>
                 <li><a class="mb1" href="/index/my">我的课程</a></li>
-                <li class="currnav"><a class="mb3" href="/index/myask">我的问答</a></li>
-                <li><a class="mb4" href="/index/mynote">我的笔记</a></li>
+                <li><a class="mb3" href="/index/myask">我的问答</a></li>
+                <li class="currnav"><a class="mb4" href="/index/mynote">我的笔记</a></li>
                 <li><a class="mb12" href="/index/myhomework">我的作业</a></li>
                 <li><a class="mb2" href="/index/training_list">我的题库</a></li>
             </ul>
@@ -109,21 +109,16 @@
 
 
     <div class="membcont">
-        <h3 class="mem-h3">我的问答</h3>
-        @foreach($ask as $k=>$v)
-        <ul class="memb_course">
-                <li>
-                    <div class="courseli">
-                        <p class="memb_courname">
-                            <a href="" class="blacklink">{{$v->q_name}}</a><br>
-                        @foreach($test as $key=>$val)
-                                <a href="">答：{{$val->c_test}}</a><br>
-                        @endforeach
-                        </p>
-                    </div>
-                </li>
-        </ul>
-        @endforeach
+        <h3 class="mem-h3">添加我的笔记</h3>
+
+        <div class="c_eform">
+            <div class="clearh"></div>
+            <input type="text" class="pingjia_con" value="请输入笔记标题" onblur="if (this.value =='') this.value='请输入笔记标题';this.className='pingjia_con'" onclick="if (this.value=='请输入笔记标题') this.value='';this.className='pingjia_con_on'" id="note1"/><br/>
+            <textarea rows="7" class="pingjia_con" onblur="if (this.value =='') this.value='请输入笔记内容';this.className='pingjia_con'" onclick="if (this.value=='请输入笔记内容') this.value='';this.className='pingjia_con_on'" id="note2">请输入笔记内容</textarea>
+            <a href="#" class="fombtn">发布</a>
+
+        </div>
+
     </div>
 
 
@@ -176,3 +171,28 @@
 </body>
 
 <!-- InstanceEnd --></html>
+<script>
+    $(function () {
+        layui.use('layer', function () {
+            var layer = layui.layer;
+
+            $('.fombtn').click(function () {
+                var title = $('#note1').val();
+                var count = $('#note2').val();
+
+                $.post(
+                        '/index/mynoteadd',
+                        {title:title,count:count},
+                        function (res) {
+                            if(res.error ==10001){
+                                layer.msg(res.msg, {icon: 6});
+                                location.href='/index/mynote'
+                            }else{
+                                layer.msg(res.msg, {icon: 2});
+                            }
+                        },'json'
+                );
+            })
+        });
+    });
+</script>

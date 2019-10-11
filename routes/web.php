@@ -53,6 +53,8 @@ Route::get('/index/myask','Index\MyCourseController@myAsk');    //  我的问答
 Route::get('/index/mynote','Index\MyCourseController@myNote');    //  我的笔记
 Route::get('/index/myhomework','Index\MyCourseController@myHomework');    //  我的作业
 Route::get('/index/training_list','Index\MyCourseController@trainingList');    //  我的题库
+Route::get('/index/mynoteadd','Index\MyCourseController@myAdd');    //  添加笔记
+Route::post('/index/mynoteadd','Index\MyCourseController@myDo');    //  执行添加笔记
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');

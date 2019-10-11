@@ -110,7 +110,28 @@
 
     <div class="membcont">
         <h3 class="mem-h3">我的笔记</h3>
+        @foreach($note as $k=>$v)
+            <ul class="memb_course">
+                <li>
+                    <div class="courseli">
+                        <p class="memb_courname">
+                            <h5 align="center">{{$v->note_name}}</h5><br>
+                            <p style="font-size: 13px;">&nbsp;&nbsp;{{$v->note_content}}</p>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        @endforeach
 
+        <ul class="memb_course">
+            <li>
+                <div class="courseli">
+                    <p class="memb_courname">
+                        <a href="/index/mynoteadd"><img src="/index/images/add.png" alt="" style="width: 60px;height: 60px ; padding-top: 20px"></a>
+                    </p>
+                </div>
+            </li>
+        </ul>
     </div>
 
 
