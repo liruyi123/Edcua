@@ -5,7 +5,26 @@
 <link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css" id="main-css">
 
 @section('content')
-	<body>
+		<!--课程选项卡-->
+<script type="text/javascript">
+function nTabs(thisObj,Num){
+	if(thisObj.className == "current")return;
+	var tabObj = thisObj.parentNode.id;
+	var tabList = document.getElementById(tabObj).getElementsByTagName("li");
+	for(i=0; i <tabList.length; i++)
+		{
+		if (i == Num)
+		{
+		   thisObj.className = "current"; 
+		   document.getElementById(tabObj+"_Content"+i).style.display = "block";
+		}else{
+		   tabList[i].className = "normal"; 
+		   document.getElementById(tabObj+"_Content"+i).style.display = "none";
+		}
+		} 
+}
+</script>
+
 	<div class="content">
 		<div class="fullwidthbanner-container">
 			<div id="revolution-slider" style="max-height:500px !important; background:#46B0AC">
@@ -321,136 +340,70 @@
 
 				<div>
 					<ul id="myTab3">
-						<li class="current" onClick="nTabs(this,0);">IT技能</li>
-						<li class="norma3" onClick="nTabs(this,1);">IT技能</li>
-						<li class="norma3" onClick="nTabs(this,2);">IT技能</li>
-						<li class="norma3" onClick="nTabs(this,3);">IT技能</li>
+						<li class="current" onClick="nTabs(this,0);">{{$data[0]['cate_name']}}</li>
+						<li class="norma3" onClick="nTabs(this,1);">{{$data[1]['cate_name']}}</li>
+						<li class="norma3" onClick="nTabs(this,2);">{{$data[2]['cate_name']}}</li>
+						<li class="norma3" onClick="nTabs(this,3);">{{$data[3]['cate_name']}}</li>
 					</ul>
 					<div class="clearh"></div>
 					<div>
 						<ul class="courseul" id="myTab3_Content0" style="display: block;">
 							<li>
 								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
+								<a href="/index/coursecont/{{$data[0]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
+										<span>{{$data[1]['cou_duration']}}分钟前更新</span>
+										<span class="sp1">{{$data[0]['user_id']}}人学习</span>
 										<div style="clear:both"></div>
 									</div>
 								</div>
 							</li>
 							<li>
 								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
+								<a href="/index/coursecont/{{$data[0]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
+										<span>{{$data[2]['cou_duration']}}分钟前更新</span>
+										<span class="sp1">{{$data[1]['user_id']}}人学习</span>
 										<div style="clear:both"></div>
 									</div>
 								</div>
 							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>.
 							<div class="clearh"></div>
 						</ul>
 					</div>
 					<div>
 						<ul class="courseul" id="myTab3_Content1" style="display: none;">
-							<li>
+						<li>
 								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
+								<a href="/index/coursecont/{{$data[0]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
+										<span>{{$data[0]['cou_duration']}}分钟前更新</span>
+										<span class="sp1">{{$data[0]['user_id']}}人学习</span>
 										<div style="clear:both"></div>
 									</div>
 								</div>
 							</li>
 							<li>
 								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
+								<a href="/index/coursecont/{{$data[0]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
+										<span>{{$data[0]['cou_duration']}}分钟前更新</span>
+										<span class="sp1">{{$data[0]['user_id']}}人学习</span>
 										<div style="clear:both"></div>
 									</div>
 								</div>
 							</li>
 							<li>
 								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
+								<a href="/index/coursecont/{{$data[0]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
+										<span>{{$data[1]['cou_duration']}}分钟前更新</span>
+										<span class="sp1">{{$data[0]['user_id']}}人学习</span>
 										<div style="clear:both"></div>
 									</div>
 								</div>
@@ -460,35 +413,13 @@
 					</div>
 					<div>
 						<ul class="courseul" id="myTab3_Content2" style="display: none;">
-							<li>
+						<li>
 								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
+								<a href="/index/coursecont/{{$data[0]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
+										<span>{{$data[3]['cou_duration']}}分钟前更新</span>
+										<span class="sp1">{{$data[0]['user_id']}}人学习</span>
 										<div style="clear:both"></div>
 									</div>
 								</div>
@@ -498,24 +429,13 @@
 					</div>
 					<div>
 						<ul class="courseul" id="myTab3_Content3" style="display: none;">
-							<li>
+						<li>
 								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
+								<a href="/index/coursecont/{{$data[0]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
-										<div style="clear:both"></div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="courselist">
-									<img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
-									<p class="courTit">HTTP下载课程</p>
-									<div class="gray">
-										<span>1小时前更新</span>
-										<span class="sp1">1255555人学习</span>
+										<span>{{$data[1]['cou_duration']}}分钟前更新</span>
+										<span class="sp1">{{$data[0]['user_id']}}人学习</span>
 										<div style="clear:both"></div>
 									</div>
 								</div>
@@ -524,14 +444,9 @@
 						</ul>
 					</div>
 				</div>
-
-
 				<div class="line no"></div>
-
-
 			</div>
-			<span class="morecourse"><a href="courselist.html" class="btnlink">更多课程</a></span>
-
+			<span class="morecourse"><a href="/index/courselist" class="btnlink">更多课程</a></span>
 		</div>
 		<div class="foot">
 			<div class="fcontainer">
@@ -544,7 +459,12 @@
 					</div>
 				</div>
 				<div class="fmenu">
-					<p><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">优秀讲师</a> | <a href="#">帮助中心</a> | <a href="#">意见反馈</a> | <a href="#">加入我们</a></p>
+				<p>
+					@foreach($res as $k=>$v)
+						<a href="{{$v['nav_url']}}">{{$v['nav_name']}}</a> | 
+					@endforeach
+						<a href="https://www.mobantu.com/advertisement">广告合作</a> 
+				</p>
 				</div>
 				<div class="copyright">
 					<div><a href="/">谋刻网</a>所有&nbsp;晋ICP备12006957号-9</div>
@@ -573,32 +493,32 @@
 @endsection
 <script src="/index/js/jquery-1.8.0.min.js"></script>
 <script>
-    function logmine(){
-        document.getElementById("lne").style.display="block";
-    }
-    function logclose(){
-        document.getElementById("lne").style.display="none";
-    }
+function logmine(){
+	document.getElementById("lne").style.display="block";
+}
+function logclose(){
+	document.getElementById("lne").style.display="none";	
+}
 
-    /*右侧客服飘窗*/
-    $(".label_pa li").click(function() {
-        $(this).siblings("li").find("span").css("background-color", "#fff").css("color", "#666");
-        $(this).find("span").css("background", "#fb5e55").css("color", "#fff");
-    });
-    $(".em").hover(function() {
-        $(".showem").toggle();
-    });
-    $(".qq").hover(function() {
-        $(".showqq").toggle();
-    });
-    $(".wb").hover(function() {
-        $(".showwb").toggle();
-    });
-    $("#top").click(function() {
-        if (scroll == "off") return;
-        $("html,body").animate({
-                scrollTop: 0
-            },
-            600);
-    });
+ /*右侧客服飘窗*/
+	$(".label_pa li").click(function() {
+		$(this).siblings("li").find("span").css("background-color", "#fff").css("color", "#666");
+		$(this).find("span").css("background", "#fb5e55").css("color", "#fff");
+	});
+	$(".em").hover(function() {
+		$(".showem").toggle();
+	});
+	$(".qq").hover(function() {
+		$(".showqq").toggle();
+	});
+	$(".wb").hover(function() {
+		$(".showwb").toggle();
+	});
+	$("#top").click(function() {
+		if (scroll == "off") return;
+		$("html,body").animate({
+			scrollTop: 0
+		},
+		600);
+	});
 </script>
