@@ -39,6 +39,7 @@
             <input type="hidden" value="{{$data['cou_id']}}" id="cou_id">
         </div>
         <div class="course_xq">
+<<<<<<< Updated upstream
             <span class="courstime1"><p>课时<br/><span class="coursxq_num">{{$KSarr}}课时</span></p></span>
             <span class="courstime1"><p>学习人数<br/>
                     <span class="coursxq_num">
@@ -49,6 +50,10 @@
                         @endif
                             人
                     </span></p></span>
+=======
+            <span class="courstime1"><p>课时<br/><span class="coursxq_num">1 00课时</span></p></span>
+            <span class="courstime1"><p>学习人数<br/><span class="coursxq_num">25987人</span></p></span>
+>>>>>>> Stashed changes
             <span class="courstime1"><p style="border:none;">课程时长<br/><span class="coursxq_num">3小时20分</span></p></span>
         </div>
         <div class="course_xq2">
@@ -95,12 +100,12 @@
                     <div>
                         <div id="star">
                             <span class="startitle">请打分</span>
-                            <ul>
-                                <li><a href="javascript:;">1</a></li>
-                                <li><a href="javascript:;">2</a></li>
-                                <li><a href="javascript:;">3</a></li>
-                                <li><a href="javascript:;">4</a></li>
-                                <li><a href="javascript:;">5</a></li>
+                            <ul class="pingfen">
+                                <li value="1"><a href="javascript:;">1</a></li>
+                                <li value="2"><a href="javascript:;">2</a></li>
+                                <li value="3"><a href="javascript:;">3</a></li>
+                                <li value="4"><a href="javascript:;">4</a></li>
+                                <li value="5"><a href="javascript:;">5</a></li>
                             </ul>
                             <span></span>
                             <p></p>
@@ -115,8 +120,13 @@
                             <li>
                         	<span class="pephead"><img src="{{$v['user_image']}}" width="50" title="候候">
                             <p class="pepname">{{$v['user_name']}}</p>
+                            <p>评分：<font color="red" font-size="7">{{$v['score']}}</font></p>
                             </span>
+                            @if($v['c_text']=="")
+                                <span class="pepcont"><p>默默的支持！</p>
+                            @else
                                 <span class="pepcont"><p>{{$v['c_text']}}</p>
+                            @endif
                             <p class="peptime pswer">{{date('Y-m-d H:i:s',$v['utime'])}}</p></span>
                             </li>
                         @endforeach
@@ -467,14 +477,16 @@
                 $('.courseconts').click(function () {
                     var comments=document.querySelector('.comments').value;
                     var cou_id=document.querySelector('.cou_id').value;
-                    if(comments==""){
-                        layer.msg('评论区域不能为空！',{icon:2});
+                    var score=$('.pingfen').find('li[class=on]').text();
+                    var score=score.substr(score.length-1,1);
+                    if(score==""){
+                        layer.msg('评价不能为空!',{icon:2});
                         return false;
                     }
                     $.ajax({
                         url:"/index/coursecontadd",
                         type:"POST",
-                        data:{comments:comments,cou_id:cou_id},
+                        data:{comments:comments,cou_id:cou_id,score:score},
                         datatype:"json",
                         async:true,
                         success:function(res){
@@ -490,8 +502,6 @@
                         }
                     })
                 });
-
-
             });
         });
     </script>

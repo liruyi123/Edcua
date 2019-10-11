@@ -39,7 +39,7 @@ class CourseController extends Controller
         $data = Course::where(['course.cou_id'=>$id])->first();
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $couData = Catalog::where(["cou_id"=>$id,'pid'=>0,"show"=>1])->get()->toArray();
-//        print_r($couData);die;
+        // print_r($couData);die;
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
         // print_r($countsql);die;
@@ -97,7 +97,7 @@ class CourseController extends Controller
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
         $countsql=Course::where('status',1)->take(3)->get();
         $coursecommentlist=CourseComment::join("user",['course_comment.user_id'=>'user.user_id'])
-            ->where('course_comment.status',1)
+        ->where('course_comment.status',1)
             ->orderBy('course_comment.ctime','desc')
             ->get();//课程评价展示sql
         // 查询目录
@@ -258,12 +258,15 @@ class CourseController extends Controller
         }else{
             $comments=$request->comments;
             $cou_id=$request->cou_id;
+            $score=$request->score;
+            // var_dump($score);die;
             $user_id=$request->session()->get("user_id");
             $data=[
                 'c_text'=>$comments,
                 'ctime'=>time(),
                 'user_id'=>$user_id,
                 'cou_id'=>$cou_id,
+                'score'=>$score,
                 'status'=>1
             ];
             $data=CourseComment::insert($data);
