@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Model\QuestionBank;
+use App\Model\QuestionBankUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\NavbarModel;
@@ -54,6 +56,7 @@ class MyCourseController extends Controller
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $ask = Question::where('user_id',$id)->get();
         $test = QuestionComment::leftjoin('question','question.q_id','=','question_comment.q_id')->where('question.user_id',$id)->orderBy('c_id','desc')->limit(3)->get();
+//        print_r($test);die;
         return view('index.myask',compact('user','ments','ask','test'));
     }
 
@@ -82,7 +85,18 @@ class MyCourseController extends Controller
         $id = $this->getUserId();
         $user = UserModel::where(['user_id'=>$id])->first();
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view('index.training',compact('user','ments'));
+        $data = QuestionBank::join("question_bank_user","question_bank.b_id","question_bank_user.b_id")
+            ->where(['question_bank_user.user_id'=>$id])->get()->toArray();
+
+        $num = QuestionBankUser::where(['user_id'=>$id])->count();
+        $errorNum = QuestionBankUser::where(['user_id'=>$id,'status'=>1])->count();
+        if ($num == 0){
+            $num = "您还没有做过任何题目";
+        }else{
+            $num = number_format($errorNum/$num*100);
+        }
+
+        return view('index.training',compact('user','ments','data','num'));
     }
 
     //  添加笔记

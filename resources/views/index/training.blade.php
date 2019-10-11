@@ -109,8 +109,83 @@
 
 
     <div class="membcont">
-        <h3 class="mem-h3">我的题库</h3>
+        <h3 class="mem-h3">我的题库--------------------------------------------->
+            @if(is_numeric($num))
+                <a href="#">正确率<span  style="color: red">{{$num}}%</span></a>
+            @else
+                <span  style="color: red">{{$num}}</span>
+            @endif
+        </h3>
+        @foreach($data as $k=>$v)
+            <ul class="memb_course">
+                <li>
+                    <div class="courseli">
+                        <p class="memb_courname">
+                            <a href="#" class="blacklink">
+                                @if($v['b_type'] == 1)
+                                    [判断题]{{$v['b_name']}}
+                                @elseif($v['b_type'] == 2)
+                                    [选择题]{{$v['b_name']}}<br>
+                                    A:{{$v['b_choiceA']}}&nbsp;&nbsp;&nbsp;&nbsp;B:{{$v['b_choiceB']}}&nbsp;&nbsp;&nbsp;&nbsp;C:{{$v['b_choiceC']}}&nbsp;&nbsp;&nbsp;&nbsp;D:{{$v['b_choiceD']}}
+                                @elseif($v['b_type'] ==3)
+                                    [回答题]{{$v['b_name']}}
+                                @endif
+                            </a>
+                            <br>
+                            <br>
 
+                            @if($v['b_type'] == 1)
+                                <a href="#">正确答案：
+                                    <span style="color: red">
+                                        @if($v['b_answer'] == 1)
+                                            √
+                                        @else
+                                            ×
+                                        @endif
+                                    </span></a><br>
+                            @elseif($v['b_type'] == 2)
+                                <a href="#">正确答案：
+                                    <span style="color: red">
+                                        {{$v['b_answer']}}
+                                    </span>
+                                </a><br>
+                            @elseif($v['b_type'] ==3)
+                                <a href="#">正确答案：
+                                    <span style="color: red">
+                                        {{$v['b_answer']}}
+                                    </span>
+                                </a><br>
+                            @endif
+
+                            <br>
+                            <br>
+                            @if($v['b_type'] == 1)
+                                <a href="#">您的答案：
+                                    <span style="color: red">
+                                        @if($v['user_answer'] == 1)
+                                            √
+                                        @else
+                                            ×
+                                        @endif
+                                    </span></a><br>
+                            @elseif($v['b_type'] == 2)
+                                <a href="#">您的答案：
+                                    <span style="color: red">
+                                        {{$v['user_answer']}}
+                                    </span>
+                                </a><br>
+                            @elseif($v['b_type'] ==3)
+                                <a href="#">您的答案：
+                                    <span style="color: red">
+                                        {{$v['user_answer']}}
+                                    </span>
+                                </a><br>
+                            @endif
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        @endforeach
     </div>
 
 
