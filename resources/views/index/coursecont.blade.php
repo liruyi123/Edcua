@@ -28,7 +28,15 @@
 		<p class="courstime">课程评价：<span class="hidden-sm hidden-xs">{{$scoreSum}}分（{{$scoreNum}}人评价）</span></p>
         <!--<p><a class="state end">完结</a></p>-->      
         <span class="coursebtn">
-            <a class="btnlink" href="javascript:;">加入学习</a>
+            <a class="btnlink" href="javascript:;">
+                @if($type == 1)
+                    继续学习
+                @elseif($type == 2)
+                    已学完
+                @elseif($type == 3)
+                    开始学习
+                @endif
+            </a>
             <a class="codol fx" href="javascript:void(0);" onClick="$('#bds').toggle();">分享课程</a>
                 @if($collect)
                     <a class="codol sc" href="#" style="background-position: 0px -1800px;">取消收藏</a>
@@ -201,9 +209,9 @@
                         async:true,
                         success:function(res){
                             console.log(res);
-                            if(res.code==200){
+                            if(res.code == 200){
                                 window.location.href = "/index/coursecont1"+cou_id;
-                            }else if(res.code==201){
+                            }else if(res.code == 201){
                                 layer.msg(msg.message,{icon:2});
                                 window.location.href = "/index/login";
                             }else{

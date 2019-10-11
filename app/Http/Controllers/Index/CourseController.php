@@ -55,13 +55,19 @@ class CourseController extends Controller
         // 查询课时
         $KSarr = Catalog::where('cata_name','like','%课时%')->count();
         //查询人数
-        $CUarr = CourseUser::where(['status'=>1,'cou_id'=>$id])->count();
+        $CUarr = CourseUser::where(['c_status'=>1,'cou_id'=>$id])->count();
         // 课程评价平均值
         $scoreSum = CourseComment::where(['status'=>1,'cou_id'=>$id])->avg('score');
         $scoreNum = CourseComment::where(['status'=>1,'cou_id'=>$id])->count();
-        // 
 
-        return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql","collect","KSarr","CUarr","scoreSum","scoreNum"));
+        if (empty($user_id)){
+            $type = 3;
+        }else{
+            $aaa = CourseUser::where(['cou_id'=>$id,'user_id'=>$user_id])->first();
+            $type = $aaa['c_status'];
+        }
+
+        return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql","collect","KSarr","CUarr","scoreSum","scoreNum","type"));
     }
 
     public function btnlink(Request $request){
@@ -77,7 +83,7 @@ class CourseController extends Controller
         $data = [
             'user_id'=>$id,
             'cou_id'=>$cou_id,
-            'status'=>1
+            'c_status'=>1
         ];
         $res = CourseUser::insert($data);
         if ($res == 1){
@@ -116,7 +122,7 @@ class CourseController extends Controller
         // 查询课时
         $KSarr = Catalog::where('cata_name','like','%课时%')->count();
         //查询人数
-        $CUarr = CourseUser::where(['status'=>1,'cou_id'=>$id])->count();
+        $CUarr = CourseUser::where(['c_status'=>1,'cou_id'=>$id])->count();
 
 
 
