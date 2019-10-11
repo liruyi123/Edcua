@@ -111,7 +111,7 @@ class CourseController extends Controller
         // 查询目录
         $catadata = Catalog::where(['show'=>1])->get()->toArray();
         $catadata = $this->getIndexCataInfo($catadata,0);
-//        print_r($catadata);die;
+        //print_r($catadata);die;
         // 查询问题
         $arr = Question::join("user",'user.user_id',"=","question.user_id")
             ->where(['question.status'=>1,'question.cou_id'=>$id])->orderBy('q_ctime','desc')->get()->toArray();

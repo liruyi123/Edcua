@@ -31,6 +31,7 @@ Route::get("/index/coursecont1/{id}","Index\CourseController@coursecont1");//课
 Route::post("/index/reply","Index\CourseController@reply");
 Route::post("/index/tiwen_con","Index\CourseController@tiwen_con");
 Route::post("/index/btnlink","Index\CourseController@btnlink");
+Route::any("/index/down","Index\IndexController@down");//下载
 
 Route::post("/index/lect","Index\CourseController@lect");
 Route::get('/index/study','Index\CourseController@study');
