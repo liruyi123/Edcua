@@ -59,8 +59,8 @@
                  <a class="tkbtn tklog" href="/index/login" style="float: right">登录&nbsp;&nbsp;</a>
 
             </span>
-            @elseif(session('user_id') != "")
-                    <!--登录后-->
+                @elseif(session('user_id') != "")
+                        <!--登录后-->
                 <div class="logined">
                     <a href="mycourse.html"  onMouseOver="logmine()" style="width:70px" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
                 <span id="lne" style="display:none" onMouseOut="logclose()" onMouseOver="logmine()">
@@ -75,8 +75,8 @@
                     <li><a class="link1 exit" href="javascript:;">退出</a></li>
                 </ul>
                 </span>
-    </div>
-    @endif
+                </div>
+            @endif
         </span>
     </div>
 </div>
@@ -95,11 +95,11 @@
         <div class="memb">
 
             <ul>
-                <li class="currnav"><a class="mb1" href="/index/my">我的课程</a></li>
+                <li><a class="mb1" href="/index/my">我的课程</a></li>
                 <li><a class="mb3" href="/index/myask">我的问答</a></li>
                 <li><a class="mb4" href="/index/mynote">我的笔记</a></li>
                 <li><a class="mb12" href="/index/myhomework">我的作业</a></li>
-                <li><a class="mb2" href="/index/training_list">我的题库</a></li>
+                <li class="currnav"><a class="mb2" href="/index/training_list">我的题库</a></li>
             </ul>
 
         </div>
@@ -109,75 +109,8 @@
 
 
     <div class="membcont">
-        <h3 class="mem-h3">我的课程</h3>
-        <div class="box demo2" style="width:820px;">
-            <ul class="tab_menu" style="margin-left:30px;">
-                <li class="current">学习中</li>
-                <li>已学完</li>
-                <li>收藏</li>
-            </ul>
-            <div class="tab_box">
-                <div>
-                    <ul class="memb_course">
+        <h3 class="mem-h3">我的题库</h3>
 
-                        <li>
-                            <div class="courseli">
-
-                                <a href="video.html" target="_blank"><img width="230" src="images/c8.jpg"></a>
-                                <p class="memb_courname"><a href="video.html" class="blacklink">会计基础</a></p>
-                                <div class="mpp">
-                                    <div class="lv" style="width:20%;"></div>
-                                </div>
-                                <p class="goon"><a href="video.html"><span>继续学习</span></a></p>
-                            </div>
-                        </li>
-
-
-                    </ul>
-
-                </div>
-                <div class="hide">
-                    <div>
-                        <ul class="memb_course">
-
-                            <li>
-                                <div class="courseli">
-                                    <a href="video.html" target="_blank"><img width="230" src="images/c8.jpg"></a>
-                                    <p class="memb_courname"><a href="coursecont.html" class="blacklink">会计基础</a></p>
-                                    <div class="mpp">
-                                        <div class="lv" style="width:100%;"></div>
-                                    </div>
-                                    <p class="goon"><a href="coursecont.html"><span>查看课程</span></a></p>
-                                </div>
-                            </li>
-
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="hide">
-                    <div>
-                        <ul class="memb_course">
-                        @foreach($collect as $k => $v)
-                                <input type="hidden" value="{{$v['cou_id']}}" id="cou_id">
-                            <li>
-                                <div class="courseli mysc">
-                                    <a href="/index/coursecont/{{$v['cou_id']}}" target="_blank"><img width="230" src="{{$v->path}}" class="mm"></a>
-                                    <p class="memb_courname"><a href="/index/coursecont/{{$v['cou_id']}}" class="blacklink">{{$v->cou_name}}</a></p>
-                                    <div class="mpp">
-                                        <div class="lv" style="width:20%;"></div>
-                                    </div>
-                                    <p class="goon"><a href="#"><span>继续学习</span></a></p>
-                                    <div class="mask"><span class="qxsc"  title="移除收藏">▬</span></div>
-                                </div>
-                            </li>
-                        @endforeach
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 
 
@@ -230,27 +163,3 @@
 </body>
 
 <!-- InstanceEnd --></html>
-<script>
-    $(function () {
-        layui.use('layer', function () {
-            var layer = layui.layer;
-            $('.qxsc').click(function () {
-                var _this = $(this);
-                var cou_id = $("#cou_id").val();
-
-                $.post(
-                        '/index/coldel',
-                        {cou_id: cou_id},
-                        function (res) {
-                            if (res.error == 10001) {
-                                layer.msg(res.msg, {icon: 6});
-                                location.href='/index/my'
-                            } else {
-                                layer.msg(res.msg, {icon: 2});
-                            }
-                        }, 'json'
-                );
-            });
-        });
-    });
-</script>

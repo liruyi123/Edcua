@@ -47,6 +47,11 @@ Route::post('/index/coursecontadd','Index\CourseController@coursecontadd');//前
 Route::post('/index/collect','Index\CollectController@index');  // 添加收藏
 
 Route::get('/index/my','Index\MyCourseController@index');   //  个人中心首页
+Route::post('/index/coldel','Index\MyCourseController@colDel'); //  移除收藏
+Route::get('/index/myask','Index\MyCourseController@myAsk');    //  我的问答
+Route::get('/index/mynote','Index\MyCourseController@myNote');    //  我的笔记
+Route::get('/index/myhomework','Index\MyCourseController@myHomework');    //  我的作业
+Route::get('/index/training_list','Index\MyCourseController@trainingList');    //  我的题库
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
