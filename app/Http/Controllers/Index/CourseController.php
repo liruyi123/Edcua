@@ -6,6 +6,7 @@ use App\Model\Catalog;
 use App\Model\Course;
 use App\Model\CourseComment;
 use App\Model\CourseCategoryModel;
+use App\Model\CourseUser;
 use App\Model\NavbarModel;
 use App\Model\CourseModel;
 use App\Model\LecturerModel;
@@ -33,6 +34,7 @@ class CourseController extends Controller
     //课程介绍，目录页面
     public function coursecont(Request $request)
     {
+        $user_id = $request->session()->get("user_id");
         $id = $request->id;
         $data = Course::where(['course.cou_id'=>$id])->first();
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
@@ -50,14 +52,45 @@ class CourseController extends Controller
             'cate_id'  => $id
         ];
         $collect = Collect::where($where)->first();
-        return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql","collect"));
+        // 查询课时
+        $KSarr = Catalog::where('cata_name','like','%课时%')->count();
+        //查询人数
+        $CUarr = CourseUser::where(['status'=>1,'cou_id'=>$id])->count();
+        // 课程评价平均值
+        $scoreSum = CourseComment::where(['status'=>1,'cou_id'=>$id])->avg('score');
+        $scoreNum = CourseComment::where(['status'=>1,'cou_id'=>$id])->count();
+        // 
+
+        return view("index.coursecont",compact("data","couData","ments","res","countsql","coursesql","lectsql","collect","KSarr","CUarr","scoreSum","scoreNum"));
+    }
+
+    public function btnlink(Request $request){
+        $id = $request->session()->get("user_id");
+        if ($id == ""){
+            return $this->code(201,"您还没有登陆，请先登录~~");
+        }
+        $cou_id = $request->input("cou_id");
+        $arr = CourseUser::where(['user_id'=>$id])->first();
+        if ($arr){
+            return $this->code(202,"该课程已经假如您的学习列表中");
+        }
+        $data = [
+            'user_id'=>$id,
+            'cou_id'=>$cou_id,
+            'status'=>1
+        ];
+        $res = CourseUser::insert($data);
+        if ($res == 1){
+            return $this->code(200);
+        }else{
+            return $this->code(202);
+        }
+
     }
 
     //课程详情页面
     public function coursecont1(Request $request)
     {
-
-
         $id = $request->id;
         $data = Course::join("lecturer",['course.lect_id'=>'lecturer.lect_id'])->where(['cou_id'=>$id])->first()->toArray();
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
@@ -70,16 +103,25 @@ class CourseController extends Controller
         // 查询目录
         $catadata = Catalog::where(['show'=>1])->get()->toArray();
         $catadata = $this->getIndexCataInfo($catadata,0);
+//        print_r($catadata);die;
         // 查询问题
-        $arr = Question::join("user",'user.user_id',"=","question.user_id")->where(['question.status'=>1])->orderBy('q_ctime','desc')->get()->toArray();
+        $arr = Question::join("user",'user.user_id',"=","question.user_id")
+            ->where(['question.status'=>1,'question.cou_id'=>$id])->orderBy('q_ctime','desc')->get()->toArray();
         // 查询回答
         $QCarr = QuestionComment::join("user",'user.user_id',"=","question_comment.user_id")
             ->join("question",'question.q_id',"=","question_comment.q_id")
             ->where(['question_comment.status'=>1])
             ->orderBy('q_ctime','desc')
             ->get()->toArray();
+        // 查询课时
+        $KSarr = Catalog::where('cata_name','like','%课时%')->count();
+        //查询人数
+        $CUarr = CourseUser::where(['status'=>1,'cou_id'=>$id])->count();
 
-        return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr","coursecommentlist"));
+
+
+
+        return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr","coursecommentlist","KSarr","CUarr"));
     }
 
     // 回复问题
@@ -114,8 +156,10 @@ class CourseController extends Controller
             return $this->code(201,"您还没有登陆，请先登录~~");
         }
         $wenti = $request->input("wenti");
+        $cou_id = $request->input("cou_id");
         $data = [
             'user_id'=>$id,
+            'cou_id'=>$cou_id,
             'q_name'=>$wenti,
             'q_ctime'=>time(),
             'q_utime'=>time(),

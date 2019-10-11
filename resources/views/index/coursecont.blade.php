@@ -15,13 +15,20 @@
     <div class="coursetitle">
    		<a class="state">更新中</a>
     	<h2 class="courseh2">{{$data['cou_name']}}</h2>
-        <p class="courstime">总课时：<span class="course_tt">30课时</span></p>
+        <p class="courstime">总课时：<span class="course_tt">{{$KSarr}}课时</span></p>
 		<p class="courstime">课程时长：<span class="course_tt">{{$data['cou_duration']}}分钟</span></p>
-        <p class="courstime">学习人数：<span class="course_tt">25987人</span></p>
-		<p class="courstime">课程评价：<img width="71" height="14" src="images/evaluate5.png">&nbsp;&nbsp;<span class="hidden-sm hidden-xs">5.0分（10人评价）</span></p>
+        <p class="courstime">学习人数：
+            <span class="course_tt">
+                @if($CUarr == "")
+                    0
+                @else
+                    {{$CUarr}}
+                @endif人
+            </span></p>
+		<p class="courstime">课程评价：<span class="hidden-sm hidden-xs">{{$scoreSum}}分（{{$scoreNum}}人评价）</span></p>
         <!--<p><a class="state end">完结</a></p>-->      
         <span class="coursebtn">
-            <a class="btnlink" href="/index/study">加入学习</a>
+            <a class="btnlink" href="javascript:;">加入学习</a>
             <a class="codol fx" href="javascript:void(0);" onClick="$('#bds').toggle();">分享课程</a>
                 @if($collect)
                     <a class="codol sc" href="#" style="background-position: 0px -1800px;">取消收藏</a>
@@ -183,6 +190,28 @@
                             }, 'json'
                     );
                 });
+
+                $(".btnlink").click(function () {
+                    var cou_id = $("#cou_id").val();
+                    $.ajax({
+                        url:"/index/btnlink",
+                        type:"POST",
+                        data:{cou_id:cou_id},
+                        datatype:"json",
+                        async:true,
+                        success:function(res){
+                            console.log(res);
+                            if(res.code==200){
+                                window.location.href = "/index/coursecont1"+cou_id;
+                            }else if(res.code==201){
+                                layer.msg(msg.message,{icon:2});
+                                window.location.href = "/index/login";
+                            }else{
+                                layer.msg("error",{icon:2});
+                            }
+                        }
+                    })
+                })
             });
         });
     </script>

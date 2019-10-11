@@ -30,6 +30,7 @@ Route::get('/index/coursecont/{id}','Index\CourseController@coursecont');//课�
 Route::get("/index/coursecont1/{id}","Index\CourseController@coursecont1");//课程详情
 Route::post("/index/reply","Index\CourseController@reply");
 Route::post("/index/tiwen_con","Index\CourseController@tiwen_con");
+Route::post("/index/btnlink","Index\CourseController@btnlink");
 
 Route::post("/index/lect","Index\CourseController@lect");
 Route::get('/index/study','Index\CourseController@study');

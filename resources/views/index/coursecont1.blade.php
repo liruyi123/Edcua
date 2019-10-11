@@ -39,12 +39,20 @@
             <input type="hidden" value="{{$data['cou_id']}}" id="cou_id">
         </div>
         <div class="course_xq">
-            <span class="courstime1"><p>课时<br/><span class="coursxq_num">100课时</span></p></span>
-            <span class="courstime1"><p>学习人数<br/><span class="coursxq_num">25987人</span></p></span>
+            <span class="courstime1"><p>课时<br/><span class="coursxq_num">{{$KSarr}}课时</span></p></span>
+            <span class="courstime1"><p>学习人数<br/>
+                    <span class="coursxq_num">
+                        @if($CUarr == "")
+                            0
+                        @else
+                            {{$CUarr}}
+                        @endif
+                            人
+                    </span></p></span>
             <span class="courstime1"><p style="border:none;">课程时长<br/><span class="coursxq_num">3小时20分</span></p></span>
         </div>
         <div class="course_xq2">
-            <a class="course_learn" href="video.html">开始学习</a>
+            <a class="course_learn" href="#">开始学习</a>
         </div>
         <div class="clearh"></div>
     </div>
@@ -132,7 +140,7 @@
                             </span>
                                 <span class="pepcont">
                             <p><a  href="javascript:;"  class="peptitle" target="_blank" data-toggle="modal" data-target="#myModal2_{{$v['q_id']}}">{{$v['q_name']}}</a></p>
-                            <p class="peptime pswer"><span class="pepask">回答(<strong><a class="bluelink" href="#">10</a></strong>)</span>{{date('Y-m-d H:i:s',$v['q_ctime'])}}</p>
+                            <p class="peptime pswer"><span class="pepask"></span>{{date('Y-m-d H:i:s',$v['q_ctime'])}}</p>
                             </span>
                                 <div class="modal inmodal" id="myModal2_{{$v['q_id']}}" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -144,7 +152,7 @@
                                             <div class="modal-body" aaa="111">
                                                 @foreach($QCarr as $kk=>$vv)
                                                     @if($vv['q_id'] == $v['q_id'])
-                                                        {{$vv['user_name']}}:{{$vv['c_test']}}
+                                                        <span>{{$vv['user_name']}}:{{$vv['c_test']}}</span>
                                                         <br>
                                                     @endif
                                                 @endforeach
@@ -413,7 +421,7 @@
                         type : 'post',
                         url : '/index/tiwen_con',
                         dataType:"json",
-                        data:{wenti:wenti},
+                        data:{wenti:wenti,cou_id:cou_id},
                         success : function (msg) {
                             // console.log(msg);
                             if(msg.code == '200'){
