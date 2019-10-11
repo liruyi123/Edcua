@@ -88,7 +88,7 @@
             <div style="text-align:center;"><img src="{{$user['user_image']}}" width="80" ></div>
             <div style="width:220px;text-align:center;">
                 <p class="membUpdate mine">{{$user['user_name']}}</p>
-                <p class="membUpdate mine"><a href="mysetting.html">修改信息</a>&nbsp;|&nbsp;<a href="myrepassword.html">修改密码</a></p>
+                <p class="membUpdate mine"><a href="/index/updMessage">修改信息</a>&nbsp;|&nbsp;<a href="/index/pwd">修改密码</a></p>
                 <div class="clearh"></div>
             </div>
         </div>

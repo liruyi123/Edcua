@@ -31,6 +31,8 @@ class CourseController extends Controller
         return view("index.courselist",compact("data","res",'ments','date'));
     }
 
+
+
     //课程介绍，目录页面
     public function coursecont(Request $request)
     {

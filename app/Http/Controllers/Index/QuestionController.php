@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Index;
 use App\Model\CourseCategoryModel;
 use App\Model\NavbarModel;
 use App\Model\QuestionBank;
+use App\Model\QuestionBankUser;
 use App\Model\QuestionType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,27 +40,53 @@ class QuestionController extends Controller
 
     // 题库详情
     public function review(Request $request){
-        $data = $request->input();
+        $id = $request->session()->get("user_id");
+        if ($id == ""){
+            return $this->code(202,"您还没有登陆，请先登录~~");
+        }
         $c_answer = $request->input("c_answer");
         $type = $request->input("type");
         $b_id = $request->input("b_id");
         $answer = $request->input("answer");
-
         $arr = QuestionBank::where(['b_id'=>$b_id])->get()->toArray();
-//        print_r($data);die;
-
         if ($type == 3){
-//            echo 1;die;
             if ($c_answer == $arr[0]['b_answer']){
+                $data = [
+                    'b_id'=>$b_id,
+                    'user_id'=>$id,
+                    'user_answer'=>$c_answer,
+                    'status'=>1,
+                ];
+                QuestionBankUser::insert($data);
                 return $this->code(200,"回答正确","");
             }else{
+                $data = [
+                    'b_id'=>$b_id,
+                    'user_id'=>$id,
+                    'user_answer'=>$c_answer,
+                    'status'=>2,
+                ];
+                QuestionBankUser::insert($data);
                 return $this->code(201,"回答错误","");
             }
         }else{
-//            echo 2;die;
             if ($answer == $arr[0]['b_answer']){
+                $data = [
+                    'b_id'=>$b_id,
+                    'user_id'=>$id,
+                    'user_answer'=>$answer,
+                    'status'=>1,
+                ];
+                QuestionBankUser::insert($data);
                 return $this->code(200,"回答正确","");
             }else{
+                $data = [
+                    'b_id'=>$b_id,
+                    'user_id'=>$id,
+                    'user_answer'=>$answer,
+                    'status'=>2,
+                ];
+                QuestionBankUser::insert($data);
                 return $this->code(201,"回答错误","");
             }
         }

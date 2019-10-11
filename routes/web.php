@@ -55,6 +55,9 @@ Route::get('/index/myhomework','Index\MyCourseController@myHomework');    //  �
 Route::get('/index/training_list','Index\MyCourseController@trainingList');    //  我的题库
 Route::get('/index/mynoteadd','Index\MyCourseController@myAdd');    //  添加笔记
 Route::post('/index/mynoteadd','Index\MyCourseController@myDo');    //  执行添加笔记
+Route::get('/index/updMessage','Index\UpdMessageController@updMessage');    //  修改信息
+Route::post('/index/updMessage_do','Index\UpdMessageController@updMessagedo');    //  修改信息
+Route::post('/index/uploadinfo','Index\UpdMessageController@uploadinfo');    //  修改信息
 
 //后台
 Route::get('/admin/index','Admin\IndexController@index');

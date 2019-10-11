@@ -39,7 +39,6 @@
             <input type="hidden" value="{{$data['cou_id']}}" id="cou_id">
         </div>
         <div class="course_xq">
-<<<<<<< Updated upstream
             <span class="courstime1"><p>课时<br/><span class="coursxq_num">{{$KSarr}}课时</span></p></span>
             <span class="courstime1"><p>学习人数<br/>
                     <span class="coursxq_num">
@@ -50,10 +49,6 @@
                         @endif
                             人
                     </span></p></span>
-=======
-            <span class="courstime1"><p>课时<br/><span class="coursxq_num">1 00课时</span></p></span>
-            <span class="courstime1"><p>学习人数<br/><span class="coursxq_num">25987人</span></p></span>
->>>>>>> Stashed changes
             <span class="courstime1"><p style="border:none;">课程时长<br/><span class="coursxq_num">3小时20分</span></p></span>
         </div>
         <div class="course_xq2">

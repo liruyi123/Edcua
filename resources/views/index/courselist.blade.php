@@ -39,8 +39,6 @@
                     <a href="/index/coursecont/{{$v['cou_id']}}" target="_blank"><img style="border-radius:3px 3px 0 0;" width="240" src="{{$v->path}}" title="{{$v->cou_name}}"></a>
                     <p class="courTit"><a href="/index/coursecont/{{$v['cou_id']}}" target="_blank">{{$v->cou_name}}</a></p>
                     <div class="gray">
-                        <span>30课时 600分钟</span>
-                        <span class="sp1">1255555人学习</span>
                         <div style="clear:both"></div>
                     </div>
                 </div>

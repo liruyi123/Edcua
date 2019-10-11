@@ -163,6 +163,9 @@
                             // console.log(msg);
                             if(msg.code == '200'){
                                 layer.msg(msg.message,{icon:6});
+                            }else if(msg.code == '202'){
+                                layer.msg(msg.message,{icon:2});
+                                window.location.href = "/index/login";
                             }else{
                                 layer.msg(msg.message,{icon:2});
                             }
