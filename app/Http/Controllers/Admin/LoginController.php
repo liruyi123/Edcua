@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redis;
 
 class LoginController extends Controller
 {
@@ -120,8 +121,8 @@ class LoginController extends Controller
         $time = time();
         $data = AdminModel::where(['admin_name'=>$name])->first();
         if(!empty($data)){
-            $ema = Cookie::get("email");
-            $codes = Cookie::get("code");
+            $ema = Redis::get("email");
+            $codes = Redis::get("code");
             if(!empty($ema)){
                 if($email == $ema){
                     if(!empty($codes)){
@@ -163,8 +164,8 @@ class LoginController extends Controller
         $data = AdminModel::where(["admin_name"=>$name,"admin_email"=>$email])->first();
         if($data){
             $arr = rand(11111,99999);
-            Cookie::queue("code",$arr);
-            Cookie::queue("email",$email);
+            Redis::setex("code",60,$arr);
+            Redis::set("email",$email);
             $this->email($email,$arr);
         }else{
             $this->code("10101","该用户不存在！");
