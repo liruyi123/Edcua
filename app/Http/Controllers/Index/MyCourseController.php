@@ -56,10 +56,6 @@ class MyCourseController extends Controller
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $ask = Question::where('user_id',$id)->get();
         $test = QuestionComment::where('status',1)->orderBy('c_id','desc')->limit(3)->get();
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         return view('index.myask',compact('user','ments','ask','test'));
     }
 
