@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <title>谋刻职业教育在线测评与学习平台</title>
-<script src="js/jquery-1.8.0.min.js"></script>
-<script src="js/mine.js"></script>
-<script src="js/jquery.tabs.js"></script>
+<script src="/index/js/jquery-1.8.0.min.js"></script>
+<script src="/index/js/mine.js"></script>
+<script src="/index/js/jquery.tabs.js"></script>
   		<!-- video.js must be in the <head> for older IEs to work. -->
-<link rel="stylesheet" href="video-js.css" >
-<link rel="stylesheet" href="css/course.css"/>
-<link rel="stylesheet" href="css/tab.css" media="screen">
-<script src="video.js"></script>
-    
+<link rel="stylesheet" href="/index/video-js.css" >
+<link rel="stylesheet" href="/index/css/course.css"/>
+<link rel="stylesheet" href="/index/css/tab.css" media="screen">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+<script src="/index/video.js"></script>
+
       <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
       <script>
-        videojs.options.flash.swf = "video-js.swf";
-		
+        videojs.options.flash.swf = "/index/video-js.swf";
       </script>
       <script type="text/javascript">
 $(function(){
@@ -35,9 +35,9 @@ $(function(){
 			 scrollbar-shadow-color: #fff; /*立体滚动条阴影的颜色*/
 			 scrollbar-darkshadow-color:#fff; /*立体滚动条外阴影的颜色*/
 			 scrollbar-track-color: #fff; /*立体滚动条背景颜色*/
-			 
-			 
-			
+
+
+
 	  }
 	   /* 设置滚动条的样式 */
 			::-webkit-scrollbar {
@@ -50,7 +50,7 @@ $(function(){
 			/* 滚动条滑块 */
 			::-webkit-scrollbar-thumb {
 				background: #333;
-				
+
 			}
 			::-webkit-scrollbar-thumb:window-inactive {
 				background: rgba(255,0,0,0.4);
@@ -59,23 +59,22 @@ $(function(){
 </head>
 
 <body>
-   <div class="linevideo" style="overflow-x:hidden">
+   <div class="linevideo" style="overflow-x:hidden" id="div1">
     	<span class="returnindex"><a class="gray" href="/study" style="font-size:14px;">返回课程</a></span>
-        <span class="taskspan"><span class="ts">课时100</span>&nbsp;&nbsp;<b class="tasktit">会计的概念与目标1</b></span> 
+        <span class="taskspan"><span class="ts">{{$cata['cata_name']}}</span>&nbsp;&nbsp;<b class="tasktit">{{$cata['cata_text']}}</b></span>
         <div style="width:100%;margin-top:20px;">
-			<video width="auto" id="example_video_1" class="video-js vjs-default-skin  vjs-big-play-centered vvi " controls preload="none"  poster="images/c8.jpg" data-setup="{}"><!--poster是视频未播放前的展示图片-->
-			<source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
-			<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
-			<source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />    
+			<video width="auto" id="example_video_1" src="{{$cata['video']}}" class="video-js vjs-default-skin  vjs-big-play-centered vvi video " controls preload="none"  poster="{{$data[0]['path']}}" data-setup="{}"><!--poster是视频未播放前的展示图片-->
+			{{--<source id="video" src="{{$arr[0]["son"][0]["son"][0]['video']}}" type='video/mp4' />--}}
 			</video>
 			<p class="signp"><span class="sign">学过了</span><span class="nextcourse" title="下一课时">∨</span></p>
-        </div>       
-    </div>    
-  <div class="interact">
+        </div>
+    </div>
+
+  <div class="interact" id="demo">
    		<span class="ii" title="展开或收起">></span>
         <div class="clearh"></div>
         <!--<div class="coursmall">
-        
+
         <img class="csimg" src="images/121.png" width="153" height="75">
         <span class="lineevalue">
         <p>计算机等级考试二级C语言</p>
@@ -96,30 +95,15 @@ $(function(){
 			<div class="tab_box tabcard">
 				<div style="padding-bottom:30px;">
 					<dl class="mulu noo1">
-                        <dt>第一章&nbsp;&nbsp;总论</dt>
-						<dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计的概念与目标</strong></dd>
-                        <a href="#"><dd><i class="forwa nn"></i><strong class="cataloglink">课时1：会计的概念与目标1</strong></dd></a>
-                        <dd><i class="forwa fn"></i><strong class="cataloglink">课时2：会计的概念与目标2</strong></dd>
-
-                        <dt>第二章&nbsp;&nbsp;会计要素与会计等式</dt>
-						<dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计要素</strong></dd>
-                        <dd><i class="forwa ff"></i><strong class="cataloglink">课时1：会计要素与会计等式1</strong></dd>
-                        <dd><i class="forwa nn"></i><strong class="cataloglink">课时2：会计要素与会计等式2</strong></dd>
-
-						<dt>第三章&nbsp;&nbsp;总论</dt>
-						<dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计的概念与目标</strong></dd>
-                        <a href="#"><dd><i class="forwa nn"></i><strong class="cataloglink">课时1：会计的概念与目标1</strong></dd></a>
-                        <dd><i class="forwa nn"></i><strong class="cataloglink">课时2：会计的概念与目标2</strong></dd>
-
-						<dt>第四章&nbsp;&nbsp;总论</dt>
-						<dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计的概念与目标</strong></dd>
-                        <a href="#"><dd><i class="forwa nn"></i><strong class="cataloglink">课时1：会计的概念与目标1</strong></dd></a>
-                        <dd><i class="forwa nn"></i><strong class="cataloglink">课时2：会计的概念与目标2</strong></dd>
-
-						<dt>第五章&nbsp;&nbsp;总论</dt>
-						<dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计的概念与目标</strong></dd>
-                        <a href="#"><dd><i class="forwa nn"></i><strong class="cataloglink">课时1：会计的概念与目标1</strong></dd></a>
-                        <dd><i class="forwa nn"></i><strong class="cataloglink">课时2：会计的概念与目标2</strong></dd>
+                        @foreach($arr as $k => $v)
+                        <dt>{{$v['cata_name']}}&nbsp;&nbsp;{{$v['cata_text']}}</dt>
+                            @foreach($v['son'] as $ke => $va)
+						    <dd class="smalltitle"><strong>{{$va['cata_name']}}&nbsp;&nbsp;{{$va['cata_text']}}</strong></dd>
+                                @foreach($va['son'] as $key => $val)
+                                <a href="javascript:;" class="gain" cata_id="{{$val['cata_id']}}" cou_id="{{$data[0]['cou_id']}}"><dd><i class="forwa nn"></i><strong class="cataloglink">{{$val['cata_name']}}：{{$val['cata_text']}}</strong></dd></a>
+                        @endforeach
+                            @endforeach
+                                @endforeach
                    </dl>	
 				   <div class="clearh"></div>
 				</div>
@@ -170,3 +154,25 @@ $(function(){
     </div>
 </body>
 </html>
+<script src="/layui/layui.js"></script>
+<script>
+
+    layui.use("layer",function () {
+        var layer = layui.layer;
+    })
+    $(document).on("click",".gain",function () {
+        var cata_id = $(this).attr("cata_id");
+        var cou_id = $(this).attr("cou_id");
+        $.ajax({
+            url : "/index/gain",
+            type : "POST",
+            data : {cata_id:cata_id,cou_id:cou_id},
+            // dataType : "JSON",
+            success : function (res) {
+                console.log(res);
+                $("#div1").replaceWith(res);
+                $("#demo").remove();
+            }
+        });
+    })
+</script>

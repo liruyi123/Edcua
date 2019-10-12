@@ -1,5 +1,5 @@
 @extends('admin.first')
-@section('title','资讯分类添加')
+@section('title','课程视频添加')
 <link rel="stylesheet" href="/static/build/layui.css" media="all">
 @section('content')
     <h3>课程视频添加</h3><br/>

@@ -100,6 +100,7 @@ class CourseController extends Controller
     public function coursecont1(Request $request)
     {
         $id = $request->id;
+        $cata_id = $request->cata_id;
         $data = Course::join("lecturer",['course.lect_id'=>'lecturer.lect_id'])->where(['cou_id'=>$id])->first()->toArray();
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $res=NavbarModel::where(['status'=>1,'nav_type'=>2])->orderBy('nav_weight','desc')->get();
@@ -129,7 +130,7 @@ class CourseController extends Controller
 
 
 
-        return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr","coursecommentlist","KSarr","CUarr"));
+        return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr","coursecommentlist","KSarr","CUarr","cata_id"));
     }
 
     // 回复问题

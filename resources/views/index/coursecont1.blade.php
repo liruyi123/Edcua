@@ -52,7 +52,7 @@
             <span class="courstime1"><p style="border:none;">课程时长<br/><span class="coursxq_num">3小时20分</span></p></span>
         </div>
         <div class="course_xq2">
-            <a class="course_learn" href="#">开始学习</a>
+            <a class="course_learn" href="/index/video/{{$data['cou_id']}}/{{$cata_id}}">开始学习</a>
         </div>
         <div class="clearh"></div>
     </div>

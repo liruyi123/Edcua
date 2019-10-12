@@ -27,7 +27,7 @@ Route::get("/index/pwd","Index\LoginController@pwd");//修改密码页面
 Route::post("/index/pwdCode","Index\LoginController@pwdCode");//获取验证码
 Route::post("/index/pwdAdd","Index\LoginController@pwdAdd");//修改密码执行
 Route::get('/index/coursecont/{id}','Index\CourseController@coursecont');//课程介绍，目录
-Route::get("/index/coursecont1/{id}","Index\CourseController@coursecont1");//课程详情
+Route::get("/index/coursecont1/{id}/{cata_id}","Index\CourseController@coursecont1");//课程详情
 Route::post("/index/reply","Index\CourseController@reply");
 Route::post("/index/tiwen_con","Index\CourseController@tiwen_con");
 Route::post("/index/btnlink","Index\CourseController@btnlink");
@@ -60,6 +60,8 @@ Route::get('/index/updMessage','Index\UpdMessageController@updMessage');    //  
 Route::post('/index/updMessage_do','Index\UpdMessageController@updMessagedo');    //  修改信息
 Route::post('/index/uploadinfo','Index\UpdMessageController@uploadinfo');    //  修改信息
 
+Route::get("/index/video/{id}/{cata_id}","Index\VideoController@video");//视频页面
+Route::post("/index/gain","Index\VideoController@gain");//获取视频
 //后台
 Route::get('/admin/index','Admin\IndexController@index');
 Route::get('/admin/indexV1','Admin\IndexController@indexV1');
@@ -99,8 +101,6 @@ Route::get('/admin/CCGDel','Admin\CourseController@CCGDel');//课程分类的删
 Route::get('/admin/CCGUpd','Admin\CourseController@CCGUpd');//课程分类的修改
 Route::post('/admin/CCGUpd_do','Admin\CourseController@CCGUpd_do');//课程分类的修改
 
-
-Route::get('/admin/video','Admin\CourseController@video');//课时的视频上传
 
 
 
