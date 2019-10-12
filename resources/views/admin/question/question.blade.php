@@ -12,7 +12,7 @@
         </div>
         <br>
         <br>
-        <h3>所属课程：</h3>
+        <h3>所属课程分类：</h3>
         <div class="col-sm-5">
             <select class="form-control" name="" id="catalog">
                 <option value="0">The course directory to which it belongs</option>

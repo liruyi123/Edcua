@@ -40,14 +40,14 @@
             </span>
             @elseif(session("user_id") !="")
             <!--登录后-->
-            <div class="logined">
+            <div class="logined" style="width: 498px">
                 <a href="/index/my"  onMouseOver="logmine()" style="width:70px" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
-                <span id="lne" style="display:none" onMouseOut="logclose()" onMouseOver="logmine()">
+                <span id="lne" style="display:none;width: 40px" onMouseOut="logclose()" onMouseOver="logmine()">
                     <span style="background:#fff;">
-                        <a href="/index/my" style="width:70px; display:block;" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
+                        <a href="/index/my" style="width:0px; display:block;" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
                     </span>
                     <div class="clearh"></div>
-                    <ul class="logmine" >
+                    <ul class="logmine" style="width:100px">
                         <li><a class="link1" href="#">我的课程</a></li>
                         <li><a class="link1" href="#">我的题库</a></li>
                         <li><a class="link1" href="#">我的问答</a></li>

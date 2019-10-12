@@ -180,7 +180,7 @@
 
 @section("js")
     <script src="/index/js/jquery-1.8.0.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $(function () {
             layui.use('layer', function () {
                 var layer = layui.layer;
@@ -207,15 +207,18 @@
                         url:"/index/btnlink",
                         type:"POST",
                         data:{cou_id:cou_id},
-                        datatype:"json",
+                        dataType:"json",
                         async:true,
                         success:function(res){
-                            console.log(res);
+                            console.log(res.code);
                             if(res.code == 200){
-                                window.location.href = "/index/coursecont1"+cou_id;
+                                window.location.href = "/index/coursecont1/"+cou_id;
                             }else if(res.code == 201){
                                 layer.msg(msg.message,{icon:2});
                                 window.location.href = "/index/login";
+                            }else if(res.code == 204){
+                                layer.msg(res.message,{icon:2});
+                                window.location.href = "/index/coursecont1/"+cou_id;
                             }else{
                                 layer.msg("error",{icon:2});
                             }

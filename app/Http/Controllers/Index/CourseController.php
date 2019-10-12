@@ -78,9 +78,9 @@ class CourseController extends Controller
             return $this->code(201,"您还没有登陆，请先登录~~");
         }
         $cou_id = $request->input("cou_id");
-        $arr = CourseUser::where(['user_id'=>$id])->first();
+        $arr = CourseUser::where(['user_id'=>$id,'cou_id'=>$cou_id])->first();
         if ($arr){
-            return $this->code(202,"该课程已经假如您的学习列表中");
+            return $this->code(204,"正在为您跳转");
         }
         $data = [
             'user_id'=>$id,
