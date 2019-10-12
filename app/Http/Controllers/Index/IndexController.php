@@ -46,4 +46,5 @@ class IndexController extends Controller
         }
         return $cateInfo;
     }
+  
 }

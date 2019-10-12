@@ -50,7 +50,7 @@ class QuestionController extends CommonController
            $data = [
                'b_name'=>$topic,
                'b_type' => $type,
-               'cata_id' => $catalog,
+               'cate_id' => $catalog,
                'b_answer' => $TF_answer,
                'b_score' => $score,
                'ctime' => time(),
@@ -64,7 +64,7 @@ class QuestionController extends CommonController
            $data = [
                'b_name'=>$topic,
                'b_type' => $type,
-               'cata_id' => $catalog,
+               'cate_id' => $catalog,
                'b_choiceA' => $choiceA,
                'b_choiceB' => $choiceB,
                'b_choiceC' => $choiceC,
@@ -82,7 +82,7 @@ class QuestionController extends CommonController
            $data = [
                'b_name'=>$topic,
                'b_type' => $type,
-               'cata_id' => $catalog,
+               'cate_id' => $catalog,
                'b_answer' => $cloze_answer,
                'b_score' => $score,
                'ctime' => time(),
@@ -172,7 +172,7 @@ class QuestionController extends CommonController
             $data = [
                 'b_name'=>$topic,
                 'b_type' => $type,
-                'cata_id' => $catalog,
+                'cate_id' => $catalog,
                 'b_answer' => $TF_answer,
                 'b_score' => $score,
                 'ctime' => time(),
@@ -186,7 +186,7 @@ class QuestionController extends CommonController
             $data = [
                 'b_name'=>$topic,
                 'b_type' => $type,
-                'cata_id' => $catalog,
+                'cate_id' => $catalog,
                 'b_choiceA' => $choiceA,
                 'b_choiceB' => $choiceB,
                 'b_choiceC' => $choiceC,
@@ -204,7 +204,7 @@ class QuestionController extends CommonController
             $data = [
                 'b_name'=>$topic,
                 'b_type' => $type,
-                'cata_id' => $catalog,
+                'cate_id' => $catalog,
                 'b_answer' => $cloze_answer,
                 'b_score' => $score,
                 'ctime' => time(),
