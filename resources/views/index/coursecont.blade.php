@@ -35,6 +35,8 @@
                     已学完
                 @elseif($type == 3)
                     开始学习
+                @else
+                    开始学习
                 @endif
             </a>
             <a class="codol fx" href="javascript:void(0);" onClick="$('#bds').toggle();">分享课程</a>
