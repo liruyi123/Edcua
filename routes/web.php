@@ -180,3 +180,4 @@ Route::post('/admin/RoleDel','Admin\RoleController@RoleDel');// 后台角色删�
 /*======================video(视频上传)=======================*/
 Route::get("/admin/video","Admin\VideoController@video");//上传页面
 Route::post("/admin/upload","Admin\VideoController@videoAdd");//上传视频
+Route::post("/admin/videoDo","Admin\VideoController@videoDo");//上传执行
