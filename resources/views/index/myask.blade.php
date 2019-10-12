@@ -116,9 +116,11 @@
                     <div class="courseli">
                         <p class="memb_courname">
                             <a href="" class="blacklink">{{$v->q_name}}</a><br>
-                        @foreach($test as $key=>$val)
-                                <a href="">答：{{$val->c_test}}</a><br>
-                        @endforeach
+                            @foreach($test as $key=>$val)
+                                @if($v->q_id == $val->q_id)
+                                <a href="">答:{{$val->c_test}}</a><br>
+                                @endif
+                            @endforeach
                         </p>
                     </div>
                 </li>
