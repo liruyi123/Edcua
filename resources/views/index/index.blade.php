@@ -361,7 +361,7 @@ function nTabs(thisObj,Num){
 							</li>
 							<li>
 								<div class="courselist">
-								<a href="/index/coursecont/{{$data[1]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
+								<a href="/index/coursecont/{{$data[1]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[1]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
 										<span>{{$data[2]['cou_duration']}}分钟前更新</span>
@@ -377,7 +377,7 @@ function nTabs(thisObj,Num){
 						<ul class="courseul" id="myTab3_Content1" style="display: none;">
 						<li>
 								<div class="courselist">
-								<a href="/index/coursecont/{{$data[2]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
+								<a href="/index/coursecont/{{$data[2]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[2]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
 										<span>{{$data[0]['cou_duration']}}分钟前更新</span>
@@ -388,7 +388,7 @@ function nTabs(thisObj,Num){
 							</li>
 							<li>
 								<div class="courselist">
-								<a href="/index/coursecont/{{$data[3]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
+								<a href="/index/coursecont/{{$data[3]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[3]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
 										<span>{{$data[0]['cou_duration']}}分钟前更新</span>
@@ -415,7 +415,7 @@ function nTabs(thisObj,Num){
 						<ul class="courseul" id="myTab3_Content2" style="display: none;">
 						<li>
 								<div class="courselist">
-								<a href="/index/coursecont/{{$data[2]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
+								<a href="/index/coursecont/{{$data[2]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[2]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
 										<span>{{$data[3]['cou_duration']}}分钟前更新</span>
@@ -431,7 +431,7 @@ function nTabs(thisObj,Num){
 						<ul class="courseul" id="myTab3_Content3" style="display: none;">
 						<li>
 								<div class="courselist">
-								<a href="/index/coursecont/{{$data[3]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[0]['path']}}" ></a>
+								<a href="/index/coursecont/{{$data[3]['cou_id']}}"><img width="263" style="border-radius:3px 3px 0 0;" src="{{$data[3]['path']}}" ></a>
 									<p class="courTit">HTTP下载课程</p>
 									<div class="gray">
 										<span>{{$data[1]['cou_duration']}}分钟前更新</span>
