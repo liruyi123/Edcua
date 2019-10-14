@@ -78,9 +78,9 @@
                                     <span class="mulu_zd">+</span></dt>
                                 <div class="mulu_con">
                                     @foreach($v['son'] as $kk=>$vv)
-                                        <dd class="smalltitle"><strong>{{$vv['cata_name']}}</strong></dd>
+                                        <dd class="smalltitle" ><strong>{{$vv['cata_name']}}</strong></dd>
                                         @foreach($vv['son'] as $kkk=>$vvv)
-                                            <a href="video.html"><dd><strong class="cataloglink">{{$vvv['cata_name']}}</strong><i class="fini nn"></i></dd></a>
+                                            <a href="/index/video/{{$v['cata_id']}}/{{$vv['cou_id']}}"><dd><strong class="cataloglink">{{$vvv['cata_name']}}</strong><i class="fini nn"></i></dd></a>
                                         @endforeach
                                     @endforeach
                                 </div>

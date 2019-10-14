@@ -44,7 +44,7 @@
                 <a href="/index/my"  onMouseOver="logmine()" style="width:70px" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
                 <span id="lne" style="display:none;width: 40px" onMouseOut="logclose()" onMouseOver="logmine()">
                     <span style="background:#fff;">
-                        <a href="/index/my" style="width:0px; display:block;" class="link2 he ico" target="_blank">{{session("user_name")}}</a>
+                        <a href="/index/my" style="width:0px; display:block;" class="link2 he ico" target="_blank"></a>
                     </span>
                     <div class="clearh"></div>
                     <ul class="logmine" style="width:100px">

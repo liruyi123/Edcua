@@ -4,17 +4,17 @@
 <link rel="stylesheet" type="text/css" href="/index/css/main.css" id="main-css">
 <link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css" id="main-css">
 
-@section("css")
-	<style>
-		*{ margin:0; padding:0; list-style:none}
-		img{ border:0;}
-		.lanrenzhijia_service{ width:40px; height:200px; background:url(images/jsdaima.png) no-repeat; position:fixed; right:0px; top:200px;}
-		.lanrenzhijia_service ul{ display:block; width:160px; height:200px; float:left; position:relative;}
-		.lanrenzhijia_service ul .right_bar{ position:absolute;width:40px; height:200px; left:0; top:0; display:block;}
-		.lanrenzhijia_service ul .right_qq{ position:absolute; width:120px; height:85px; right:0; top:0; display:block;}
-		.lanrenzhijia_service ul .right_phone{ position:absolute; width:120px; height:105px; padding-top:10px;right:0; bottom:0; display:block; text-align:center; color:#555; font-size:16px; font-family:'Microsoft Yahei'; text-decoration:none;}
-	</style>
-	@endsection
+{{--@section("css")--}}
+	{{--<style>--}}
+		{{--*{ margin:0; padding:0; list-style:none}--}}
+		{{--img{ border:0;}--}}
+		{{--.lanrenzhijia_service{ width:40px; height:200px; background:url(images/jsdaima.png) no-repeat; position:fixed; right:0px; top:200px;}--}}
+		{{--.lanrenzhijia_service ul{ display:block; width:160px; height:200px; float:left; position:relative;}--}}
+		{{--.lanrenzhijia_service ul .right_bar{ position:absolute;width:40px; height:200px; left:0; top:0; display:block;}--}}
+		{{--.lanrenzhijia_service ul .right_qq{ position:absolute; width:120px; height:85px; right:0; top:0; display:block;}--}}
+		{{--.lanrenzhijia_service ul .right_phone{ position:absolute; width:120px; height:105px; padding-top:10px;right:0; bottom:0; display:block; text-align:center; color:#555; font-size:16px; font-family:'Microsoft Yahei'; text-decoration:none;}--}}
+	{{--</style>--}}
+	{{--@endsection--}}
 @section('content')
 		<!--课程选项卡-->
 <script type="text/javascript">
@@ -483,16 +483,17 @@ function nTabs(thisObj,Num){
 			</div>
 		</div>
 	</div>
-		<div class="lanrenzhijia_service">
-			<ul>
-				<span class="right_bar"></span>
-				<a href="https://wpa.qq.com/msgrd?v=3&uin=1026591398&site=qq&menu=yes" class="right_qq" target="_blank"></a>
-				<span class="right_phone">12345678956</span>
-			</ul>
-		</div>
+		{{--<div class="lanrenzhijia_service">--}}
+			{{--<ul>--}}
+				{{--<span class="right_bar"></span>--}}
+				{{--<a href="https://wpa.qq.com/msgrd?v=3&uin=1026591398&site=qq&menu=yes" class="right_qq" target="_blank"></a>--}}
+				{{--<span class="right_phone">12345678956</span>--}}
+			{{--</ul>--}}
+		{{--</div>--}}
 	</body>
 @endsection
-<script src="/index/js/jquery-1.7.2.min.js"></script>
+{{--<script src="/index/js/jquery-1.7.2.min.js"></script>--}}
+<script src="/index/js/jquery-1.8.0.min.js"></script>
 <script>
 function logmine(){
 	document.getElementById("lne").style.display="block";
@@ -501,30 +502,6 @@ function logclose(){
 	document.getElementById("lne").style.display="none";	
 }
 
- /*右侧客服飘窗*/
-	$(".label_pa li").click(function() {
-		$(this).siblings("li").find("span").css("background-color", "#fff").css("color", "#666");
-		$(this).find("span").css("background", "#fb5e55").css("color", "#fff");
-	});
-	$(".em").hover(function() {
-		$(".showem").toggle();
-	});
-	$(".qq").hover(function() {
-		$(".showqq").toggle();
-	});
-	$(".wb").hover(function() {
-		$(".showwb").toggle();
-	});
-	$("#top").click(function() {
-		if (scroll == "off") return;
-		$("html,body").animate({
-			scrollTop: 0
-		},
-		600);
-	});
-	$(document).on("click",".qq",function () {
-		location.href = "http://wpa.qq.com/msgrd?v=3&uin=1026591398&site=qq&menu=yes";
-    })
 </script>
 <script>
     $(function(){

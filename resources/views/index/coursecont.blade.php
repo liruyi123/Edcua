@@ -11,7 +11,7 @@
 <div class="coursecont">
 <div class="coursepic">
     <input type="hidden" value="{{$data['cou_id']}}" id="cou_id">
-    <input type="hidden" value="{{$data['cate_id']}}" id="cate_id">
+    <input type="hidden" value="{{$data['cou_id']}}" id="cate_id">
 
 	<div class="course_img"><img src="{{$data['path']}}" width="500" class="img"></div>
     <div class="coursetitle">

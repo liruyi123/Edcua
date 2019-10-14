@@ -20,7 +20,7 @@ class VideoController extends Controller
         $arr = $this->getIndexCateInfo($arr,0);
         $cata = Catalog::where(["pid"=>$cata_id])->first()->toArray();
         $cata = Catalog::where(["pid"=>$cata['cata_id']])->first()->toArray();
-
+//        print_r($cata);die;
         return view("index.video",compact("data","arr","cata"));
     }
     //获取视频
@@ -32,7 +32,7 @@ class VideoController extends Controller
         $data = Course::where(["course.cou_id"=>$cou_id])->get()->toArray();
         $arr = Catalog::where(["cou_id"=>$cou_id])->get()->toArray();
         $arr = $this->getIndexCateInfo($arr,0);
-        print_r($arr);die;
+//        print_r($arr);die;
         return view("index.video1",compact('video',"data","arr"));
     }
 

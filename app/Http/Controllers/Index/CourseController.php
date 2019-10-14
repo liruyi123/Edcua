@@ -127,9 +127,7 @@ class CourseController extends Controller
         //查询人数
         $CUarr = CourseUser::where(['c_status'=>1,'cou_id'=>$id])->count();
 
-
-
-
+//        print_r($catadata);die;
         return view("index.coursecont1",compact('data',"ments","res","countsql","catadata","arr","QCarr","coursecommentlist","KSarr","CUarr","cata_id"));
     }
 
