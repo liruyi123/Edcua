@@ -27,7 +27,6 @@ class CourseController extends Controller
         $res = $this->getIndexCateInfo($arr,0);
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         $date=NavbarModel::where(['status'=>1,'nav_type'=>2]) ->orderBy('nav_weight','desc')->get();
-
         return view("index.courselist",compact("data","res",'ments','date'));
     }
 
