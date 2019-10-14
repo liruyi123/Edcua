@@ -4,6 +4,17 @@
 <link rel="stylesheet" type="text/css" href="/index/css/main.css" id="main-css">
 <link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css" id="main-css">
 
+@section("css")
+	<style>
+		*{ margin:0; padding:0; list-style:none}
+		img{ border:0;}
+		.lanrenzhijia_service{ width:40px; height:200px; background:url(images/jsdaima.png) no-repeat; position:fixed; right:0px; top:200px;}
+		.lanrenzhijia_service ul{ display:block; width:160px; height:200px; float:left; position:relative;}
+		.lanrenzhijia_service ul .right_bar{ position:absolute;width:40px; height:200px; left:0; top:0; display:block;}
+		.lanrenzhijia_service ul .right_qq{ position:absolute; width:120px; height:85px; right:0; top:0; display:block;}
+		.lanrenzhijia_service ul .right_phone{ position:absolute; width:120px; height:105px; padding-top:10px;right:0; bottom:0; display:block; text-align:center; color:#555; font-size:16px; font-family:'Microsoft Yahei'; text-decoration:none;}
+	</style>
+	@endsection
 @section('content')
 		<!--课程选项卡-->
 <script type="text/javascript">
@@ -472,26 +483,16 @@ function nTabs(thisObj,Num){
 			</div>
 		</div>
 	</div>
-
-	<!--右侧浮动-->
-	<div class="rmbar">
-	<span class="barico qq" style="position:relative">
-	<div  class="showqq">
-	   <p>官方客服QQ:<br>335049335</p>
-	</div>
-	</span>
-		<span class="barico em" style="position:relative">
-	  <img src="/index/images/num.png" width="75" class="showem">
-	</span>
-		<span class="barico wb" style="position:relative">
-	  <img src="/index/images/wb.png" width="75" class="showwb">
-	</span>
-		<span class="barico top" id="top">置顶</span>
-	</div>
-
+		<div class="lanrenzhijia_service">
+			<ul>
+				<span class="right_bar"></span>
+				<a href="https://wpa.qq.com/msgrd?v=3&uin=1026591398&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+				<span class="right_phone">12345678956</span>
+			</ul>
+		</div>
 	</body>
 @endsection
-<script src="/index/js/jquery-1.8.0.min.js"></script>
+<script src="/index/js/jquery-1.7.2.min.js"></script>
 <script>
 function logmine(){
 	document.getElementById("lne").style.display="block";
@@ -521,4 +522,16 @@ function logclose(){
 		},
 		600);
 	});
+	$(document).on("click",".qq",function () {
+		location.href = "http://wpa.qq.com/msgrd?v=3&uin=1026591398&site=qq&menu=yes";
+    })
+</script>
+<script>
+    $(function(){
+        $(".lanrenzhijia_service").hover(function(){
+            $(this).animate({width:'160px'});
+        },function(){
+            $(this).animate({width:'40px'});
+        });
+    });
 </script>
