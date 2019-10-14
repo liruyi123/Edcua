@@ -11,6 +11,8 @@
 <div class="coursecont">
 <div class="coursepic">
     <input type="hidden" value="{{$data['cou_id']}}" id="cou_id">
+    <input type="hidden" value="{{$data['cate_id']}}" id="cate_id">
+
 	<div class="course_img"><img src="{{$data['path']}}" width="500" class="img"></div>
     <div class="coursetitle">
    		<a class="state">更新中</a>
@@ -203,6 +205,7 @@
 
                 $(".btnlink").click(function () {
                     var cou_id = $("#cou_id").val();
+                    var cate_id = $("#cate_id").val();
                     $.ajax({
                         url:"/index/btnlink",
                         type:"POST",
@@ -212,13 +215,13 @@
                         success:function(res){
                             console.log(res.code);
                             if(res.code == 200){
-                                window.location.href = "/index/coursecont1/"+cou_id;
+                                window.location.href = "/index/coursecont1/"+cou_id+"/"+cate_id;
                             }else if(res.code == 201){
                                 layer.msg(msg.message,{icon:2});
                                 window.location.href = "/index/login";
                             }else if(res.code == 204){
-                                layer.msg(res.message,{icon:2});
-                                window.location.href = "/index/coursecont1/"+cou_id;
+                                layer.msg(res.message,{icon:6});
+                                window.location.href = "/index/coursecont1/"+cou_id+"/"+cate_id;
                             }else{
                                 layer.msg("error",{icon:2});
                             }
