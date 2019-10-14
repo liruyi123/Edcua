@@ -17,6 +17,8 @@ Route::get('/','Index\IndexController@index');//首页
 //前台
 
 Route::get('/index/courselist','Index\CourseController@course');//课程页面
+Route::get('/index/faq','Index\FaqController@Faq');//问答页面
+Route::post('/index/faq_do','Index\FaqController@Faq_do');//问答页面de回答
 Route::get('/index/login','Index\LoginController@login');//登陆页面
 Route::post("/index/loginAdd","Index\LoginController@loginAdd");//登陆执行
 Route::get('/index/register','Index\LoginController@register');//注册页面

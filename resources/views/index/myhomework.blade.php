@@ -110,7 +110,23 @@
 
     <div class="membcont">
         <h3 class="mem-h3">我的作业</h3>
-
+        @foreach($couData as $k=>$v)
+            @foreach($cataData as $kk=>$vv)
+                @if($v['cou_id'] == $vv['cou_id'])
+                    <ul class="memb_course">
+                        <li>
+                            <div class="courseli">
+                                <p class="memb_courname">
+                                    <a href="" class="blacklink">{{$v['cou_name']}}</a><br>
+                                    <a href="" class="blacklink">{{$vv['cata_name']}}</a><br>
+                                        <a href="">作业：{{$vv['cata_text']}}</a><br>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                @endif
+            @endforeach
+        @endforeach
     </div>
 
 

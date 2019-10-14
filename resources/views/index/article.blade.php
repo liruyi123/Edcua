@@ -1,13 +1,9 @@
 @extends('index.ments')
 
 <link rel="stylesheet" href="/index/css/article.css">
-<<<<<<< Updated upstream
-
-=======
 <script src="/index/js/jquery-1.8.0.min.js"></script>
 <script src="/index/js/jquery.tabs.js"></script>
 <script src="/index/js/mine.js"></script>
->>>>>>> Stashed changes
 @section('content')
 <body>
 <!-- InstanceBeginEditable name="EditRegion1" -->

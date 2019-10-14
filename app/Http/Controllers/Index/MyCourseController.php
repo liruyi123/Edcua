@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Model\Catalog;
 use App\Model\QuestionBank;
 use App\Model\QuestionBankUser;
 use Illuminate\Http\Request;
@@ -74,8 +75,16 @@ class MyCourseController extends Controller
     {
         $id = $this->getUserId();
         $user = UserModel::where(['user_id'=>$id])->first();
+        $arr = CourseUser::where(['user_id'=>$id,'c_status'=>1])->get()->toArray();
+        $cou_id = [];
+        foreach ($arr as $k=>$v){
+            $cou_id []= $v['cou_id'];
+        }
+        $cataData = Catalog::whereIn('cou_id',$cou_id)->where('cata_name','like','%课时%')->get()->toArray();
+        $couData = Course::whereIn('cou_id',$cou_id)->get()->toArray();
+//        print_r($couData);die;
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
-        return view('index.myhomework',compact('user','ments'));
+        return view('index.myhomework',compact('user','ments','cataData','couData'));
     }
 
     //  我的题库
@@ -103,6 +112,7 @@ class MyCourseController extends Controller
     {
         $id = $this->getUserId();
         $user = UserModel::where(['user_id'=>$id])->first();
+
         $ments = NavbarModel::where(['status'=>1,'nav_type'=>1])->orderBy('nav_weight','desc')->get();
         return view('index.myadd',compact('user','ments'));
     }

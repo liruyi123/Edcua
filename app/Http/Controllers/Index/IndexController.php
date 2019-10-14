@@ -28,7 +28,7 @@ class IndexController extends Controller
             ->where(['course_category.status'=>1])
             ->get()->toArray();
         $data = $this->getIndexCateInfo($ress,0);
-        // var_dump($data);die;
+//         print_r($data);die;
         return view("index.index",compact('ments','res',"data"));
     }
 
